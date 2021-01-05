@@ -1,0 +1,55 @@
+
+
+*
+* Visual Studio Code Server
+*
+* Reminder: You may only use this software with Visual Studio family products,
+* as described in the license https://aka.ms/vscode-remote/license
+*
+
+
+IP Address: 10.41.231.119
+Extension host agent listening on 45328
+
+
+[17:07:43] Extension host agent started.
+[17:07:43] [127.0.0.1][f143e010][ManagementConnection] New connection established.
+[17:07:43] [127.0.0.1][eee3f585][ExtensionHostConnection] New connection established.
+bash: cannot set terminal process group (-1): Inappropriate ioctl for device
+bash: no job control in this shell
+[17:07:44] [127.0.0.1][eee3f585][ExtensionHostConnection] <49179> Launched Extension Host Process.
+[17:08:55] [127.0.0.1][f143e010][ManagementConnection] The client has reconnected.
+[17:08:55] [127.0.0.1][eee3f585][ExtensionHostConnection] The client has reconnected.
+[17:09:37] [127.0.0.1][f143e010][ManagementConnection] The client has reconnected.
+[17:09:37] [127.0.0.1][eee3f585][ExtensionHostConnection] The client has reconnected.
+[17:10:22] [127.0.0.1][79cf5156][ManagementConnection] New connection established.
+[17:10:22] [127.0.0.1][7410cb6e][ExtensionHostConnection] New connection established.
+[17:10:22] [127.0.0.1][7410cb6e][ExtensionHostConnection] <49740> Launched Extension Host Process.
+Error: read ECONNRESET
+    at TCP.onStreamRead (internal/stream_base_commons.js:183:27) {
+  errno: 'ECONNRESET',
+  code: 'ECONNRESET',
+  syscall: 'read'
+}
+[17:25:19] [127.0.0.1][f143e010][ManagementConnection] The client has disconnected, will wait for reconnection 3h before disposing...
+Error: write EPIPE
+    at WriteWrap.onWriteComplete [as oncomplete] (internal/stream_base_commons.js:83:16) {
+  errno: 'EPIPE',
+  code: 'EPIPE',
+  syscall: 'write'
+}
+Error: Unexpected SIGPIPE
+    at process.<anonymous> (/home/knlab/.vscode-server/bin/d5e9aa0227e057a60c82568bf31c04730dc15dcd/out/bootstrap.js:5:246)
+    at process.emit (events.js:200:13)
+Error: Unexpected SIGPIPE
+    at process.<anonymous> (/home/knlab/.vscode-server/bin/d5e9aa0227e057a60c82568bf31c04730dc15dcd/out/bootstrap.js:5:246)
+    at process.emit (events.js:200:13)
+[18:34:03] [127.0.0.1][79cf5156][ManagementConnection] The client has disconnected, will wait for reconnection 3h before disposing...
+[20:25:19] [127.0.0.1][f143e010][ManagementConnection] The reconnection grace time of 3h has expired, so the connection will be disposed.
+[20:25:20] [127.0.0.1][eee3f585][ExtensionHostConnection] <49179> Extension Host Process exited with code: 0, signal: null.
+[21:33:57] [127.0.0.1][7410cb6e][ExtensionHostConnection] <49740> Extension Host Process exited with code: 0, signal: null.
+Last EH closed, waiting before shutting down
+[21:33:57] Last EH closed, waiting before shutting down
+[21:34:03] [127.0.0.1][79cf5156][ManagementConnection] The reconnection grace time of 3h has expired, so the connection will be disposed.
+Last EH closed, shutting down
+[21:38:57] Last EH closed, shutting down

@@ -1,0 +1,53 @@
+[2020-08-05 18:14:56.208] [exthost] [info] extension host started
+[2020-08-05 18:14:56.805] [exthost] [info] ExtensionService#_doActivateExtension vscode.php-language-features {"startup":false,"extensionId":{"value":"vscode.php-language-features","_lower":"vscode.php-language-features"},"activationEvent":"onLanguage:php"}
+[2020-08-05 18:14:56.806] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/extensions/php-language-features/dist/phpMain
+[2020-08-05 18:14:56.844] [exthost] [info] ExtensionService#_doActivateExtension felixfbecker.php-intellisense {"startup":false,"extensionId":{"value":"felixfbecker.php-intellisense","_lower":"felixfbecker.php-intellisense"},"activationEvent":"onLanguage:php"}
+[2020-08-05 18:14:56.844] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/out/extension
+[2020-08-05 18:14:57.024] [exthost] [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch {"startup":true,"extensionId":{"value":"vscode.debug-auto-launch","_lower":"vscode.debug-auto-launch"},"activationEvent":"*"}
+[2020-08-05 18:14:57.024] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/extensions/debug-auto-launch/dist/extension
+[2020-08-05 18:14:57.049] [exthost] [info] ExtensionService#_doActivateExtension vscode.emmet {"startup":true,"extensionId":{"value":"vscode.emmet","_lower":"vscode.emmet"},"activationEvent":"*"}
+[2020-08-05 18:14:57.049] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/extensions/emmet/dist/extension
+[2020-08-05 18:14:57.124] [exthost] [info] ExtensionService#_doActivateExtension vscode.git {"startup":true,"extensionId":{"value":"vscode.github","_lower":"vscode.github"},"activationEvent":"*"}
+[2020-08-05 18:14:57.124] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/extensions/git/dist/main
+[2020-08-05 18:14:57.294] [exthost] [info] ExtensionService#_doActivateExtension vscode.github-authentication {"startup":true,"extensionId":{"value":"vscode.github-authentication","_lower":"vscode.github-authentication"},"activationEvent":"*"}
+[2020-08-05 18:14:57.294] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/extensions/github-authentication/dist/extension.js
+[2020-08-05 18:14:57.369] [exthost] [info] ExtensionService#_doActivateExtension vscode.merge-conflict {"startup":true,"extensionId":{"value":"vscode.merge-conflict","_lower":"vscode.merge-conflict"},"activationEvent":"*"}
+[2020-08-05 18:14:57.369] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/extensions/merge-conflict/dist/mergeConflictMain
+[2020-08-05 18:14:57.372] [exthost] [info] ExtensionService#_doActivateExtension vscode.microsoft-authentication {"startup":true,"extensionId":{"value":"vscode.microsoft-authentication","_lower":"vscode.microsoft-authentication"},"activationEvent":"*"}
+[2020-08-05 18:14:57.372] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/extensions/microsoft-authentication/dist/extension.js
+[2020-08-05 18:14:57.398] [exthost] [info] ExtensionService#_doActivateExtension vscode.search-result {"startup":true,"extensionId":{"value":"vscode.search-result","_lower":"vscode.search-result"},"activationEvent":"*"}
+[2020-08-05 18:14:57.398] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/extensions/search-result/dist/extension.js
+[2020-08-05 18:14:57.399] [exthost] [info] ExtensionService#_doActivateExtension yhpnoraa.beauty {"startup":true,"extensionId":{"value":"yhpnoraa.beauty","_lower":"yhpnoraa.beauty"},"activationEvent":"*"}
+[2020-08-05 18:14:57.399] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/knlab/.vscode-server/extensions/yhpnoraa.beauty-0.0.2/out/src/extension
+[2020-08-05 18:45:43.285] [exthost] [error] [felixfbecker.php-intellisense] provider FAILED
+[2020-08-05 18:45:43.287] [exthost] [error] Error: Illegal argument: character must be non-negative
+	at Object.t.illegalArgument (/home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/out/vs/server/remoteExtensionHostProcess.js:10:641)
+	at new v (/home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/out/vs/server/remoteExtensionHostProcess.js:453:424)
+	at new v (/home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/out/vs/server/remoteExtensionHostProcess.js:451:431)
+	at asPosition (/home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/node_modules/vscode-languageclient/lib/protocolConverter.js:53:16)
+	at asRange (/home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/node_modules/vscode-languageclient/lib/protocolConverter.js:59:31)
+	at asHover (/home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/node_modules/vscode-languageclient/lib/protocolConverter.js:134:63)
+[2020-08-05 18:45:43.785] [exthost] [error] [felixfbecker.php-intellisense] provider FAILED
+[2020-08-05 18:45:43.785] [exthost] [error] Error: Illegal argument: character must be non-negative
+	at Object.t.illegalArgument (/home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/out/vs/server/remoteExtensionHostProcess.js:10:641)
+	at new v (/home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/out/vs/server/remoteExtensionHostProcess.js:453:424)
+	at new v (/home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/out/vs/server/remoteExtensionHostProcess.js:451:431)
+	at asPosition (/home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/node_modules/vscode-languageclient/lib/protocolConverter.js:53:16)
+	at asRange (/home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/node_modules/vscode-languageclient/lib/protocolConverter.js:59:31)
+	at asHover (/home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/node_modules/vscode-languageclient/lib/protocolConverter.js:134:63)
+[2020-08-05 18:45:52.406] [exthost] [error] [felixfbecker.php-intellisense] provider FAILED
+[2020-08-05 18:45:52.406] [exthost] [error] Error: Illegal argument: character must be non-negative
+	at Object.t.illegalArgument (/home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/out/vs/server/remoteExtensionHostProcess.js:10:641)
+	at new v (/home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/out/vs/server/remoteExtensionHostProcess.js:453:424)
+	at new v (/home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/out/vs/server/remoteExtensionHostProcess.js:451:431)
+	at asPosition (/home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/node_modules/vscode-languageclient/lib/protocolConverter.js:53:16)
+	at asRange (/home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/node_modules/vscode-languageclient/lib/protocolConverter.js:59:31)
+	at asHover (/home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/node_modules/vscode-languageclient/lib/protocolConverter.js:134:63)
+[2020-08-05 18:45:52.739] [exthost] [error] [felixfbecker.php-intellisense] provider FAILED
+[2020-08-05 18:45:52.739] [exthost] [error] Error: Illegal argument: character must be non-negative
+	at Object.t.illegalArgument (/home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/out/vs/server/remoteExtensionHostProcess.js:10:641)
+	at new v (/home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/out/vs/server/remoteExtensionHostProcess.js:453:424)
+	at new v (/home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/out/vs/server/remoteExtensionHostProcess.js:451:431)
+	at asPosition (/home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/node_modules/vscode-languageclient/lib/protocolConverter.js:53:16)
+	at asRange (/home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/node_modules/vscode-languageclient/lib/protocolConverter.js:59:31)
+	at asHover (/home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/node_modules/vscode-languageclient/lib/protocolConverter.js:134:63)

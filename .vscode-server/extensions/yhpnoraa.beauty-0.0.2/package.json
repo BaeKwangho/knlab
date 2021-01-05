@@ -1,0 +1,56 @@
+{
+	"name": "beauty",
+	"displayName": "Beauty",
+	"description": "a plugin for beautify & format several web based languages.",
+	"version": "0.0.2",
+	"publisher": "yhpnoraa",
+	"engines": {
+		"vscode": "^1.16.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"icon": "images/icon.png",
+	"activationEvents": [
+		"*",
+		"onCommand:extension.beauty"
+	],
+	"main": "./out/src/extension",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.beauty",
+				"title": "Beauty"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "extension.beauty",
+				"key": "ctrl+shift+b",
+				"mac": "cmd+shift+b",
+				"when": "editorTextFocus"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "tsc -p ./",
+		"compile": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "node ./node_modules/vscode/bin/test"
+	},
+	"dependencies": {
+		"prettydiff2": "^2.2.7"
+	},
+	"devDependencies": {
+		"typescript": "^2.5.2",
+		"vscode": "^1.1.5",
+		"mocha": "^3.5.0",
+		"@types/node": "^7.0.43",
+		"@types/mocha": "^2.2.42"
+	},
+	"__metadata": {
+		"id": "be1e98f2-6a51-400c-bd4f-9249884c4d08",
+		"publisherId": "7d0ada61-125d-4d9c-94a4-989183d339a1",
+		"publisherDisplayName": "yhpnoraa"
+	}
+}

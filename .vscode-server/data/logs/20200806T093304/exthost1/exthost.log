@@ -1,0 +1,55 @@
+[2020-08-06 09:33:06.594] [exthost] [info] extension host started
+[2020-08-06 09:33:06.688] [exthost] [info] ExtensionService#_doActivateExtension vscode.php-language-features {"startup":false,"extensionId":{"value":"vscode.php-language-features","_lower":"vscode.php-language-features"},"activationEvent":"onLanguage:php"}
+[2020-08-06 09:33:06.688] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/extensions/php-language-features/dist/phpMain
+[2020-08-06 09:33:06.721] [exthost] [info] ExtensionService#_doActivateExtension felixfbecker.php-intellisense {"startup":false,"extensionId":{"value":"felixfbecker.php-intellisense","_lower":"felixfbecker.php-intellisense"},"activationEvent":"onLanguage:php"}
+[2020-08-06 09:33:06.721] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/out/extension
+[2020-08-06 09:33:06.846] [exthost] [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch {"startup":true,"extensionId":{"value":"vscode.debug-auto-launch","_lower":"vscode.debug-auto-launch"},"activationEvent":"*"}
+[2020-08-06 09:33:06.846] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/extensions/debug-auto-launch/dist/extension
+[2020-08-06 09:33:06.848] [exthost] [info] ExtensionService#_doActivateExtension vscode.emmet {"startup":true,"extensionId":{"value":"vscode.emmet","_lower":"vscode.emmet"},"activationEvent":"*"}
+[2020-08-06 09:33:06.860] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/extensions/emmet/dist/extension
+[2020-08-06 09:33:06.915] [exthost] [info] ExtensionService#_doActivateExtension vscode.git {"startup":true,"extensionId":{"value":"vscode.github","_lower":"vscode.github"},"activationEvent":"*"}
+[2020-08-06 09:33:06.915] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/extensions/git/dist/main
+[2020-08-06 09:33:07.022] [exthost] [info] ExtensionService#_doActivateExtension vscode.github-authentication {"startup":true,"extensionId":{"value":"vscode.github-authentication","_lower":"vscode.github-authentication"},"activationEvent":"*"}
+[2020-08-06 09:33:07.022] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/extensions/github-authentication/dist/extension.js
+[2020-08-06 09:33:07.080] [exthost] [info] ExtensionService#_doActivateExtension vscode.merge-conflict {"startup":true,"extensionId":{"value":"vscode.merge-conflict","_lower":"vscode.merge-conflict"},"activationEvent":"*"}
+[2020-08-06 09:33:07.080] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/extensions/merge-conflict/dist/mergeConflictMain
+[2020-08-06 09:33:07.083] [exthost] [info] ExtensionService#_doActivateExtension vscode.microsoft-authentication {"startup":true,"extensionId":{"value":"vscode.microsoft-authentication","_lower":"vscode.microsoft-authentication"},"activationEvent":"*"}
+[2020-08-06 09:33:07.083] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/extensions/microsoft-authentication/dist/extension.js
+[2020-08-06 09:33:07.112] [exthost] [info] ExtensionService#_doActivateExtension vscode.search-result {"startup":true,"extensionId":{"value":"vscode.search-result","_lower":"vscode.search-result"},"activationEvent":"*"}
+[2020-08-06 09:33:07.112] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/extensions/search-result/dist/extension.js
+[2020-08-06 09:33:07.113] [exthost] [info] ExtensionService#_doActivateExtension yhpnoraa.beauty {"startup":true,"extensionId":{"value":"yhpnoraa.beauty","_lower":"yhpnoraa.beauty"},"activationEvent":"*"}
+[2020-08-06 09:33:07.113] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/knlab/.vscode-server/extensions/yhpnoraa.beauty-0.0.2/out/src/extension
+[2020-08-06 09:36:46.749] [exthost] [info] ExtensionService#_doActivateExtension vscode.typescript-language-features {"startup":false,"extensionId":{"value":"vscode.typescript-language-features","_lower":"vscode.typescript-language-features"},"activationEvent":"onLanguage:javascript"}
+[2020-08-06 09:36:46.749] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/extensions/typescript-language-features/dist/extension
+[2020-08-06 09:45:02.349] [exthost] [info] ExtensionService#_doActivateExtension vscode.extension-editing {"startup":false,"extensionId":{"value":"vscode.extension-editing","_lower":"vscode.extension-editing"},"activationEvent":"onLanguage:typescript"}
+[2020-08-06 09:45:02.349] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/extensions/extension-editing/dist/extension
+[2020-08-06 10:28:34.797] [exthost] [info] ExtensionService#_doActivateExtension vscode.css-language-features {"startup":false,"extensionId":{"value":"vscode.css-language-features","_lower":"vscode.css-language-features"},"activationEvent":"onLanguage:css"}
+[2020-08-06 10:28:34.798] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/extensions/css-language-features/client/dist/node/cssClientMain
+[2020-08-06 10:31:47.548] [exthost] [info] ExtensionService#_doActivateExtension ms-vscode.js-debug {"startup":false,"extensionId":{"value":"ms-vscode.js-debug","_lower":"ms-vscode.js-debug"},"activationEvent":"onDebugInitialConfigurations"}
+[2020-08-06 10:31:47.548] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/extensions/ms-vscode.js-debug/src/extension.js
+[2020-08-06 10:31:47.923] [exthost] [info] ExtensionService#_doActivateExtension ms-vscode.node-debug2 {"startup":false,"extensionId":{"value":"ms-vscode.node-debug","_lower":"ms-vscode.node-debug"},"activationEvent":"onDebugInitialConfigurations"}
+[2020-08-06 10:31:47.923] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/extensions/ms-vscode.node-debug2/out/src/extension
+[2020-08-06 10:31:47.954] [exthost] [info] ExtensionService#_doActivateExtension ms-vscode.node-debug {"startup":false,"extensionId":{"value":"ms-vscode.node-debug","_lower":"ms-vscode.node-debug"},"activationEvent":"onDebugInitialConfigurations"}
+[2020-08-06 10:31:47.954] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/extensions/ms-vscode.node-debug/dist/extension.js
+[2020-08-06 10:31:52.679] [exthost] [info] ExtensionService#_doActivateExtension vscode.debug-server-ready {"startup":false,"extensionId":{"value":"vscode.debug-server-ready","_lower":"vscode.debug-server-ready"},"activationEvent":"onDebugResolve"}
+[2020-08-06 10:31:52.679] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/extensions/debug-server-ready/dist/extension
+[2020-08-06 11:00:18.967] [exthost] [error] [felixfbecker.php-intellisense] provider FAILED
+[2020-08-06 11:00:18.968] [exthost] [error] Error: Illegal argument: character must be non-negative
+	at Object.t.illegalArgument (/home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/out/vs/server/remoteExtensionHostProcess.js:10:641)
+	at new v (/home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/out/vs/server/remoteExtensionHostProcess.js:453:424)
+	at new v (/home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/out/vs/server/remoteExtensionHostProcess.js:451:431)
+	at asPosition (/home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/node_modules/vscode-languageclient/lib/protocolConverter.js:53:16)
+	at asRange (/home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/node_modules/vscode-languageclient/lib/protocolConverter.js:59:31)
+	at asHover (/home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/node_modules/vscode-languageclient/lib/protocolConverter.js:134:63)
+[2020-08-06 11:00:20.070] [exthost] [error] [felixfbecker.php-intellisense] provider FAILED
+[2020-08-06 11:00:20.071] [exthost] [error] Error: Illegal argument: character must be non-negative
+	at Object.t.illegalArgument (/home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/out/vs/server/remoteExtensionHostProcess.js:10:641)
+	at new v (/home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/out/vs/server/remoteExtensionHostProcess.js:453:424)
+	at new v (/home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/out/vs/server/remoteExtensionHostProcess.js:451:431)
+	at asPosition (/home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/node_modules/vscode-languageclient/lib/protocolConverter.js:53:16)
+	at asRange (/home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/node_modules/vscode-languageclient/lib/protocolConverter.js:59:31)
+	at asHover (/home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/node_modules/vscode-languageclient/lib/protocolConverter.js:134:63)
+[2020-08-06 12:01:48.969] [exthost] [info] ExtensionService#_doActivateExtension vscode.html-language-features {"startup":false,"extensionId":{"value":"vscode.html-language-features","_lower":"vscode.html-language-features"},"activationEvent":"onLanguage:html"}
+[2020-08-06 12:01:48.970] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/extensions/html-language-features/client/dist/node/htmlClientMain
+[2020-08-06 19:24:21.073] [exthost] [info] ExtensionService#_doActivateExtension vscode.markdown-language-features {"startup":false,"extensionId":{"value":"vscode.markdown-language-features","_lower":"vscode.markdown-language-features"},"activationEvent":"onLanguage:markdown"}
+[2020-08-06 19:24:21.074] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/extensions/markdown-language-features/dist/extension

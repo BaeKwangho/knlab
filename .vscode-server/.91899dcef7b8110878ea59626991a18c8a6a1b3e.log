@@ -1,0 +1,63 @@
+
+
+*
+* Visual Studio Code Server
+*
+* Reminder: You may only use this software with Visual Studio family products,
+* as described in the license https://aka.ms/vscode-remote/license
+*
+
+
+IP Address: 10.41.231.119
+Extension host agent listening on 37158
+
+
+[14:35:36] Extension host agent started.
+[14:35:36] Deleted from disk ms-python.python /home/knlab/.vscode-server/extensions/ms-python.python-2020.7.96456
+[14:35:36] [127.0.0.1][003030f6][ManagementConnection] New connection established.
+[14:35:36] [127.0.0.1][802eacc5][ExtensionHostConnection] New connection established.
+bash: cannot set terminal process group (-1): Inappropriate ioctl for device
+bash: no job control in this shell
+[14:35:36] [127.0.0.1][802eacc5][ExtensionHostConnection] <112739> Launched Extension Host Process.
+[14:35:47] [127.0.0.1][003030f6][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[14:35:48] [127.0.0.1][802eacc5][ExtensionHostConnection] <112739> Extension Host Process exited with code: 0, signal: null.
+Last EH closed, waiting before shutting down
+[14:35:48] Last EH closed, waiting before shutting down
+Got delay-shutdown request while in shutdown timeout, delaying
+[14:35:51] Got delay-shutdown request while in shutdown timeout, delaying
+Cancelling previous shutdown timeout
+[14:35:51] Cancelling previous shutdown timeout
+[14:35:51] [127.0.0.1][b931ec54][ManagementConnection] New connection established.
+[14:35:51] [127.0.0.1][50775be5][ExtensionHostConnection] New connection established.
+[14:35:51] [127.0.0.1][50775be5][ExtensionHostConnection] <112847> Launched Extension Host Process.
+New EH opened, aborting shutdown
+[14:40:51] New EH opened, aborting shutdown
+[05:09:02] [127.0.0.1][cb0b57bb][ManagementConnection] New connection established.
+[05:09:02] [127.0.0.1][6db64ae5][ExtensionHostConnection] New connection established.
+[05:09:02] [127.0.0.1][6db64ae5][ExtensionHostConnection] <72056> Launched Extension Host Process.
+[05:09:47] [127.0.0.1][35c24e0d][ExtensionHostConnection] New connection established.
+[05:09:47] [127.0.0.1][4849d643][ManagementConnection] New connection established.
+[05:09:47] [127.0.0.1][35c24e0d][ExtensionHostConnection] <72231> Launched Extension Host Process.
+[05:37:11] [127.0.0.1][b931ec54][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[05:37:12] [127.0.0.1][50775be5][ExtensionHostConnection] <112847> Extension Host Process exited with code: 0, signal: null.
+[05:37:21] [127.0.0.1][4849d643][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[05:37:22] [127.0.0.1][35c24e0d][ExtensionHostConnection] <72231> Extension Host Process exited with code: 0, signal: null.
+Error: write EPIPE
+    at WriteWrap.onWriteComplete [as oncomplete] (internal/stream_base_commons.js:83:16) {
+  errno: 'EPIPE',
+  code: 'EPIPE',
+  syscall: 'write'
+}
+Error: Unexpected SIGPIPE
+    at process.<anonymous> (/home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/out/bootstrap.js:5:246)
+    at process.emit (events.js:200:13)
+Error: Unexpected SIGPIPE
+    at process.<anonymous> (/home/knlab/.vscode-server/bin/91899dcef7b8110878ea59626991a18c8a6a1b3e/out/bootstrap.js:5:246)
+    at process.emit (events.js:200:13)
+[05:01:25] [127.0.0.1][cb0b57bb][ManagementConnection] The client has disconnected, will wait for reconnection 3h before disposing...
+[08:01:17] [127.0.0.1][6db64ae5][ExtensionHostConnection] <72056> Extension Host Process exited with code: 0, signal: null.
+Last EH closed, waiting before shutting down
+[08:01:17] Last EH closed, waiting before shutting down
+[08:01:25] [127.0.0.1][cb0b57bb][ManagementConnection] The reconnection grace time of 3h has expired, so the connection will be disposed.
+Last EH closed, shutting down
+[08:06:17] Last EH closed, shutting down

@@ -1,0 +1,707 @@
+DEBUG     Checking PHPLS_ALLOW_XDEBUG
+DEBUG     The xdebug extension is not loaded
+
+[Info  - 9:33:09 AM] 780 files total
+[Info  - 9:33:09 AM] Indexing project for definitions and static references
+Parsing file:///home/knlab/www/Content_Config_Category.php
+Parsing file:///home/knlab/www/Content_Config_Category_Load.php
+Parsing file:///home/knlab/www/Content_Config_Category_Load_Sel.php
+Parsing file:///home/knlab/www/Content_Config_Category_Load_User.php
+Parsing file:///home/knlab/www/Content_Config_Category_Modify.php
+Parsing file:///home/knlab/www/Content_Config_Country.php
+Parsing file:///home/knlab/www/Content_Config_Country_Modify.php
+Parsing file:///home/knlab/www/Content_Data_Category_List.php
+Parsing file:///home/knlab/www/Content_Data_Category_Select.php
+Parsing file:///home/knlab/www/Content_Data_Category_Select_List.php
+Parsing file:///home/knlab/www/Content_Data_List.bk.php
+Parsing file:///home/knlab/www/Content_Data_List.php
+Parsing file:///home/knlab/www/Content_Data_Modify.php
+Parsing file:///home/knlab/www/Content_Data_Reference.php
+Parsing file:///home/knlab/www/Content_Data_Register.php
+Parsing file:///home/knlab/www/Content_Data_Register_Excel.php
+Parsing file:///home/knlab/www/Content_Data_Register_File_List.php
+Parsing file:///home/knlab/www/Content_Data_Search.php
+Parsing file:///home/knlab/www/Content_Data_View.php
+Parsing file:///home/knlab/www/Content_Data_View_Popup.php
+Parsing file:///home/knlab/www/Content_User_Category_Select.php
+Parsing file:///home/knlab/www/Content_User_List.php
+Parsing file:///home/knlab/www/Content_User_Modify.php
+Parsing file:///home/knlab/www/Content_User_Register.php
+Parsing file:///home/knlab/www/FileUpload.php
+Parsing file:///home/knlab/www/Member_Logout.php
+Parsing file:///home/knlab/www/t.php
+Parsing file:///home/knlab/www/t2.php
+Parsing file:///home/knlab/www/_foot.php
+Parsing file:///home/knlab/www/_h.php
+Parsing file:///home/knlab/www/_head.kb.php
+Parsing file:///home/knlab/www/_head.php
+Parsing file:///home/knlab/www/_json_menu_list.php
+Parsing file:///home/knlab/www/phpinfo.php
+Parsing file:///home/knlab/www/Member_Login.php
+Parsing file:///home/knlab/www/index.bk.php
+Parsing file:///home/knlab/www/index.php
+Parsing file:///home/knlab/www/Content_view.php
+Parsing file:///home/knlab/www/trace/_head_original.php
+Parsing file:///home/knlab/www/trace/_head_04292.php
+Parsing file:///home/knlab/www/trace/Content_Data_Register_Excel0414.php
+Parsing file:///home/knlab/www/trace/Content_Data_Register_Excel0510.php
+Parsing file:///home/knlab/www/testtest.php
+Parsing file:///home/knlab/www/froala-editor/html/file_s3_upload.php
+Parsing file:///home/knlab/www/froala-editor/html/image_s3_upload.php
+Parsing file:///home/knlab/www/Editor2/samples/old/sample_posteddata.php
+Parsing file:///home/knlab/www/Editor2/samples/old/assets/posteddata.php
+Parsing file:///home/knlab/www/Content_Remove.php
+Parsing file:///home/knlab/www/components/paging.php
+Parsing file:///home/knlab/www/components/linking.php
+Parsing file:///home/knlab/www/Content_viewPost.php
+Parsing file:///home/knlab/www/Content_Config_Continent.php
+Parsing file:///home/knlab/_Class/Database.php
+Parsing file:///home/knlab/_Class/Design.php
+Parsing file:///home/knlab/_Class/Member.bk.php
+Parsing file:///home/knlab/_Class/Member.php
+Parsing file:///home/knlab/_Class/PHPExcel/Autoloader.php
+Parsing file:///home/knlab/_Class/PHPExcel/CachedObjectStorage/APC.php
+Parsing file:///home/knlab/_Class/PHPExcel/CachedObjectStorage/CacheBase.php
+Parsing file:///home/knlab/_Class/PHPExcel/CachedObjectStorage/DiscISAM.php
+Parsing file:///home/knlab/_Class/PHPExcel/CachedObjectStorage/ICache.php
+Parsing file:///home/knlab/_Class/PHPExcel/CachedObjectStorage/Igbinary.php
+Parsing file:///home/knlab/_Class/PHPExcel/CachedObjectStorage/Memcache.php
+Parsing file:///home/knlab/_Class/PHPExcel/CachedObjectStorage/Memory.php
+Parsing file:///home/knlab/_Class/PHPExcel/CachedObjectStorage/MemoryGZip.php
+Parsing file:///home/knlab/_Class/PHPExcel/CachedObjectStorage/MemorySerialized.php
+Parsing file:///home/knlab/_Class/PHPExcel/CachedObjectStorage/PHPTemp.php
+Parsing file:///home/knlab/_Class/PHPExcel/CachedObjectStorage/SQLite.php
+Parsing file:///home/knlab/_Class/PHPExcel/CachedObjectStorage/SQLite3.php
+Parsing file:///home/knlab/_Class/PHPExcel/CachedObjectStorage/Wincache.php
+Parsing file:///home/knlab/_Class/PHPExcel/CachedObjectStorageFactory.php
+Parsing file:///home/knlab/_Class/PHPExcel/CalcEngine/CyclicReferenceStack.php
+Parsing file:///home/knlab/_Class/PHPExcel/CalcEngine/Logger.php
+Parsing file:///home/knlab/_Class/PHPExcel/Calculation/Database.php
+Parsing file:///home/knlab/_Class/PHPExcel/Calculation/DateTime.php
+Parsing file:///home/knlab/_Class/PHPExcel/Calculation/Engineering.php
+Parsing file:///home/knlab/_Class/PHPExcel/Calculation/Exception.php
+Parsing file:///home/knlab/_Class/PHPExcel/Calculation/ExceptionHandler.php
+Parsing file:///home/knlab/_Class/PHPExcel/Calculation/Financial.php
+Parsing file:///home/knlab/_Class/PHPExcel/Calculation/FormulaParser.php
+Parsing file:///home/knlab/_Class/PHPExcel/Calculation/FormulaToken.php
+Parsing file:///home/knlab/_Class/PHPExcel/Calculation/Function.php
+Parsing file:///home/knlab/_Class/PHPExcel/Calculation/Functions.php
+Parsing file:///home/knlab/_Class/PHPExcel/Calculation/Logical.php
+Parsing file:///home/knlab/_Class/PHPExcel/Calculation/LookupRef.php
+Parsing file:///home/knlab/_Class/PHPExcel/Calculation/MathTrig.php
+Parsing file:///home/knlab/_Class/PHPExcel/Calculation/Statistical.php
+Parsing file:///home/knlab/_Class/PHPExcel/Calculation/TextData.php
+Parsing file:///home/knlab/_Class/PHPExcel/Calculation/Token/Stack.php
+Parsing file:///home/knlab/_Class/PHPExcel/Calculation.php
+[Info  - 9:33:11 AM] Ignoring file file:///home/knlab/_Class/PHPExcel/Calculation.php because it exceeds size limit of 150000 bytes (202013)
+Parsing file:///home/knlab/_Class/PHPExcel/Cell/AdvancedValueBinder.php
+Parsing file:///home/knlab/_Class/PHPExcel/Cell/DataType.php
+Parsing file:///home/knlab/_Class/PHPExcel/Cell/DataValidation.php
+Parsing file:///home/knlab/_Class/PHPExcel/Cell/DefaultValueBinder.php
+Parsing file:///home/knlab/_Class/PHPExcel/Cell/Hyperlink.php
+Parsing file:///home/knlab/_Class/PHPExcel/Cell/IValueBinder.php
+Parsing file:///home/knlab/_Class/PHPExcel/Cell.php
+Parsing file:///home/knlab/_Class/PHPExcel/Chart/Axis.php
+Parsing file:///home/knlab/_Class/PHPExcel/Chart/DataSeries.php
+Parsing file:///home/knlab/_Class/PHPExcel/Chart/DataSeriesValues.php
+Parsing file:///home/knlab/_Class/PHPExcel/Chart/Exception.php
+Parsing file:///home/knlab/_Class/PHPExcel/Chart/GridLines.php
+Parsing file:///home/knlab/_Class/PHPExcel/Chart/Layout.php
+Parsing file:///home/knlab/_Class/PHPExcel/Chart/Legend.php
+Parsing file:///home/knlab/_Class/PHPExcel/Chart/PlotArea.php
+Parsing file:///home/knlab/_Class/PHPExcel/Chart/Properties.php
+Parsing file:///home/knlab/_Class/PHPExcel/Chart/Renderer/jpgraph.php
+Parsing file:///home/knlab/_Class/PHPExcel/Chart/Title.php
+Parsing file:///home/knlab/_Class/PHPExcel/Chart.php
+Parsing file:///home/knlab/_Class/PHPExcel/Comment.php
+Parsing file:///home/knlab/_Class/PHPExcel/DocumentProperties.php
+Parsing file:///home/knlab/_Class/PHPExcel/DocumentSecurity.php
+Parsing file:///home/knlab/_Class/PHPExcel/Exception.php
+Parsing file:///home/knlab/_Class/PHPExcel/HashTable.php
+Parsing file:///home/knlab/_Class/PHPExcel/Helper/HTML.php
+Parsing file:///home/knlab/_Class/PHPExcel/IComparable.php
+Parsing file:///home/knlab/_Class/PHPExcel/IOFactory.php
+Parsing file:///home/knlab/_Class/PHPExcel/NamedRange.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Abstract.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/CSV.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/DefaultReadFilter.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Excel2003XML.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Excel2007/Chart.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Excel2007/Theme.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Excel2007.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Excel5/Color/BIFF5.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Excel5/Color/BIFF8.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Excel5/Color/BuiltIn.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Excel5/Color.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Excel5/ErrorCode.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Excel5/Escher.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Excel5/MD5.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Excel5/RC4.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Excel5/Style/Border.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Excel5/Style/FillPattern.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Excel5.php
+[Info  - 9:33:15 AM] Ignoring file file:///home/knlab/_Class/PHPExcel/Reader/Excel5.php because it exceeds size limit of 150000 bytes (292640)
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Exception.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Gnumeric.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/HTML.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/IReader.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/IReadFilter.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/OOCalc.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/SYLK.php
+Parsing file:///home/knlab/_Class/PHPExcel/ReferenceHelper.php
+Parsing file:///home/knlab/_Class/PHPExcel/RichText/ITextElement.php
+Parsing file:///home/knlab/_Class/PHPExcel/RichText/Run.php
+Parsing file:///home/knlab/_Class/PHPExcel/RichText/TextElement.php
+Parsing file:///home/knlab/_Class/PHPExcel/RichText.php
+Parsing file:///home/knlab/_Class/PHPExcel/Settings.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/CodePage.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/Date.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/Drawing.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/Escher/DgContainer/SpgrContainer/SpContainer.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/Escher/DgContainer/SpgrContainer.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/Escher/DgContainer.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/Escher/DggContainer/BstoreContainer/BSE/Blip.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/Escher/DggContainer/BstoreContainer/BSE.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/Escher/DggContainer/BstoreContainer.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/Escher/DggContainer.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/Escher.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/Excel5.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/File.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/Font.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/JAMA/CholeskyDecomposition.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/JAMA/EigenvalueDecomposition.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/JAMA/LUDecomposition.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/JAMA/Matrix.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/JAMA/QRDecomposition.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/JAMA/SingularValueDecomposition.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/JAMA/utils/Error.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/JAMA/utils/Maths.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/OLE/ChainedBlockStream.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/OLE/PPS/File.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/OLE/PPS/Root.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/OLE/PPS.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/OLE.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/OLERead.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/PasswordHasher.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/PCLZip/pclzip.lib.php
+[Info  - 9:33:17 AM] Ignoring file file:///home/knlab/_Class/PHPExcel/Shared/PCLZip/pclzip.lib.php because it exceeds size limit of 150000 bytes (214239)
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/String.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/TimeZone.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/trend/bestFitClass.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/trend/exponentialBestFitClass.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/trend/linearBestFitClass.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/trend/logarithmicBestFitClass.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/trend/polynomialBestFitClass.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/trend/powerBestFitClass.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/trend/trendClass.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/XMLWriter.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/ZipArchive.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/ZipStreamWrapper.php
+Parsing file:///home/knlab/_Class/PHPExcel/Style/Alignment.php
+Parsing file:///home/knlab/_Class/PHPExcel/Style/Border.php
+Parsing file:///home/knlab/_Class/PHPExcel/Style/Borders.php
+Parsing file:///home/knlab/_Class/PHPExcel/Style/Color.php
+Parsing file:///home/knlab/_Class/PHPExcel/Style/Conditional.php
+Parsing file:///home/knlab/_Class/PHPExcel/Style/Fill.php
+Parsing file:///home/knlab/_Class/PHPExcel/Style/Font.php
+Parsing file:///home/knlab/_Class/PHPExcel/Style/NumberFormat.php
+Parsing file:///home/knlab/_Class/PHPExcel/Style/Protection.php
+Parsing file:///home/knlab/_Class/PHPExcel/Style/Supervisor.php
+Parsing file:///home/knlab/_Class/PHPExcel/Style.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/AutoFilter/Column/Rule.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/AutoFilter/Column.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/AutoFilter.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/BaseDrawing.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/CellIterator.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/Column.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/ColumnCellIterator.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/ColumnDimension.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/ColumnIterator.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/Dimension.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/Drawing/Shadow.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/Drawing.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/HeaderFooter.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/HeaderFooterDrawing.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/MemoryDrawing.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/PageMargins.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/PageSetup.php
+[Error - 9:33:18 AM] Error parsing file:///home/knlab/_Class/PHPExcel/Worksheet/PageSetup.php: RuntimeException: A type is missing after a nullable character in /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/phpdocumentor/type-resolver/src/TypeResolver.php:251
+Stack trace:
+#0 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/phpdocumentor/type-resolver/src/TypeResolver.php(191): phpDocumentor\Reflection\TypeResolver->parseTypes(Object(ArrayIterator), Object(phpDocumentor\Reflection\Types\Context), 1)
+#1 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/phpdocumentor/type-resolver/src/TypeResolver.php(146): phpDocumentor\Reflection\TypeResolver->parseTypes(Object(ArrayIterator), Object(phpDocumentor\Reflection\Types\Context), 0)
+#2 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/phpdocumentor/reflection-docblock/src/DocBlock/Tags/Var_.php(68): phpDocumentor\Reflection\TypeResolver->resolve('int?', Object(phpDocumentor\Reflection\Types\Context))
+#3 [internal function]: phpDocumentor\Reflection\DocBlock\Tags\Var_::create('int?', Object(phpDocumentor\Reflection\TypeResolver), Object(phpDocumentor\Reflection\DocBlock\DescriptionFactory), Object(phpDocumentor\Reflection\Types\Context))
+#4 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/phpdocumentor/reflection-docblock/src/DocBlock/StandardTagFactory.php(201): call_user_func_array(Array, Array)
+#5 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/phpdocumentor/reflection-docblock/src/DocBlock/StandardTagFactory.php(122): phpDocumentor\Reflection\DocBlock\StandardTagFactory->createTag('int?', 'var', Object(phpDocumentor\Reflection\Types\Context))
+#6 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/phpdocumentor/reflection-docblock/src/DocBlockFactory.php(231): phpDocumentor\Reflection\DocBlock\StandardTagFactory->create('@var int?', Object(phpDocumentor\Reflection\Types\Context))
+#7 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/phpdocumentor/reflection-docblock/src/DocBlockFactory.php(96): phpDocumentor\Reflection\DocBlockFactory->parseTagBlock('@var int?', Object(phpDocumentor\Reflection\Types\Context))
+#8 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/felixfbecker/language-server/src/DefinitionResolver.php(166): phpDocumentor\Reflection\DocBlockFactory->create('/**\n     * Scal...', Object(phpDocumentor\Reflection\Types\Context))
+#9 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/felixfbecker/language-server/src/DefinitionResolver.php(1195): LanguageServer\DefinitionResolver->getDocBlock(Object(Microsoft\PhpParser\Node\PropertyDeclaration))
+#10 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/felixfbecker/language-server/src/DefinitionResolver.php(240): LanguageServer\DefinitionResolver->getTypeFromNode(Object(Microsoft\PhpParser\Node\Expression\Variable))
+#11 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/felixfbecker/language-server/src/TreeAnalyzer.php(157): LanguageServer\DefinitionResolver->createDefinitionFromNode(Object(Microsoft\PhpParser\Node\Expression\Variable), 'PHPExcel_Worksh...')
+#12 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/felixfbecker/language-server/src/TreeAnalyzer.php(124): LanguageServer\TreeAnalyzer->collectDefinitionsAndReferences(Object(Microsoft\PhpParser\Node\Expression\Variable))
+#13 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/felixfbecker/language-server/src/TreeAnalyzer.php(140): LanguageServer\TreeAnalyzer->traverse(Object(Microsoft\PhpParser\Node\Expression\Variable))
+#14 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/felixfbecker/language-server/src/TreeAnalyzer.php(136): LanguageServer\TreeAnalyzer->traverse(Object(Microsoft\PhpParser\Node\Expression\AssignmentExpression))
+#15 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/felixfbecker/language-server/src/TreeAnalyzer.php(140): LanguageServer\TreeAnalyzer->traverse(Object(Microsoft\PhpParser\Node\DelimitedList\ExpressionList))
+#16 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/felixfbecker/language-server/src/TreeAnalyzer.php(136): LanguageServer\TreeAnalyzer->traverse(Object(Microsoft\PhpParser\Node\PropertyDeclaration))
+#17 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/felixfbecker/language-server/src/TreeAnalyzer.php(140): LanguageServer\TreeAnalyzer->traverse(Object(Microsoft\PhpParser\Node\ClassMembersNode))
+#18 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/felixfbecker/language-server/src/TreeAnalyzer.php(136): LanguageServer\TreeAnalyzer->traverse(Object(Microsoft\PhpParser\Node\Statement\ClassDeclaration))
+#19 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/felixfbecker/language-server/src/TreeAnalyzer.php(58): LanguageServer\TreeAnalyzer->traverse(Object(Microsoft\PhpParser\Node\SourceFileNode))
+#20 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/felixfbecker/language-server/src/PhpDocument.php(147): LanguageServer\TreeAnalyzer->__construct(Object(Microsoft\PhpParser\Parser), '<?php\n/**\n * PH...', Object(phpDocumentor\Reflection\DocBlockFactory), Object(LanguageServer\DefinitionResolver), 'file:///home/kn...')
+#21 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/felixfbecker/language-server/src/PhpDocument.php(105): LanguageServer\PhpDocument->updateContent('<?php\n/**\n * PH...')
+#22 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/felixfbecker/language-server/src/PhpDocumentLoader.php(141): LanguageServer\PhpDocument->__construct('file:///home/kn...', '<?php\n/**\n * PH...', Object(LanguageServer\Index\Index), Object(Microsoft\PhpParser\Parser), Object(phpDocumentor\Reflection\DocBlockFactory), Object(LanguageServer\DefinitionResolver))
+#23 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/felixfbecker/language-server/src/PhpDocumentLoader.php(120): LanguageServer\PhpDocumentLoader->create('file:///home/kn...', '<?php\n/**\n * PH...')
+#24 [internal function]: LanguageServer\PhpDocumentLoader->LanguageServer\{closure}()
+#25 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/sabre/event/lib/coroutine.php(70): Generator->send('<?php\n/**\n * PH...')
+#26 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/sabre/event/lib/Promise.php(242): Sabre\Event\{closure}('<?php\n/**\n * PH...')
+#27 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/sabre/event/lib/Loop/Loop.php(261): Sabre\Event\Promise->Sabre\Event\{closure}()
+#28 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/sabre/event/lib/Loop/Loop.php(215): Sabre\Event\Loop\Loop->runNextTicks()
+#29 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/sabre/event/lib/Loop/Loop.php(194): Sabre\Event\Loop\Loop->tick(true)
+#30 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/sabre/event/lib/Loop/functions.php(122): Sabre\Event\Loop\Loop->run()
+#31 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/felixfbecker/language-server/bin/php-language-server.php(55): Sabre\Event\Loop\run()
+#32 {main}
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/Protection.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/Row.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/RowCellIterator.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/RowDimension.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/RowIterator.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/SheetView.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet.php
+Parsing file:///home/knlab/_Class/PHPExcel/WorksheetIterator.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Abstract.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/CSV.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel2007/Chart.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel2007/Comments.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel2007/ContentTypes.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel2007/DocProps.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel2007/Drawing.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel2007/Rels.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel2007/RelsRibbon.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel2007/RelsVBA.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel2007/StringTable.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel2007/Style.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel2007/Theme.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel2007/Workbook.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel2007/Worksheet.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel2007/WriterPart.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel2007.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel5/BIFFwriter.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel5/Escher.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel5/Font.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel5/Parser.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel5/Workbook.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel5/Worksheet.php
+[Info  - 9:33:22 AM] Ignoring file file:///home/knlab/_Class/PHPExcel/Writer/Excel5/Worksheet.php because it exceeds size limit of 150000 bytes (160405)
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel5/Xf.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel5.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Exception.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/HTML.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/IWriter.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/OpenDocument/Cell/Comment.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/OpenDocument/Content.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/OpenDocument/Meta.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/OpenDocument/MetaInf.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/OpenDocument/Mimetype.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/OpenDocument/Settings.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/OpenDocument/Styles.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/OpenDocument/Thumbnails.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/OpenDocument/WriterPart.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/OpenDocument.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/PDF/Core.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/PDF/DomPDF.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/PDF/mPDF.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/PDF/tcPDF.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/PDF.php
+Parsing file:///home/knlab/_Class/PHPExcel.php
+Parsing file:///home/knlab/_Class/QR/bindings/tcpdf/qrcode.php
+Parsing file:///home/knlab/_Class/QR/index.php
+Parsing file:///home/knlab/_Class/QR/phpqrcode.php
+Parsing file:///home/knlab/_Class/QR/qrbitstream.php
+Parsing file:///home/knlab/_Class/QR/qrconfig.php
+Parsing file:///home/knlab/_Class/QR/qrconst.php
+Parsing file:///home/knlab/_Class/QR/qrencode.php
+Parsing file:///home/knlab/_Class/QR/qrimage.php
+Parsing file:///home/knlab/_Class/QR/qrinput.php
+Parsing file:///home/knlab/_Class/QR/qrlib.php
+Parsing file:///home/knlab/_Class/QR/qrmask.php
+Parsing file:///home/knlab/_Class/QR/qrrscode.php
+Parsing file:///home/knlab/_Class/QR/qrspec.php
+Parsing file:///home/knlab/_Class/QR/qrsplit.php
+Parsing file:///home/knlab/_Class/QR/qrtools.php
+Parsing file:///home/knlab/_Class/QR/tools/merge.php
+Parsing file:///home/knlab/_Class/QR/tools/merged_config.php
+Parsing file:///home/knlab/_Class/QR/tools/merged_header.php
+Parsing file:///home/knlab/_Class/_Define.php
+Parsing file:///home/knlab/_Class/_Lib.php
+Parsing file:///home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/autoload.php
+Parsing file:///home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/composer/autoload_classmap.php
+Parsing file:///home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/composer/autoload_files.php
+Parsing file:///home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/composer/autoload_namespaces.php
+Parsing file:///home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/composer/autoload_psr4.php
+Parsing file:///home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/composer/autoload_real.php
+Parsing file:///home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/composer/autoload_static.php
+Parsing file:///home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/composer/ClassLoader.php
+[Info  - 9:33:24 AM] Indexing project for dynamic references
+Parsing file:///home/knlab/www/Content_Config_Category.php
+Parsing file:///home/knlab/www/Content_Config_Category_Load.php
+Parsing file:///home/knlab/www/Content_Config_Category_Load_Sel.php
+Parsing file:///home/knlab/www/Content_Config_Category_Load_User.php
+Parsing file:///home/knlab/www/Content_Config_Category_Modify.php
+Parsing file:///home/knlab/www/Content_Config_Country.php
+Parsing file:///home/knlab/www/Content_Config_Country_Modify.php
+Parsing file:///home/knlab/www/Content_Data_Category_List.php
+Parsing file:///home/knlab/www/Content_Data_Category_Select.php
+Parsing file:///home/knlab/www/Content_Data_Category_Select_List.php
+Parsing file:///home/knlab/www/Content_Data_List.bk.php
+Parsing file:///home/knlab/www/Content_Data_List.php
+Parsing file:///home/knlab/www/Content_Data_Modify.php
+Parsing file:///home/knlab/www/Content_Data_Reference.php
+Parsing file:///home/knlab/www/Content_Data_Register.php
+Parsing file:///home/knlab/www/Content_Data_Register_Excel.php
+Parsing file:///home/knlab/www/Content_Data_Register_File_List.php
+Parsing file:///home/knlab/www/Content_Data_Search.php
+Parsing file:///home/knlab/www/Content_Data_View.php
+Parsing file:///home/knlab/www/Content_Data_View_Popup.php
+Parsing file:///home/knlab/www/Content_User_Category_Select.php
+Parsing file:///home/knlab/www/Content_User_List.php
+Parsing file:///home/knlab/www/Content_User_Modify.php
+Parsing file:///home/knlab/www/Content_User_Register.php
+Parsing file:///home/knlab/www/FileUpload.php
+Parsing file:///home/knlab/www/Member_Logout.php
+Parsing file:///home/knlab/www/t.php
+Parsing file:///home/knlab/www/t2.php
+Parsing file:///home/knlab/www/_foot.php
+Parsing file:///home/knlab/www/_h.php
+Parsing file:///home/knlab/www/_head.kb.php
+Parsing file:///home/knlab/www/_head.php
+Parsing file:///home/knlab/www/_json_menu_list.php
+Parsing file:///home/knlab/www/phpinfo.php
+Parsing file:///home/knlab/www/Member_Login.php
+Parsing file:///home/knlab/www/index.bk.php
+Parsing file:///home/knlab/www/index.php
+Parsing file:///home/knlab/www/Content_view.php
+Parsing file:///home/knlab/www/trace/_head_original.php
+Parsing file:///home/knlab/www/trace/_head_04292.php
+Parsing file:///home/knlab/www/trace/Content_Data_Register_Excel0414.php
+Parsing file:///home/knlab/www/trace/Content_Data_Register_Excel0510.php
+Parsing file:///home/knlab/www/testtest.php
+Parsing file:///home/knlab/www/froala-editor/html/file_s3_upload.php
+Parsing file:///home/knlab/www/froala-editor/html/image_s3_upload.php
+Parsing file:///home/knlab/www/Editor2/samples/old/sample_posteddata.php
+Parsing file:///home/knlab/www/Editor2/samples/old/assets/posteddata.php
+Parsing file:///home/knlab/www/Content_Remove.php
+Parsing file:///home/knlab/www/components/paging.php
+Parsing file:///home/knlab/www/components/linking.php
+Parsing file:///home/knlab/www/Content_viewPost.php
+Parsing file:///home/knlab/www/Content_Config_Continent.php
+Parsing file:///home/knlab/_Class/Database.php
+Parsing file:///home/knlab/_Class/Design.php
+Parsing file:///home/knlab/_Class/Member.bk.php
+Parsing file:///home/knlab/_Class/Member.php
+Parsing file:///home/knlab/_Class/PHPExcel/Autoloader.php
+Parsing file:///home/knlab/_Class/PHPExcel/CachedObjectStorage/APC.php
+Parsing file:///home/knlab/_Class/PHPExcel/CachedObjectStorage/CacheBase.php
+Parsing file:///home/knlab/_Class/PHPExcel/CachedObjectStorage/DiscISAM.php
+Parsing file:///home/knlab/_Class/PHPExcel/CachedObjectStorage/ICache.php
+Parsing file:///home/knlab/_Class/PHPExcel/CachedObjectStorage/Igbinary.php
+Parsing file:///home/knlab/_Class/PHPExcel/CachedObjectStorage/Memcache.php
+Parsing file:///home/knlab/_Class/PHPExcel/CachedObjectStorage/Memory.php
+Parsing file:///home/knlab/_Class/PHPExcel/CachedObjectStorage/MemoryGZip.php
+Parsing file:///home/knlab/_Class/PHPExcel/CachedObjectStorage/MemorySerialized.php
+Parsing file:///home/knlab/_Class/PHPExcel/CachedObjectStorage/PHPTemp.php
+Parsing file:///home/knlab/_Class/PHPExcel/CachedObjectStorage/SQLite.php
+Parsing file:///home/knlab/_Class/PHPExcel/CachedObjectStorage/SQLite3.php
+Parsing file:///home/knlab/_Class/PHPExcel/CachedObjectStorage/Wincache.php
+Parsing file:///home/knlab/_Class/PHPExcel/CachedObjectStorageFactory.php
+Parsing file:///home/knlab/_Class/PHPExcel/CalcEngine/CyclicReferenceStack.php
+Parsing file:///home/knlab/_Class/PHPExcel/CalcEngine/Logger.php
+Parsing file:///home/knlab/_Class/PHPExcel/Calculation/Database.php
+Parsing file:///home/knlab/_Class/PHPExcel/Calculation/DateTime.php
+Parsing file:///home/knlab/_Class/PHPExcel/Calculation/Engineering.php
+Parsing file:///home/knlab/_Class/PHPExcel/Calculation/Exception.php
+Parsing file:///home/knlab/_Class/PHPExcel/Calculation/ExceptionHandler.php
+Parsing file:///home/knlab/_Class/PHPExcel/Calculation/Financial.php
+Parsing file:///home/knlab/_Class/PHPExcel/Calculation/FormulaParser.php
+Parsing file:///home/knlab/_Class/PHPExcel/Calculation/FormulaToken.php
+Parsing file:///home/knlab/_Class/PHPExcel/Calculation/Function.php
+Parsing file:///home/knlab/_Class/PHPExcel/Calculation/Functions.php
+Parsing file:///home/knlab/_Class/PHPExcel/Calculation/Logical.php
+Parsing file:///home/knlab/_Class/PHPExcel/Calculation/LookupRef.php
+Parsing file:///home/knlab/_Class/PHPExcel/Calculation/MathTrig.php
+Parsing file:///home/knlab/_Class/PHPExcel/Calculation/Statistical.php
+Parsing file:///home/knlab/_Class/PHPExcel/Calculation/TextData.php
+Parsing file:///home/knlab/_Class/PHPExcel/Calculation/Token/Stack.php
+Parsing file:///home/knlab/_Class/PHPExcel/Calculation.php
+[Info  - 9:33:27 AM] Ignoring file file:///home/knlab/_Class/PHPExcel/Calculation.php because it exceeds size limit of 150000 bytes (202013)
+Parsing file:///home/knlab/_Class/PHPExcel/Cell/AdvancedValueBinder.php
+Parsing file:///home/knlab/_Class/PHPExcel/Cell/DataType.php
+Parsing file:///home/knlab/_Class/PHPExcel/Cell/DataValidation.php
+Parsing file:///home/knlab/_Class/PHPExcel/Cell/DefaultValueBinder.php
+Parsing file:///home/knlab/_Class/PHPExcel/Cell/Hyperlink.php
+Parsing file:///home/knlab/_Class/PHPExcel/Cell/IValueBinder.php
+Parsing file:///home/knlab/_Class/PHPExcel/Cell.php
+Parsing file:///home/knlab/_Class/PHPExcel/Chart/Axis.php
+Parsing file:///home/knlab/_Class/PHPExcel/Chart/DataSeries.php
+Parsing file:///home/knlab/_Class/PHPExcel/Chart/DataSeriesValues.php
+Parsing file:///home/knlab/_Class/PHPExcel/Chart/Exception.php
+Parsing file:///home/knlab/_Class/PHPExcel/Chart/GridLines.php
+Parsing file:///home/knlab/_Class/PHPExcel/Chart/Layout.php
+Parsing file:///home/knlab/_Class/PHPExcel/Chart/Legend.php
+Parsing file:///home/knlab/_Class/PHPExcel/Chart/PlotArea.php
+Parsing file:///home/knlab/_Class/PHPExcel/Chart/Properties.php
+Parsing file:///home/knlab/_Class/PHPExcel/Chart/Renderer/jpgraph.php
+Parsing file:///home/knlab/_Class/PHPExcel/Chart/Title.php
+Parsing file:///home/knlab/_Class/PHPExcel/Chart.php
+Parsing file:///home/knlab/_Class/PHPExcel/Comment.php
+Parsing file:///home/knlab/_Class/PHPExcel/DocumentProperties.php
+Parsing file:///home/knlab/_Class/PHPExcel/DocumentSecurity.php
+Parsing file:///home/knlab/_Class/PHPExcel/Exception.php
+Parsing file:///home/knlab/_Class/PHPExcel/HashTable.php
+Parsing file:///home/knlab/_Class/PHPExcel/Helper/HTML.php
+Parsing file:///home/knlab/_Class/PHPExcel/IComparable.php
+Parsing file:///home/knlab/_Class/PHPExcel/IOFactory.php
+Parsing file:///home/knlab/_Class/PHPExcel/NamedRange.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Abstract.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/CSV.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/DefaultReadFilter.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Excel2003XML.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Excel2007/Chart.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Excel2007/Theme.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Excel2007.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Excel5/Color/BIFF5.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Excel5/Color/BIFF8.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Excel5/Color/BuiltIn.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Excel5/Color.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Excel5/ErrorCode.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Excel5/Escher.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Excel5/MD5.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Excel5/RC4.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Excel5/Style/Border.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Excel5/Style/FillPattern.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Excel5.php
+[Info  - 9:33:30 AM] Ignoring file file:///home/knlab/_Class/PHPExcel/Reader/Excel5.php because it exceeds size limit of 150000 bytes (292640)
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Exception.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/Gnumeric.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/HTML.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/IReader.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/IReadFilter.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/OOCalc.php
+Parsing file:///home/knlab/_Class/PHPExcel/Reader/SYLK.php
+Parsing file:///home/knlab/_Class/PHPExcel/ReferenceHelper.php
+Parsing file:///home/knlab/_Class/PHPExcel/RichText/ITextElement.php
+Parsing file:///home/knlab/_Class/PHPExcel/RichText/Run.php
+Parsing file:///home/knlab/_Class/PHPExcel/RichText/TextElement.php
+Parsing file:///home/knlab/_Class/PHPExcel/RichText.php
+Parsing file:///home/knlab/_Class/PHPExcel/Settings.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/CodePage.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/Date.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/Drawing.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/Escher/DgContainer/SpgrContainer/SpContainer.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/Escher/DgContainer/SpgrContainer.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/Escher/DgContainer.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/Escher/DggContainer/BstoreContainer/BSE/Blip.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/Escher/DggContainer/BstoreContainer/BSE.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/Escher/DggContainer/BstoreContainer.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/Escher/DggContainer.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/Escher.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/Excel5.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/File.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/Font.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/JAMA/CholeskyDecomposition.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/JAMA/EigenvalueDecomposition.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/JAMA/LUDecomposition.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/JAMA/Matrix.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/JAMA/QRDecomposition.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/JAMA/SingularValueDecomposition.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/JAMA/utils/Error.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/JAMA/utils/Maths.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/OLE/ChainedBlockStream.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/OLE/PPS/File.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/OLE/PPS/Root.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/OLE/PPS.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/OLE.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/OLERead.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/PasswordHasher.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/PCLZip/pclzip.lib.php
+[Info  - 9:33:32 AM] Ignoring file file:///home/knlab/_Class/PHPExcel/Shared/PCLZip/pclzip.lib.php because it exceeds size limit of 150000 bytes (214239)
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/String.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/TimeZone.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/trend/bestFitClass.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/trend/exponentialBestFitClass.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/trend/linearBestFitClass.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/trend/logarithmicBestFitClass.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/trend/polynomialBestFitClass.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/trend/powerBestFitClass.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/trend/trendClass.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/XMLWriter.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/ZipArchive.php
+Parsing file:///home/knlab/_Class/PHPExcel/Shared/ZipStreamWrapper.php
+Parsing file:///home/knlab/_Class/PHPExcel/Style/Alignment.php
+Parsing file:///home/knlab/_Class/PHPExcel/Style/Border.php
+Parsing file:///home/knlab/_Class/PHPExcel/Style/Borders.php
+Parsing file:///home/knlab/_Class/PHPExcel/Style/Color.php
+Parsing file:///home/knlab/_Class/PHPExcel/Style/Conditional.php
+Parsing file:///home/knlab/_Class/PHPExcel/Style/Fill.php
+Parsing file:///home/knlab/_Class/PHPExcel/Style/Font.php
+Parsing file:///home/knlab/_Class/PHPExcel/Style/NumberFormat.php
+Parsing file:///home/knlab/_Class/PHPExcel/Style/Protection.php
+Parsing file:///home/knlab/_Class/PHPExcel/Style/Supervisor.php
+Parsing file:///home/knlab/_Class/PHPExcel/Style.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/AutoFilter/Column/Rule.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/AutoFilter/Column.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/AutoFilter.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/BaseDrawing.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/CellIterator.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/Column.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/ColumnCellIterator.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/ColumnDimension.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/ColumnIterator.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/Dimension.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/Drawing/Shadow.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/Drawing.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/HeaderFooter.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/HeaderFooterDrawing.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/MemoryDrawing.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/PageMargins.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/PageSetup.php
+[Error - 9:33:34 AM] Error parsing file:///home/knlab/_Class/PHPExcel/Worksheet/PageSetup.php: RuntimeException: A type is missing after a nullable character in /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/phpdocumentor/type-resolver/src/TypeResolver.php:251
+Stack trace:
+#0 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/phpdocumentor/type-resolver/src/TypeResolver.php(191): phpDocumentor\Reflection\TypeResolver->parseTypes(Object(ArrayIterator), Object(phpDocumentor\Reflection\Types\Context), 1)
+#1 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/phpdocumentor/type-resolver/src/TypeResolver.php(146): phpDocumentor\Reflection\TypeResolver->parseTypes(Object(ArrayIterator), Object(phpDocumentor\Reflection\Types\Context), 0)
+#2 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/phpdocumentor/reflection-docblock/src/DocBlock/Tags/Var_.php(68): phpDocumentor\Reflection\TypeResolver->resolve('int?', Object(phpDocumentor\Reflection\Types\Context))
+#3 [internal function]: phpDocumentor\Reflection\DocBlock\Tags\Var_::create('int?', Object(phpDocumentor\Reflection\TypeResolver), Object(phpDocumentor\Reflection\DocBlock\DescriptionFactory), Object(phpDocumentor\Reflection\Types\Context))
+#4 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/phpdocumentor/reflection-docblock/src/DocBlock/StandardTagFactory.php(201): call_user_func_array(Array, Array)
+#5 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/phpdocumentor/reflection-docblock/src/DocBlock/StandardTagFactory.php(122): phpDocumentor\Reflection\DocBlock\StandardTagFactory->createTag('int?', 'var', Object(phpDocumentor\Reflection\Types\Context))
+#6 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/phpdocumentor/reflection-docblock/src/DocBlockFactory.php(231): phpDocumentor\Reflection\DocBlock\StandardTagFactory->create('@var int?', Object(phpDocumentor\Reflection\Types\Context))
+#7 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/phpdocumentor/reflection-docblock/src/DocBlockFactory.php(96): phpDocumentor\Reflection\DocBlockFactory->parseTagBlock('@var int?', Object(phpDocumentor\Reflection\Types\Context))
+#8 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/felixfbecker/language-server/src/DefinitionResolver.php(166): phpDocumentor\Reflection\DocBlockFactory->create('/**\n     * Scal...', Object(phpDocumentor\Reflection\Types\Context))
+#9 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/felixfbecker/language-server/src/DefinitionResolver.php(1195): LanguageServer\DefinitionResolver->getDocBlock(Object(Microsoft\PhpParser\Node\PropertyDeclaration))
+#10 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/felixfbecker/language-server/src/DefinitionResolver.php(240): LanguageServer\DefinitionResolver->getTypeFromNode(Object(Microsoft\PhpParser\Node\Expression\Variable))
+#11 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/felixfbecker/language-server/src/TreeAnalyzer.php(157): LanguageServer\DefinitionResolver->createDefinitionFromNode(Object(Microsoft\PhpParser\Node\Expression\Variable), 'PHPExcel_Worksh...')
+#12 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/felixfbecker/language-server/src/TreeAnalyzer.php(124): LanguageServer\TreeAnalyzer->collectDefinitionsAndReferences(Object(Microsoft\PhpParser\Node\Expression\Variable))
+#13 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/felixfbecker/language-server/src/TreeAnalyzer.php(140): LanguageServer\TreeAnalyzer->traverse(Object(Microsoft\PhpParser\Node\Expression\Variable))
+#14 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/felixfbecker/language-server/src/TreeAnalyzer.php(136): LanguageServer\TreeAnalyzer->traverse(Object(Microsoft\PhpParser\Node\Expression\AssignmentExpression))
+#15 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/felixfbecker/language-server/src/TreeAnalyzer.php(140): LanguageServer\TreeAnalyzer->traverse(Object(Microsoft\PhpParser\Node\DelimitedList\ExpressionList))
+#16 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/felixfbecker/language-server/src/TreeAnalyzer.php(136): LanguageServer\TreeAnalyzer->traverse(Object(Microsoft\PhpParser\Node\PropertyDeclaration))
+#17 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/felixfbecker/language-server/src/TreeAnalyzer.php(140): LanguageServer\TreeAnalyzer->traverse(Object(Microsoft\PhpParser\Node\ClassMembersNode))
+#18 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/felixfbecker/language-server/src/TreeAnalyzer.php(136): LanguageServer\TreeAnalyzer->traverse(Object(Microsoft\PhpParser\Node\Statement\ClassDeclaration))
+#19 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/felixfbecker/language-server/src/TreeAnalyzer.php(58): LanguageServer\TreeAnalyzer->traverse(Object(Microsoft\PhpParser\Node\SourceFileNode))
+#20 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/felixfbecker/language-server/src/PhpDocument.php(147): LanguageServer\TreeAnalyzer->__construct(Object(Microsoft\PhpParser\Parser), '<?php\n/**\n * PH...', Object(phpDocumentor\Reflection\DocBlockFactory), Object(LanguageServer\DefinitionResolver), 'file:///home/kn...')
+#21 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/felixfbecker/language-server/src/PhpDocument.php(105): LanguageServer\PhpDocument->updateContent('<?php\n/**\n * PH...')
+#22 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/felixfbecker/language-server/src/PhpDocumentLoader.php(141): LanguageServer\PhpDocument->__construct('file:///home/kn...', '<?php\n/**\n * PH...', Object(LanguageServer\Index\Index), Object(Microsoft\PhpParser\Parser), Object(phpDocumentor\Reflection\DocBlockFactory), Object(LanguageServer\DefinitionResolver))
+#23 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/felixfbecker/language-server/src/PhpDocumentLoader.php(120): LanguageServer\PhpDocumentLoader->create('file:///home/kn...', '<?php\n/**\n * PH...')
+#24 [internal function]: LanguageServer\PhpDocumentLoader->LanguageServer\{closure}()
+#25 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/sabre/event/lib/coroutine.php(70): Generator->send('<?php\n/**\n * PH...')
+#26 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/sabre/event/lib/Promise.php(242): Sabre\Event\{closure}('<?php\n/**\n * PH...')
+#27 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/sabre/event/lib/Loop/Loop.php(261): Sabre\Event\Promise->Sabre\Event\{closure}()
+#28 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/sabre/event/lib/Loop/Loop.php(215): Sabre\Event\Loop\Loop->runNextTicks()
+#29 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/sabre/event/lib/Loop/Loop.php(194): Sabre\Event\Loop\Loop->tick(true)
+#30 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/sabre/event/lib/Loop/functions.php(122): Sabre\Event\Loop\Loop->run()
+#31 /home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/felixfbecker/language-server/bin/php-language-server.php(55): Sabre\Event\Loop\run()
+#32 {main}
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/Protection.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/Row.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/RowCellIterator.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/RowDimension.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/RowIterator.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet/SheetView.php
+Parsing file:///home/knlab/_Class/PHPExcel/Worksheet.php
+Parsing file:///home/knlab/_Class/PHPExcel/WorksheetIterator.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Abstract.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/CSV.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel2007/Chart.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel2007/Comments.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel2007/ContentTypes.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel2007/DocProps.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel2007/Drawing.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel2007/Rels.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel2007/RelsRibbon.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel2007/RelsVBA.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel2007/StringTable.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel2007/Style.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel2007/Theme.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel2007/Workbook.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel2007/Worksheet.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel2007/WriterPart.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel2007.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel5/BIFFwriter.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel5/Escher.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel5/Font.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel5/Parser.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel5/Workbook.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel5/Worksheet.php
+[Info  - 9:33:38 AM] Ignoring file file:///home/knlab/_Class/PHPExcel/Writer/Excel5/Worksheet.php because it exceeds size limit of 150000 bytes (160405)
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel5/Xf.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Excel5.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/Exception.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/HTML.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/IWriter.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/OpenDocument/Cell/Comment.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/OpenDocument/Content.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/OpenDocument/Meta.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/OpenDocument/MetaInf.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/OpenDocument/Mimetype.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/OpenDocument/Settings.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/OpenDocument/Styles.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/OpenDocument/Thumbnails.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/OpenDocument/WriterPart.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/OpenDocument.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/PDF/Core.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/PDF/DomPDF.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/PDF/mPDF.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/PDF/tcPDF.php
+Parsing file:///home/knlab/_Class/PHPExcel/Writer/PDF.php
+Parsing file:///home/knlab/_Class/PHPExcel.php
+Parsing file:///home/knlab/_Class/QR/bindings/tcpdf/qrcode.php
+Parsing file:///home/knlab/_Class/QR/index.php
+Parsing file:///home/knlab/_Class/QR/phpqrcode.php
+Parsing file:///home/knlab/_Class/QR/qrbitstream.php
+Parsing file:///home/knlab/_Class/QR/qrconfig.php
+Parsing file:///home/knlab/_Class/QR/qrconst.php
+Parsing file:///home/knlab/_Class/QR/qrencode.php
+Parsing file:///home/knlab/_Class/QR/qrimage.php
+Parsing file:///home/knlab/_Class/QR/qrinput.php
+Parsing file:///home/knlab/_Class/QR/qrlib.php
+Parsing file:///home/knlab/_Class/QR/qrmask.php
+Parsing file:///home/knlab/_Class/QR/qrrscode.php
+Parsing file:///home/knlab/_Class/QR/qrspec.php
+Parsing file:///home/knlab/_Class/QR/qrsplit.php
+Parsing file:///home/knlab/_Class/QR/qrtools.php
+Parsing file:///home/knlab/_Class/QR/tools/merge.php
+Parsing file:///home/knlab/_Class/QR/tools/merged_config.php
+Parsing file:///home/knlab/_Class/QR/tools/merged_header.php
+Parsing file:///home/knlab/_Class/_Define.php
+Parsing file:///home/knlab/_Class/_Lib.php
+Parsing file:///home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/autoload.php
+Parsing file:///home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/composer/autoload_classmap.php
+Parsing file:///home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/composer/autoload_files.php
+Parsing file:///home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/composer/autoload_namespaces.php
+Parsing file:///home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/composer/autoload_psr4.php
+Parsing file:///home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/composer/autoload_real.php
+Parsing file:///home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/composer/autoload_static.php
+Parsing file:///home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/composer/ClassLoader.php
+[Info  - 9:33:40 AM] 17 Packages
+[Info  - 9:33:40 AM] Restored composer/xdebug-handler:1.3.3 from cache
+[Info  - 9:33:40 AM] Restored felixfbecker/advanced-json-rpc:3.0.4 from cache
+[Info  - 9:33:40 AM] Restored felixfbecker/language-server-protocol:1.4.0 from cache
+[Info  - 9:33:40 AM] Restored felixfbecker/language-server:5.4.6 from cache
+[Info  - 9:33:40 AM] Indexing jetbrains/phpstorm-stubs for definitions and static references
+Parsing file:///home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/jetbrains/phpstorm-stubs/PhpStormStubsMap.php
+[Info  - 9:33:40 AM] Ignoring file file:///home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/jetbrains/phpstorm-stubs/PhpStormStubsMap.php because it exceeds size limit of 150000 bytes (559025)
+[Info  - 9:33:40 AM] Indexing jetbrains/phpstorm-stubs for dynamic references
+Parsing file:///home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/jetbrains/phpstorm-stubs/PhpStormStubsMap.php
+[Info  - 9:33:40 AM] Ignoring file file:///home/knlab/.vscode-server/extensions/felixfbecker.php-intellisense-2.3.14/vendor/jetbrains/phpstorm-stubs/PhpStormStubsMap.php because it exceeds size limit of 150000 bytes (559025)
+[Warn  - 9:33:40 AM] Could not compute cache key for jetbrains/phpstorm-stubs
+[Info  - 9:33:40 AM] Restored microsoft/tolerant-php-parser:0.0.18 from cache
+[Info  - 9:33:40 AM] Restored netresearch/jsonmapper:1.6.0 from cache
+[Info  - 9:33:40 AM] Restored phpdocumentor/reflection-common:2.0.0 from cache
+[Info  - 9:33:40 AM] Restored phpdocumentor/reflection-docblock:4.3.2 from cache
+[Info  - 9:33:40 AM] Restored phpdocumentor/type-resolver:1.0.1 from cache
+[Info  - 9:33:40 AM] Restored psr/log:1.1.0 from cache
+[Info  - 9:33:40 AM] Restored sabre/event:5.0.3 from cache
+[Info  - 9:33:40 AM] Restored sabre/uri:2.1.3 from cache
+[Info  - 9:33:40 AM] Restored symfony/polyfill-ctype:1.12.0 from cache
+[Info  - 9:33:40 AM] Restored webmozart/assert:1.5.0 from cache
+[Info  - 9:33:40 AM] Restored webmozart/glob:4.1.0 from cache
+[Info  - 9:33:40 AM] Restored webmozart/path-util:2.3.0 from cache
+[Info  - 9:33:40 AM] All 780 PHP files parsed in 30 seconds. 178 MiB allocated.
