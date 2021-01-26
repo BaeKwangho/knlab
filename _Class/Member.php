@@ -23,6 +23,7 @@ Class Member extends Database {
  			$this->data=array();
 			$this->data["temp"]="Data/temp/";
 			$this->data["remove"]="Data/remove/";
+			$this->data["post"]="Data/post";
 
 			$this->data["cover"]="Data/Cover/";
 			$this->data["document"]="Data/Document/";

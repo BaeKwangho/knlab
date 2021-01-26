@@ -65,6 +65,35 @@ if($_FILES["FILE_ATTECH"]["tmp_name"]){
 if(sizeof($_POST)){
 	$curDoc = $Mem->qr("select * from nt_document_list where idx = ?",$_POST["PID"]);
 	$date = mktime();
+
+	$doc_img = $Mem->q("select * from nt_document_image_list where pid = ?",$_POST["PID"]);
+	if(isset($doc_img)){
+		while($img = $doc_img->fetch()){
+			print_r($img);
+			if(!strpos($_POST["DC_CONTENT"],$img["IMG_NAME"])){
+				// 기존 post image로 등록된 파일이 DC_CONTENT 전송 내용에 없을 시
+				unlink($img["IMG_NAME"]);
+				$Mem->q("delete from nt_document_image_list where PID = ? and IMG_NAME = ?",
+				array($_POST["PID"],$img["IMG_NAME"]));
+			}
+		}
+	}
+	//print_r($doc_img);
+
+    if(isset($_SESSION["post_file"])){
+        foreach($_SESSION["post_file"] as $file){
+            if(!strpos($_POST["DC_CONTENT"],$file["real_name"])){
+				// Data/post/에 생성된 이미지가 사용되지 않았을 경우 삭제
+                unlink($file["real_name"]);
+            }else{
+				// Data/post/에 생성된 이미지가 사용되었을 경우 등록
+				$Mem->q("insert into nt_document_image_list (pid,dt,uid,img_name,img_path) values (?,?,?,?,?)",
+				array($_POST["PID"],$date,$Mem->user["uid"],$file["real_name"],$file["real_path"]));
+			}
+		}
+		unset($_SESSION["post_file"]);
+    }
+
 	if(!isset($_POST["DC_CODE"])){
 		mvs("components/error.php?err_msg=CODE가 지정되지 않았습니다.");
 		exit;
@@ -87,7 +116,6 @@ if(sizeof($_POST)){
 			}
 		}
 	}
-
 if($_POST["DC_DT_COLLECT"]){	 $_POST["DC_DT_COLLECT"]=datec($_POST["DC_DT_COLLECT"]);		}else{		$_POST["DC_DT_COLLECT"]=0;	}
 if($_POST["DC_DT_WRITE"]){ $_POST["DC_DT_WRITE"]=datec($_POST["DC_DT_WRITE"]); 		}else{		$_POST["DC_DT_WRITE"]=0;	}
 

@@ -27,28 +27,28 @@ if($_SESSION["SEARCH"]["TYPE"]){
 			$_SESSION["AUTH"]["CODE_QUERY"]="nt_document_list";
 			$_SESSION["AUTH"]["CODE_ARRAY"]="nt_categorys";
 		}else {
-			$code_query="(select a.* from nt_document_list a where";
-				$code_array="(select a.* from nt_categorys a where";
-			for($i=0;$uid->rowCount()>$i;$i++){
-				$r=$uid->fetch();
-				if($i==0){
-				$q=$Mem->qs("select CODE from nt_categorys where IDX=?",$r[0]);
-				if(!$q){continue;}
-				$code_query.=" a.DC_CODE like ";
-				$code_query.=$q;
-						$code_array.=" a.CODE like ";
-						$code_array.=$q;
-				continue;
-				}
-				$q=$Mem->qs("select CODE from nt_categorys where IDX=?",$r[0]);
-				if(!$q){continue;}
-				$code_query.=" or a.DC_CODE like ";
-				$code_query.=$q;
-					$code_array.=" or a.CODE like ";
+		  $code_query="(select a.* from nt_document_list a where";
+			$code_array="(select a.* from nt_categorys a where";
+		  for($i=0;$uid->rowCount()>$i;$i++){
+			$r=$uid->fetch();
+		    if($i==0){
+			  $q=$Mem->qs("select CODE from nt_categorys where IDX=?",$r[0]);
+			  if(!$q){continue;}
+		      $code_query.=" a.DC_CODE like ";
+		      $code_query.=$q;
+					$code_array.=" a.CODE like ";
 					$code_array.=$q;
+		      continue;
 			}
-			$_SESSION["AUTH"]["CODE_QUERY"]=$code_query.")";
-		$_SESSION["AUTH"]["CODE_ARRAY"]=$code_array.")";
+			$q=$Mem->qs("select CODE from nt_categorys where IDX=?",$r[0]);
+			if(!$q){continue;}
+		    $code_query.=" or a.DC_CODE like ";
+		    $code_query.=$q;
+				$code_array.=" or a.CODE like ";
+				$code_array.=$q;
+		  }
+		  $_SESSION["AUTH"]["CODE_QUERY"]=$code_query.")";
+			$_SESSION["AUTH"]["CODE_ARRAY"]=$code_array.")";
 		}
 	}
 $Q=$Mem->q("select t.* from ".$_SESSION["AUTH"]["CODE_ARRAY"]." t where t.TYPE=1 and length(t.CODE)=4 and t.STAT<9");
@@ -171,7 +171,7 @@ if($_SESSION["AUTH"]["MID"]=="2410"){?>
 
 
 
-<? if($Mem->class < 8 ){ //유저 접근 권한 확인 후 왼쪽 레이어 작성?>
+<? if($Mem->class < 7 ){ //유저 접근 권한 확인 후 왼쪽 레이어 작성?>
 
 <div>
 <table    cellpadding="0" cellspacing="0" border="0"  style="width:100%" >
@@ -227,28 +227,28 @@ if(!$_SESSION["AUTH"]["MID"]){
 ?>
 <?}else{//유저 접근 권한이 높을 경우, 즉 관리자.?>
 
-<div style="min-width:1200px; ">
-<table    cellpadding="0" cellspacing="0" border="0"  style="width:100%;" >
-	<tr>
-		<td style="width:200px;" valign="top" >
-	<div class="main_side_menu1" >
-			<ul class="menu_list" >
-				<?if($Mem->class===9){?>
-					 <li onclick="go('/Content_User_List.php');"  style="cursor:pointer;" >+ 사용자관리</li>
-				<?}?>
-				<li onclick="go('/Content_Document_List.php?search_reset=1');"  style="cursor:pointer;" >+ 데이터조회</li>
-				<li onclick="go('/Content_Data_Register.php');"  style="cursor:pointer;" >+ 단일데이터 등록</li>
-				<li onclick="go('/Content_Data_Register_Excel.php');"  style="cursor:pointer;" >+ 대량데이터 등록</li>
-				<?if($Mem->class===9){?>
-					<li onclick="go('/Content_Config_Category.php?CTYPE=1');"  style="cursor:pointer;" >+ 주제분류설정</li>
-				<?}?>
-				<!--<li onclick="go('/Content_Config_Continent.php?CTYPE=2');"  style="cursor:pointer;" >+ 국가분류설정</li>-->
-				<!--<li onclick="go('/Content_Config_Category.php?CTYPE=3');"  style="cursor:pointer;" >+ 국가분류설정</li>-->
-				<li onclick="go('/Member_Logout.php');"  style="cursor:pointer;" >+ 로그아웃</li>
-			</ul>
-	</div>
-</td>
+	<div style="min-width:1200px; ">
+	<table    cellpadding="0" cellspacing="0" border="0"  style="width:100%;" >
+		<tr>
+			<td style="width:200px;" valign="top" >
+		<div class="main_side_menu1" >
+				<ul class="menu_list" >
+					<?if($Mem->class===9){?>
+						<li onclick="go('/Content_User_List.php');"  style="cursor:pointer;" >+ 사용자관리</li>
+					<?}?>
+					<li onclick="go('/Content_Document_List.php?search_reset=1');"  style="cursor:pointer;" >+ 데이터조회</li>
+					<li onclick="go('/Content_Data_Register.php');"  style="cursor:pointer;" >+ 단일데이터 등록</li>
+					<li onclick="go('/Content_Data_Register_Excel.php');"  style="cursor:pointer;" >+ 대량데이터 등록</li>
+					<?if($Mem->class===9){?>
+						<li onclick="go('/Content_Config_Category.php?CTYPE=1');"  style="cursor:pointer;" >+ 주제분류설정</li>
+					<?}?>
+					<!--<li onclick="go('/Content_Config_Continent.php?CTYPE=2');"  style="cursor:pointer;" >+ 국가분류설정</li>-->
+					<!--<li onclick="go('/Content_Config_Category.php?CTYPE=3');"  style="cursor:pointer;" >+ 국가분류설정</li>-->
+					<li onclick="go('/Member_Logout.php');"  style="cursor:pointer;" >+ 로그아웃</li>
+				</ul>
+		</div>
+	</td>
 
-		<td style=";">
+			<td style=";">
 <? } ?>
 <? } ?>
