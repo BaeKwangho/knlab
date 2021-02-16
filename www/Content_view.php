@@ -290,9 +290,9 @@ $time = time();
           <td style="text-align:center;font-size:12px;color:green; width:100px;padding-left:10px;"><?=DT_show($r["DC_DT_WRITE"]);?></td>
         </tr>
         <tr>
-        <td colspan="3" style="font-size:13px; color:gray;">카테고리 : [<?=$r["DC_TYPE"]?>] , [<?=$r["DC_COUNTRY"]?>]</td>
+        <td colspan="3" style="font-size:13px; color:gray;">카테고리 : [<?=$r["DC_TYPE"]?>] , [<?=trim($r["DC_COUNTRY"],',')?>]</td>
         </tr>
-      </table >
+      </table>
       <?}?>
     <?}elseif($_SESSION["SEARCH"]["TYPE"]==="발간물"){
       for($i=0; $i < $re[0]->rowCount(); $i++){
@@ -334,7 +334,7 @@ $time = time();
           $r=$re[0]->fetch();
     ?>
           <tr>
-          <td class="table_content"style="width:250px"><?=$r["DC_COUNTRY"]?></td>
+          <td class="table_content"style="width:250px"><?=trim($r["DC_COUNTRY"],',')?></td>
             <td class="table_content"style="width:250px"><?=$r["DC_TYPE"]?></td>
             <td class="table_content"style="width:250px"><?=$r["DC_TITLE_KR"]?></td>
             <td class="table_content" style="width:100px;"><a onclick=window.open("<?=$r["DC_URL_LOC"]?>")><?=$r["DC_TITLE_OR"]?></a></td>
@@ -577,7 +577,7 @@ $time = time();
           $r=$re[0]->fetch();
     ?>
           <tr>
-          <td class="table_content"style="width:250px"><?=$r["DC_COUNTRY"]?></td>
+          <td class="table_content"style="width:250px"><?=trim($r["DC_COUNTRY"],',')?></td>
             <td class="table_content"style="width:250px"><?=$r["DC_TYPE"]?></td>
             <td class="table_content"style="width:250px"><?=$r["DC_TITLE_KR"]?></td>
             <td class="table_content" style="width:100px;"><a onclick=window.open("<?=$r["DC_URL_LOC"]?>")><?=$r["DC_TITLE_OR"]?></a></td>

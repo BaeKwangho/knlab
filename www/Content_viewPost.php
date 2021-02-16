@@ -39,9 +39,8 @@ if($_GET["view"]){
         <td style="padding-top:0px; padding-bottom:0px;color:green;width:70px;border-right:1px dotted #AAA;"><?=$r["DC_PAGE"]?> pages</td>
         <td style="width:30%"></td>
       </tr>
-      <?$t=$Mem->qr("select CT_NM from nt_categorys where code like ? and type=1",$r["DC_CODE"]);?>
       <tr><td colspan="4" style="cursor:pointer;color:blue;font-size:11px;"onclick="window.open('<?=$r["DC_URL_LOC"]?>','_blank');">[URL]:<?=$r["DC_URL_LOC"]?></td></tr>
-      <tr><td colspan="4">카테고리 : [<?=$r["DC_TYPE"]?>] , [<?=$t["CT_NM"]?>] , [<?=$r["DC_COUNTRY"]?>]</td></tr>
+      <tr><td colspan="4">카테고리 : [<?=$r["DC_TYPE"]?>] , [<?=trim($r["DC_COUNTRY"],',')?>]</td></tr>
       <tr><td colspan="4" style="font-size:14px;border-top:1px solid #000;"><?=$r["DC_CONTENT"]?></td></tr>
       <tr><td colspan="4" style="border-top:1px solid #000;border-bottom:1px solid #000">관련문서 : <?
         

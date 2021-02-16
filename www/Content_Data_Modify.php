@@ -69,7 +69,6 @@ if(sizeof($_POST)){
 	$doc_img = $Mem->q("select * from nt_document_image_list where pid = ?",$_POST["PID"]);
 	if(isset($doc_img)){
 		while($img = $doc_img->fetch()){
-			print_r($img);
 			if(!strpos($_POST["DC_CONTENT"],$img["IMG_NAME"])){
 				// 기존 post image로 등록된 파일이 DC_CONTENT 전송 내용에 없을 시
 				unlink($img["IMG_NAME"]);
