@@ -7,7 +7,7 @@ require '/home/knlab/www/vendor/autoload.php';
 //error_reporting(E_ALL);	ini_set("display_errors", 1);
 
 Class Elastic {
-	private $hosts,$EL_server,$client;
+	public $hosts,$EL_server,$client;
 	function __construct($default=false){
 		$this->$hosts=[
 			'index.knlab.kr:9200',

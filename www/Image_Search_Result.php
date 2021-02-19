@@ -1,6 +1,7 @@
 
 <?
 //error_reporting(E_ALL);	ini_set("display_errors", 1);
+$_SESSION["edit"]=false;
 include "_h_img.php";
 
 if(!isset($_GET['keyword'])){
@@ -8,6 +9,7 @@ if(!isset($_GET['keyword'])){
 }
 
 $params=[
+	'scroll'=>'30s',
 	'client' => [
         'timeout' => 10,       
         'connect_timeout' => 10
@@ -37,7 +39,7 @@ $obj = $Mem->es->img_search($params);
 			}
 			
 		?>
-			<div class="frame unselectable">
+			<div class="frame" onclick="go('Crawl_Edit.php?item_id=<?=$doc['item_id']?>')">
 				<div class="img_frame">
 					<!--es-->
 					<img class="img" src="<?=$doc['image_path']?>">

@@ -603,7 +603,9 @@ function easySetting(){
 					change.css('visibility','hidden');
 				}
 
-		}); 
+		});
+
+	console.dir($('#file_corver_upload'));
 }
 
 /* 이전 커버 등록

@@ -1,6 +1,7 @@
 <?
 
  ob_start();
+
 include "/home/knlab/_Class/Database.php";
 include "/home/knlab/_Class/Elastic.php";
 include "/home/knlab/_Class/Solr.php";
@@ -84,7 +85,7 @@ Class Member extends Database {
 						exit;
 			}else{
 
-						$Q=$this->q("select * from nt_user_list where User_ID=? and User_Passwd=password(?) and STAT < 9 ",array($id,$pass));
+						$Q=$this->q("select * from nt_user_list where User_ID=? and User_Passwd=? and STAT < 9 ",array($id,$pass));
 						if($Q->rowCount()>0){
 							$row=$Q->fetch();
 
