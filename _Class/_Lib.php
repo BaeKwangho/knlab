@@ -399,7 +399,43 @@ function paging($query,$options=array(),$b,$c,$opt="IDX desc",$param=""){
 }
 
 
+function solr_paging($DB,$query,$b,$c,$opt="IDX desc",$param=""){
+	$result = $DB->select($query);
+	$print_n=$b;
+	$print_horizontal =$c;
+	$total = $result->getNumFound();
 
+	$paging=array();
+
+	if(array_key_exists("page",$_GET)){
+		if($_GET['page']){
+			$start=($_GET['page']-1)*$print_n;
+			$end=(($_GET['page']-1)*$print_n)+$print_n;
+		}else{
+			$_GET['page']=1;
+			$start=0;
+			$end=$print_n;
+		}
+	}else{
+
+			$_GET['page']=1;
+			$start=0;
+			$end=$print_n;
+	}
+
+	if(!$opt) $opt="idx desc";
+
+	$query['start'] = $start;
+	$query['rows'] = $print_n;
+
+	$result = $DB->select($query);
+
+	$paging[0]=$result;
+	$paging[1]=($total-$start);
+	$paging[2]=navi_bars($total,$print_n,$_GET['page'],$print_horizontal,$param);
+
+	return $paging;
+}
 
 
 

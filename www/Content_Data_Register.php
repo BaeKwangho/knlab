@@ -1,4 +1,4 @@
-<? include "_head.php";
+<? include "Axis_Header.php";
 
 
 if(!is_array($_SESSION["TMP_CORVER"])) $_SESSION["TMP_CORVER"]=array();

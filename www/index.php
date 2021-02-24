@@ -1,4 +1,4 @@
-<? include "_head.php"; 
+<? include "Axis_Header.php"; 
 	if($Mem->class< 8){
 		mvs("Content_view.php");
 	}else{

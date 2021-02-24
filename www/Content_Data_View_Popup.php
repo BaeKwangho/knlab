@@ -1,7 +1,7 @@
 <? 
 
 $Close=true;
-include "_head.php";
+include "Axis_Header.php";
  
 
  $r=$Mem->qr("Select * from nt_document_list where IDX=? ",$_GET["PID"]);

@@ -1,5 +1,5 @@
 <?
-include "_head.php";
+include "Axis_Header.php";
 if($_POST["okt"]){
     print_r($_POST["okt"]);
 

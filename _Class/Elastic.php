@@ -7,7 +7,7 @@ require '/home/knlab/www/vendor/autoload.php';
 //error_reporting(E_ALL);	ini_set("display_errors", 1);
 
 Class Elastic {
-	public $hosts,$EL_server,$client;
+	private $hosts,$EL_server,$client;
 	function __construct($default=false){
 		$this->$hosts=[
 			'index.knlab.kr:9200',
@@ -39,15 +39,7 @@ Class Elastic {
 	
 	*/
 
-	public function search($params){
-		try{
-			$result = $this->$client->search($params);
-		}catch(Exception $e){
-			echo $e;
-		}
-		$doc_num = $this->$client->count($params)['count'];
-		//$images_path = $this->image_processing($result,$doc_num);
-
+	private function result_process($result , $count=null){
 		$docs=array();
 		foreach($result['hits']['hits'] as $doc){
 			if(isset($doc['_source']['image_path'])){
@@ -55,10 +47,13 @@ Class Elastic {
 			}
 		}
 		$obj=[
-			'doc_num' => $doc_num,
+			'doc_num' => $count,
 			'images' => $images_path,
 			'result' => $docs,
 		];
+		if(isset($result['_scroll_id'])){
+			$obj['scroll_id'] = $result['_scroll_id'];
+		}
 		/*
 			result=[
 				list of doc obj =[
@@ -69,6 +64,18 @@ Class Elastic {
 				]
 			]
 		*/
+		return $obj;
+	}
+
+	public function search($params){
+		try{
+			$result = $this->$client->search($params);
+		}catch(Exception $e){
+			echo $e;
+		}
+		$doc_num = $this->$client->count($params)['count'];
+		//$images_path = $this->image_processing($result,$doc_num);
+		$obj = $this->result_process($result,$doc_num);
 		return $obj;
 	}
 
@@ -115,7 +122,24 @@ Class Elastic {
 		*/
 		$obj["doc_num"]=$cnt_num;
 		$obj["images"]=$image_route_list;
+		if(isset($result["_scroll_id"])){
+			$obj["scroll_id"]=$result["_scroll_id"];
+		}
 		return $obj;
+	}
+
+	public function page_test($scroll_id=null,$init_param=null){
+		if(isset($init_param)){
+			return $this->$client->search($init_param);
+		}else{
+			$result = $this->$client->scroll([
+				'body' => [
+					'scroll_id' => $scroll_id,  //...using our previously obtained _scroll_id
+					'scroll'    => '30s'        // and the same timeout window
+				]
+			]);
+			return $this->result_process($result,0);
+		}
 	}
 
 	private function img_path_mod($sample){
@@ -139,6 +163,8 @@ Class Elastic {
 		}
 		return $sample;
 	}
+
+
 }
 ?>
 

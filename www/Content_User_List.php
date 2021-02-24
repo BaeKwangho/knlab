@@ -1,4 +1,4 @@
-<? include "_head.php"; 
+<? include "Axis_Header.php"; 
 
 if($_GET["remove"]){
 $Mem->q("update nt_user_list set STAT=9 where IDX=? ",array($_GET["remove"]));

@@ -13,13 +13,15 @@ Class Member extends Database {
 	var $data,$data_url;
 	var $class;
 	var $es;
-	var $solr;
+	var $gps;
+	var $docs;
 
 	function  __construct  ($default=false){
 			@session_start();
 			$this->Database($default);
 			$this->es=new Elastic($default);
-			$this->solr =new Solr($default);
+			$this->gps =new Solr($default);
+			$this->docs =new Solr('docs');
 
  			$this->data=array();
 			$this->data["temp"]="Data/temp/";

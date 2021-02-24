@@ -1,15 +1,7 @@
 <?
 
 
-$_SESSION["edit"]=true;
 include "_h_img.php";
-$_SESSION["edit"]=false;
-
-$_GET["keyword"]="";
-if(!isset($_GET["item_id"])){
-    mvs("components/error.php?err_msg=유효하지 않은 Crawl_Data 번호입니다.");
-    exit;
-}
 
 //error_reporting(E_ALL);	ini_set("display_errors", 1);
 if(sizeof($_POST)){
@@ -22,69 +14,31 @@ if($_POST["DC_DT_WRITE"]){ $_POST["DC_DT_WRITE"]=datec($_POST["DC_DT_WRITE"]); 	
 
 $_POST["UID"]=$Mem->user["uid"];
 $date = mktime();
-$Mem->q("insert into nt_document_list (DC_TITLE_OR, DC_TITLE_KR,DC_KEYWORD ,DC_TYPE, DC_COUNTRY ,DC_SMRY_KR,DC_DT_COLLECT_STR,DC_DT_WRITE,DC_DT_REGI,DC_URL_LOC,DC_AGENCY,DC_MEMO1,DC_MEMO2,DC_CODE,DC_CONTENT,DC_PAGE,DC_CAT) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ",
-array(
-    $_POST["DC_TITLE_OR"], //DC_TITLE_OR , 원제목
-    $_POST["DC_TITLE_KR"], //DC_TITLE_KR , 한글제목
-    $_POST["DC_KEYWORD"], //DC_KEYWORD , 키워드
-    $_POST["DC_TYPE"], //DC_TYPE , 유형분류
-    $_POST["DC_COUNTRY"], //DC_COUNTRY , 국가
-    "",//$objWorksheet->getCell('J' . $i)->getValue(), //DC_SMRY_KR , 요약
-    "",//$objWorksheet->getCell('K' . $i)->getValue(), //DC_DT_COLLECT_STR, 이건 뭔데;
-    $_POST["DC_DT_WRITE"], //DC_DT_WRITE , 발간일
-    //								 (PHPExcel_Style_NumberFormat::toFormattedString(($objWorksheet->getCell('K' . $i)->getValue()), 'YYYY-MM-DD')),
-    $date, //원래 mktime() //DC_DT_REGI
-    //								 $objWorksheet->getCell('C'.$i)->getHyperlink()->getUrl(),
-    //								 $objWorksheet->getCell('C'.$i)->getHyperlink()->getUrl(),
+$data = [
+    "DC_TITLE_OR" => $_POST["DC_TITLE_OR"], //DC_TITLE_OR , 원제목
+    "DC_TITLE_KR" => $_POST["DC_TITLE_KR"], //DC_TITLE_KR , 한글제목
+    "DC_KEYWORD" => $_POST["DC_KEYWORD"], //DC_KEYWORD , 키워드
+    "DC_TYPE" => $_POST["DC_TYPE"], //DC_TYPE , 유형분류
+    "DC_COUNTRY" => $_POST["DC_COUNTRY"], //DC_COUNTRY , 국가
+    "DC_DT_WRITE" => $_POST["DC_DT_WRITE"], //DC_DT_WRITE , 발간일, "YYYY-MM-DD")),
+    "DC_DT_COLLECT" => $_POST["DC_DT_COLLECT"],
+    "DC_URL_LOC" => $_POST["DC_URL_LOC"], //DC_URL_LOC , URL 정보
+    "DC_AGENCY" => $_POST["DC_AGENCY"], //DC_AGENCY , 발행기관
+    "DC_CODE" => $_POST["DC_CODE"], // DC_CODE, 코드.. 나의 코드 , 대중소 분류된 코드 기입
+    "DC_CONTENT" => $_POST["DC_CONTENT"], //DC_CONTENT , 내용
+    "DC_PAGE" => $_POST["DC_PAGE"], //DC_PAGE , 페이지수
+    "DC_CAT" => $_POST["DC_CAT"], //DC_CAT , 특수분류
+];
 
-    $_POST["DC_URL_LOC"], //DC_URL_LOC , URL 정보
-    $_POST["DC_AGENCY"], //DC_AGENCY , 발행기관
-    $_POST["DC_MEMO1"], //메모1 , 첨부파일 hwp
-    $_POST["DC_MEMO2"], //메모2 , 표지파일 gif
-    0, // DC_CODE, 코드.. 나의 코드 , 대중소 분류된 코드 기입
-    $_POST["DC_CONTENT"], //DC_CONTENT , 내용
-    $_POST["DC_PAGE"], //DC_PAGE , 페이지수
-    $_POST["DC_CAT"], //DC_CAT , 특수분류
+$Mem->docs->update($data);
+mvs("components/error.php?err_msg=성공적으로 등록되었습니다.");
 
-));
-
-$PID=$Mem->insertId();
-
-if($_POST["DC_COUNTRY"]){
-	$stat=0;
-	$countrys="";
-	foreach($_POST["DC_COUNTRY"] as $con){
-		echo $con;
-		$coq = $Mem->q("select * from nt_countrys where CTY_NM = '".$con."'")->fetch();
-			if(!is_null($coq["IDX"])){
-				$Mem->q("insert into nt_document_cty_list (PID, CTYID, DC_DT_MODI) values (?,?,?)",array(
-					$PID, $coq["IDX"], $date));
-				$countrys.=$con.",";
-			}
-	}
-}
-
-$codes = $Mem->qa("select code from nt_document_code_list where pid = ? and stat < 9",$PID)[0];
-//등록될 코드가 저장되어 있었는지에 대해
-foreach($_POST["DC_CODE"] as $code) {
-    if(in_array($code, $codes)) {
-        continue;
-    }
-    else {
-        $Mem->q("insert into nt_document_code_list (pid,code,stat,uid,dt_write) values (?,?,?,?,?)", array($PID,$code,0,$Mem->user["uid"],$date));
-    }
-}
-//저장된 코드가 남을건지에 대해
-foreach($codes as $code) {
-    if(in_array($code, $_POST["DC_CODE"])) {}
-    else {
-        $Mem->q("delete from nt_document_code_list where pid = ? and code = ?",array($PID,$code));
-    }
-}
-unset($_SESSION["UPDATE_LIST"]);
-mvs("Content_Data_View.php?PID=".$PID);
 exit;
 
+if(!isset($_GET["item_id"])){
+    mvs("components/error.php?err_msg=유효하지 않은 Crawl_Data 번호입니다.");
+    exit;
+}
 
 $_SESSION["TMP_CORVER"]=array();
 $_SESSION["TMP_DOCUMENT"]=array();
@@ -153,7 +107,7 @@ $params=[
 	]
 ];
 $es_imgs = $Mem->es->img_search($params)['images'];
-$solr_res = $Mem->solr->search('item_id:"'.$_GET['item_id'].'"')['result'][0];
+$solr_res = $Mem->gps->search('item_id:"'.$_GET['item_id'].'"')['result'][0];
 
 ?>
 <script type="text/javascript" src="Editor2/ckeditor.js"></script>

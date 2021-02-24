@@ -1,5 +1,12 @@
-<? include "_head.php"; 
+
+
+<? include "Axis_Header.php"; ?>
+
+
+<?
 $time = time();
+
+
 //error_reporting(E_ALL);	ini_set("display_errors", 1);
 
 //select * from (select * from nt_document_list where a.DC_CODE like 15 or a.DC_CODE like 16 or a.DC_CODE like 1611 or a.DC_CODE like 1612 or a.DC_CODE like 1613 or a.DC_CODE like 24 or a.DC_CODE like 2410 or a.DC_CODE like 241012 or a.DC_CODE like 241017) where a.DC_CODE like 15

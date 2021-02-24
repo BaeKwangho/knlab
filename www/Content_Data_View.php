@@ -1,6 +1,6 @@
 <?
 //error_reporting(E_ALL);	ini_set("display_errors", 1);
-include "_head.php";
+include "Axis_Header.php";
 
  $r=$Mem->qr("Select * from nt_document_list where IDX=? ",$_GET["PID"]);
  $Cname=$Mem->qr("Select CT_NM from nt_categorys where CODE like ? and TYPE=1",$r["DC_CODE"]);
