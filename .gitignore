@@ -2,5 +2,8 @@
 /BackUp/
 /www/Data/
 /_Class/Member.php
-
+/.cache
+/.vs
+/.vim
+/.vscode-server
 
