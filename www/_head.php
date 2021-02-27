@@ -97,18 +97,22 @@ if($Q->rowCount()){ //이쪽라인에서 고의적으로 중분류 코드를 분
 <div class="main_wrap"  >
 <table cellpadding="0" cellspacing="0" border="0"  style="width:100%;">
 	<tr>
-		<td style="min-width:300px;"><img src="/images/logo3.jpg" alt="" style="height:70px;margin-top:10px;margin-bottom:10px;cursor:pointer;" onclick="" style=";">	 </td>
+		<td style=""><img src="/images/logo3.jpg" alt="" style="height:70px;margin-top:10px;margin-bottom:10px;cursor:pointer;" onclick="" style=";">	 </td>
 		<td style="text-align:center;" >
 	<? if($Mem->class<8){?>
 		<form action="<?=SELF?>" method="GET">
-	<input type="text" name="WORD" value="<?=$_SESSION["SEARCH"]["WORD"]?>" required="required" style="border:solid 4px #2f5597; background-color:#FFF; font-size:16px;padding:5px;margin-right:6px;"><input type="submit"  class="button1" value="검색" style="padding-left: 10px;height:38px; width:60px;font-size:14px;"> <!--<input type="button"  class="button1" value="상세검색" style="height:38px; width:90px;font-size:14px;" onclick="Dialog('Content_Data_Search.php',900,800);">-->
-		</form>
+	<div class="bar small" style="display:inline-block">
+		<input type="text" name="WORD" value="<?=$_SESSION["SEARCH"]["WORD"]?>" required="required" class="searchbar small">
+	</div>
+	<input type="submit"  class="button1" value="검색" style="padding-left: 10px;height:38px; width:60px;font-size:14px;"> <!--<input type="button"  class="button1" value="상세검색" style="height:38px; width:90px;font-size:14px;" onclick="Dialog('Content_Data_Search.php',900,800);">-->
+
+</form>
 	<?}?>
 		</td>
     <td style="font-size:25px; padding:10px;" >
       <? ?>
     </td>
-		<td style="min-width:300px;text-align:right;">
+		<td style="text-align:right;">
 			<b><?=$Mem->name?></b> 안녕하세요. <input type="button" class="button1" value="로그아웃" onclick="go('Member_Logout.php');">
 		</td>
 	</tr>

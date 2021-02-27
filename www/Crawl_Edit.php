@@ -1,7 +1,7 @@
 <?
 
 
-include "_h_img.php";
+include "Axis_Header.php";
 
 //error_reporting(E_ALL);	ini_set("display_errors", 1);
 if(sizeof($_POST)){
@@ -29,10 +29,12 @@ $data = [
     "DC_PAGE" => $_POST["DC_PAGE"], //DC_PAGE , 페이지수
     "DC_CAT" => $_POST["DC_CAT"], //DC_CAT , 특수분류
 ];
+if(!isset($_POST["DC_DT_WRITE"])){
+    $data['DC_DT_WRITE'] = $date;
+}
 
 $Mem->docs->update($data);
 mvs("components/error.php?err_msg=성공적으로 등록되었습니다.");
-
 exit;
 
 if(!isset($_GET["item_id"])){
@@ -241,6 +243,7 @@ function FormSubmit(f) {
                     </td>
                 </tr>
                 <tr style="">
+                    <!--
 				<th >표지파일</th>
 				<td colspan="3"  >
                 <div style="height:200px;overflow-y: scroll;" id="crawl_cover_list">
@@ -251,12 +254,13 @@ function FormSubmit(f) {
 					echo "</a></div>";
 				}
 				 ?>
+                 -->
                  </div>
 				<!--<div id="file_corver_list"></div> <input type="file" id="file_corver_upload" name="cover_upload" style="display:none;"  onchange="file_corver_add();" ></td> -->
 				<div id="file_corver_list"></div> <input type="file" id="file_corver_upload" name="cover_upload" style="display:none;"  onchange="easySetting();" ></td> 
 
 			    </tr>
-			
+			<!--
 			<tr style="height:100px;">
 				<th>첨부문서<br><input type="button" class="button1" value="파일추가" onclick="$('#file_document_upload').click();;"><br><input type="button" class="button1" value="초기화" onclick="getup('Content_Data_Register_File_List.php?type=2&reset=1','file_document_list');" ></th>
 				<td colspan="3" >
@@ -275,7 +279,7 @@ function FormSubmit(f) {
 
 				<div id="file_document_list"></div> <input type="file" id="file_document_upload" name="" multiple  style="display:none;" onchange="file_document_add();" ></td> 
 			</tr>
-
+                -->
             </table>
 
             <div style="text-align:right;padding:10px;text-align:center;">

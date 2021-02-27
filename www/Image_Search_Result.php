@@ -44,7 +44,7 @@ $_SESSION["scroll"]=$obj["scroll_id"];
 			}
 			
 		?>
-			<div class="frame" onclick="go('Crawl_Edit.php?item_id=<?=$doc['item_id']?>')">
+			<div class="frame">
 				<div class="img_frame">
 					<!--es-->
 					<img class="img" src="<?=$doc['image_path']?>">
