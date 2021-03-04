@@ -490,8 +490,16 @@ margin:2px;
 	width:100%;
 }
 
+.c4 {
+	width:80%;
+}
+
 .c3 {
 	width:60%;
+}
+
+.div_center{
+margin: 0px auto;
 }
 
 .center{

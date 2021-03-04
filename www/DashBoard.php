@@ -12,15 +12,12 @@ if($_GET["WORD"]){
 }*/
 
 ?>
-
- <!-- Styles -->
 <style>
 #chartdiv {
   width: 98%;
   height: 500px;
-  overflow: hidden;
-  position:absolute;
 }
+
 </style>
 
 <!-- Resources -->
@@ -37,92 +34,107 @@ am4core.ready(function() {
 am4core.useTheme(am4themes_animated);
 // Themes end
 
-// Create map instance
+/* Create map instance */
 var chart = am4core.create("chartdiv", am4maps.MapChart);
 
-// Set map definition
+/* Set map definition */
 chart.geodata = am4geodata_worldLow;
 
-// Set projection
+/* Set projection */
 chart.projection = new am4maps.projections.Miller();
 
-// Create map polygon series
+/* Create map polygon series */
 var polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
 
-// Exclude Antartica
-polygonSeries.exclude = ["AQ"];
-
-// Make map load polygon (like country names) data from GeoJSON
+/* Make map load polygon (like country names) data from GeoJSON */
 polygonSeries.useGeodata = true;
 
-// Configure series
+/* Configure series */
 var polygonTemplate = polygonSeries.mapPolygons.template;
+polygonTemplate.applyOnClones = true;
+polygonTemplate.togglable = true;
 polygonTemplate.tooltipText = "{name}";
-polygonTemplate.polygon.fillOpacity = 0.6;
-
-
-// Create hover state and set alternative fill color
-var hs = polygonTemplate.states.create("hover");
-hs.properties.fill = chart.colors.getIndex(0);
-
-// Add image series
-var imageSeries = chart.series.push(new am4maps.MapImageSeries());
-imageSeries.mapImages.template.propertyFields.longitude = "longitude";
-imageSeries.mapImages.template.propertyFields.latitude = "latitude";
-imageSeries.mapImages.template.tooltipText = "{title}";
-imageSeries.mapImages.template.propertyFields.url = "url";
-
-var circle = imageSeries.mapImages.template.createChild(am4core.Circle);
-circle.radius = 3;
-circle.propertyFields.fill = "color";
-
-var circle2 = imageSeries.mapImages.template.createChild(am4core.Circle);
-circle2.radius = 3;
-circle2.propertyFields.fill = "color";
-
-
-circle2.events.on("inited", function(event){
-  animateBullet(event.target);
+polygonTemplate.nonScalingStroke = true;
+polygonTemplate.strokeOpacity = 0.5;
+polygonTemplate.fill = chart.colors.getIndex(0);
+var lastSelected;
+polygonTemplate.events.on("hit", function(ev) {
+  if (lastSelected) {
+    // This line serves multiple purposes:
+    // 1. Clicking a country twice actually de-activates, the line below
+    //    de-activates it in advance, so the toggle then re-activates, making it
+    //    appear as if it was never de-activated to begin with.
+    // 2. Previously activated countries should be de-activated.
+    lastSelected.isActive = false;
+  }
+  ev.target.series.chart.zoomToMapObject(ev.target);
+  if (lastSelected !== ev.target) {
+    
+    var data = ev.target.dataItem.dataContext;
+    var element = document.getElementById('selected');
+    
+    element.innerHTML = "<h3>" + data.name + " (" + data.id  + ")</h3>";
+    /*
+    if (data.description) {
+        info.innerHTML = data.description;
+    }
+    else {
+        info.innerHTML += "<i>No description provided.</i>"
+    }*/
+    lastSelected = ev.target;
+  }
 })
 
 
-function animateBullet(circle) {
-    var animation = circle.animate([{ property: "scale", from: 1, to: 5 }, { property: "opacity", from: 1, to: 0 }], 1000, am4core.ease.circleOut);
-    animation.events.on("animationended", function(event){
-      animateBullet(event.target.object);
-    })
-}
+/* Create selected and hover states and set alternative fill color */
+var ss = polygonTemplate.states.create("active");
+ss.properties.fill = chart.colors.getIndex(2);
 
-var colorSet = new am4core.ColorSet();
+var hs = polygonTemplate.states.create("hover");
+hs.properties.fill = chart.colors.getIndex(4);
 
-imageSeries.data = [ {
-  "title": "London",
-  "latitude": 51.5002,
-  "longitude": -0.1262,
-  "url": "http://www.google.co.uk",
-  "color":colorSet.next()
-}];
+// Hide Antarctica
+polygonSeries.exclude = ["AQ"];
 
+// Small map
+chart.smallMap = new am4maps.SmallMap();
+// Re-position to top right (it defaults to bottom left)
+chart.smallMap.align = "right";
+chart.smallMap.valign = "top";
+chart.smallMap.series.push(polygonSeries);
 
+// Zoom control
+chart.zoomControl = new am4maps.ZoomControl();
+
+var homeButton = new am4core.Button();
+homeButton.events.on("hit", function(){
+  chart.goHome();
+});
+
+homeButton.icon = new am4core.Sprite();
+homeButton.padding(7, 5, 7, 5);
+homeButton.width = 30;
+homeButton.icon.path = "M16,8 L14,8 L14,16 L10,16 L10,10 L6,10 L6,16 L2,16 L2,8 L0,8 L8,0 L16,8 Z M16,8";
+homeButton.marginBottom = 10;
+homeButton.parent = chart.zoomControl;
+homeButton.insertBefore(chart.zoomControl.plusButton);
 
 }); // end am4core.ready()
 </script>
-
 <!-- HTML -->
 
-<div class="c5 comp_out">
+<div class="c5 comp_out" style="height:600px">
     <div class="row f14 m_bot_10">
         <text>< 금일 수집 현황 ></text>
-        <div class="c3">
+        <div class="c3" id="collect data">
             <text>ㅇㅎㅇㅎㅇ</text>
             
         </div>
     </div>
-    <div id="image frame">
-        <div style="height:500px;" id="chartdiv">
-        </div>
+    <div style="height:520px;" id="chartdiv">
     </div>
-    <div style="inline-block" id="table frame">
+</div>
+    <div class="c4 div_center" id="table frame">
         <table class="table_info" cellpadding="0" cellspacing="0" border="0"  id="list_table">
         <colgroup>
             <col  style="width:80px;" />
@@ -152,8 +164,9 @@ imageSeries.data = [ {
             <th>수집일</th>
             <th>열람수</th>
 	    </tr>
+        <tr id="selected"></tr>
         </table>
     </div>
-</div>
+
 
 

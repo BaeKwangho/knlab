@@ -6,6 +6,8 @@ if(!isset($_GET["crawl"])){
 //error_reporting(E_ALL);	ini_set("display_errors", 1);
 include "Axis_Header.php";
 
+$_Ajax=array();
+$_Ajax["div"]="table_list";
 //Hand_component
 
 $time = time();
