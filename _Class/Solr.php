@@ -125,6 +125,38 @@ Class Solr{
 
 		return $result;
 	}
+
+	public function modify($results,$uid){
+		$update = $this->$client->createUpdate();
+		foreach($results as $doc){
+			if(!isset($doc['usr_sub'])){
+				//생성
+				$target = $update->createDocument();
+				$target->setKey('item_id',$doc['item_id']);
+				$target->setField('usr_sub',$uid);
+				$target->setFieldModifier('usr_sub', $target::MODIFIER_ADD);
+				
+				$update->addDocuments([$target]);
+				$update->addCommit();
+			}elseif(in_array($uid,$doc['usr_sub'])){
+				//스킵
+
+			}else{
+				//추가
+				$target = $update->createDocument();
+				$target->setKey('item_id',$doc['item_id']);
+				$target->setField('usr_sub',$uid);
+				$target->setFieldModifier('usr_sub', $target::MODIFIER_ADD);
+			
+				$update->addDocuments([$target]);
+				$update->addCommit();
+			}
+		}
+
+		$result = $this->$client->update($update);
+
+		return $result;
+	}
 }
 ?>
 
