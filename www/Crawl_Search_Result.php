@@ -172,6 +172,7 @@ if($_GET['lang']){
 		//skip
 	}else{
 		$fq['custom']['query'].=' AND language:'.$_GET['lang'];
+		$get.="&lang=".$_GET['lang'];
 	}
 }else{
 

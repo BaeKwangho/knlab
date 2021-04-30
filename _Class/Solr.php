@@ -85,6 +85,20 @@ Class Solr{
 		return $resultset;
 	}
 
+	public function groupSelect(){
+		$query =  $this->$client->createSelect();
+		// get the facetset component
+		$groupComponent = $query->getGrouping();
+		$groupComponent->addField('language');
+		$groupComponent->setNumberOfGroups(true);
+
+		$resultset = $this->$client->select($query);
+		$groups = $resultset->getGrouping();
+		// create a facet query instance and set options
+
+		return $groups;
+	}
+
 	public function delete($query){
 		$update = $this->$client->createUpdate();
 		$update->addDeleteQuery($query);
