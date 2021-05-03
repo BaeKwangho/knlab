@@ -111,6 +111,23 @@ $params=[
 $es_imgs = $Mem->es->img_search($params)['images'];
 $solr_res = $Mem->gps->search('item_id:"'.$_GET['item_id'].'"')['result'][0];
 
+$fq = array(
+	'custom' => array(
+		'query' => 'item_id:"'.$_GET['item_id'].'"',
+	),
+);
+
+$select = array(
+  'query'         => "*:*",
+  'start'         => 0,
+  'rows'          => 5,
+  'fields'        => array('*'),
+  'sort'          => array('creationdate' => 'desc'),
+  'filterquery' => $fq,
+);
+$result = $Mem->gps->select($select);
+
+$Mem->gps->modify($result,$Mem->uid,'usr_edit');
 ?>
 <script type="text/javascript" src="Editor2/ckeditor.js"></script>
 
