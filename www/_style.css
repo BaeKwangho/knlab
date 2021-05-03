@@ -1222,10 +1222,6 @@ label {
   margin: 0px 10px 0px 10px;
 }
 
-.row {
-  text-align: center;
-  line-height: 40px;
-}
 .bold {
   font-weight: bold;
 }
@@ -1346,4 +1342,10 @@ label {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.card {
+  min-height: 200px;
+  min-width: 300px !important;
+  padding: 15px;
 }

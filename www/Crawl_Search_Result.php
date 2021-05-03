@@ -141,6 +141,7 @@ $fq = array(
 
 $get = "?keyword=".$_GET['keyword'];
 
+### conv_solr_time func
 if($_GET['duration']){
 	if($_GET['duration']=='0'){$duration="*";}
 	elseif($_GET['duration']=='1'){$duration=date("Y-m-d",$today-$week).'T'.date("h:i:s",$today-$week).'Z';}
@@ -193,7 +194,7 @@ $select = array(
 
 $paging = solr_paging($Mem->gps,$select,10,10,'',$get);
 
-$Mem->gps->modify($paging[0],$Mem->uid);
+$Mem->gps->modify($paging[0],$Mem->uid,'usr_sub');
 
 
 ?>
@@ -204,7 +205,7 @@ $Mem->gps->modify($paging[0],$Mem->uid);
 		</div>
 		<div id="table">
 			<?foreach($paging[0] as $doc){?>
-			<div class="comp_out round_shadow" id="line"  onclick="go('Crawl_Edit.php?item_id=<?=$doc['item_id']?>')">
+			<div class="comp_out round_shadow" id="line"  onclick="go('Crawl_Edit.php?item_id=<?=$doc['item_id']?>')<?$Mem->gps->modify($doc,$Mem->uid,'usr_edit');?>">
 				<div class="f30 hidden center">Edit</div>
 				<div class="row">
 					<div class="bold f20 col text-left" id="title"><?=$doc['title'][0]?></div>

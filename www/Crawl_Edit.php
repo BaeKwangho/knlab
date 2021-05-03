@@ -205,7 +205,7 @@ function FormSubmit(f) {
                         class="input_cell"
                         placeholder="0000-00-00"
                         name="DC_DT_WRITE"
-                        id="DC_DT_WRITE"></td>
+                        id="DC_DT_WRITE" value="<?=time()?>"></td>
                 </tr>
                 <tr>
                     <th>문서위치URL</th>

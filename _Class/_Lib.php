@@ -1,6 +1,11 @@
 
 <?php
 
+function conv_solr_time($time){
+	$duration=date("Y-m-d",$time).'T'.date("h:i:s",$time).'Z';
+	return $duration;
+}
+
 function highlight_word( $content, $word, $color ) {
     $replace = '<b style="font-weight:bolder">' . $word . '</b>'; // create replacement
     $content = str_replace( $word, $replace, $content ); // replace content

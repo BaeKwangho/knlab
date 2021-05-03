@@ -1,6 +1,6 @@
 <?
 include "_head.php";
-error_reporting(E_ALL);	ini_set("display_errors", 1);
+//error_reporting(E_ALL);	ini_set("display_errors", 1);
 
 $fq = array(
 	'custom' => array(
@@ -9,23 +9,8 @@ $fq = array(
 );
 $get = "?keyword=".$_GET['keyword'];
 
-if($_GET['lang']){
-	if($_GET['lang']=='none'){
-		//skip
-	}else{
-		$fq['custom']['query'].=' AND language:'.$_GET['lang'];
-		$get.="&lang=".$_GET['lang'];
-	}
-}else{
-
-}
-
 $select = array(
-  'query'         => "keywords:*".$_GET['keyword'].
-          "* OR title:*".$_GET['keyword'].
-          "* OR contents:*".$_GET['keyword']."*"
-          //." AND item_id:664941 "
-          ,
+  'query'         => "*:*",
   'start'         => 0,
   'rows'          => 5,
   'fields'        => array('*'),
@@ -33,7 +18,6 @@ $select = array(
   'filterquery' => $fq,
 );
 $result = $Mem->gps->select($select);
-print_r($result->getNumFound());
 
 function getColorByNum($num){
   for($i=0;$i<10;$i++){
@@ -56,10 +40,49 @@ foreach ($groups as $groupKey => $fieldGroup) {
     }
     $small['id']=$value;
     $small['color']=getColorByNum($valueGroup->getNumFound());
+    $small['value']=$valueGroup->getNumFound();
     array_push($data,$small);
   }
 }
 echo "<input type='hidden' id='data' value='".json_encode($data)."'>";
+
+#####################################
+##### 2번째, 일별 수집 현황 가져오기###
+#####################################
+
+$curtime=time()- 60 * 60 * 24 * 438;
+$curday = conv_solr_time($curtime);
+
+$collect = array();
+for($i=1;$i<=7;$i++){
+  $temp = array();
+  $beftime=$curtime-60 * 60 * 24;
+  $befday= conv_solr_time($beftime);
+  $fq = array(
+    'custom' => array(
+      'query' => 'created_at:['.$befday.' TO '.$curday.']',
+    ),
+  );
+  $select = array(
+    'query'         => "*:*",
+    'start'         => 0,
+    'rows'          => 5,
+    'fields'        => array('*'),
+    'sort'          => array('creationdate' => 'desc'),
+    'filterquery' => $fq,
+  );
+  $result = $Mem->gps->select($select);
+  $temp['date']=$befday;
+  $temp['value']=$result->getNumFound();
+
+  array_push($collect,$temp);
+  
+  $curday = $befday;
+  $curtime= $beftime;
+}
+echo "<input type='hidden' id='collect' value='".json_encode($collect)."'>";
+
+
 ?>
 <script>
 //_head의 body부분에 걸려있는 이상한 왼쪽 메뉴바 background 제거
@@ -72,61 +95,98 @@ $("body").css("background","#F0F0F0");
 <script src="https://cdn.amcharts.com/lib/4/maps.js"></script>
 <script src="https://cdn.amcharts.com/lib/4/geodata/worldHigh.js"></script>
 <script src="https://cdn.amcharts.com/lib/4/themes/dataviz.js"></script>
+<script src="//cdn.amcharts.com/lib/4/charts.js"></script>
 
 
 <!-- Chart code -->
 <!-- HTML -->
-<div id="collect_comp" style="margin-top:20px;"> 
-</div>
 <div class="c5"  style="background-color:white;">
-    <div style="height:520px;" id="chartdiv">
+    <div style="height:520px;" id="worldmap">
     </div>
 </div>
 <div style="background-color:#F0F0F0;padding:10px">
-  <div id="center_page" style="padding-left:10%;padding-right:10%;">
-    <div class="light_shadow" style="margin-top:10px;background-color:white;min-height:100px;">
-      금일 수집 통계
-    </div>
-    <div class="table-responsive light_shadow" id="table frame" style="background-color:white;
-    min-height:400px">
-        <table class="table table-hover" cellpadding="0" cellspacing="0" border="0"  id="list_table">
-        <colgroup>
-            <col  style="width:80px;" />
-            <col  style="width:90px;" />
-            <col  style="width:70px;" />
-            <col  style="width:80px;" />
-            <col  style="width:150px;" />
-            <col   style="width:350px;" />
-            <col   style="width:350px;"/>
-            <col  style="width:100px;" />
-            <col  style="width:100px;" />
-            <col  style="width:100px;" />
-            <col  style="width:100px;" />
-            <col  style="width:100px;" />
-        </colgroup>
-        <tr>
-            <th>순번</th>
-            <th>IDX</th>
-            <th>국가</th>
-            <th>구분</th>
-            <th>기관명</th>
-            <th>원제목</th>
-            <th>한글제목</th>
-            <th>페이지수</th>
-            <th>첨부파일</th>
-            <th>링크</th>
-            <th>수집일</th>
-            <th>열람수</th>
-      </tr>
-        <tr id="selected"></tr>
-        </table>
+  <div id="center_page" style="padding:2% 10% 10%">
+    <div class="row">
+      <div class=" col-md-6" >
+        <div class=" card light_shadow">
+        <h5>금일 전체 통계</h5>
+        <div class="row" style="margin-top:20px;">
+          <div class="col-md-4" style="border-right:1px solid lightgray">
+            <h4 style="margin-top:10px; margin-bottom:0px;color:#888">수집</h4>
+            <div class="row" style="padding:0px 10px">
+              <h1 id="day_count1" style="font-size:40px;color:#19CE60;"> </h1>
+              <h1 style="font-size:20px;color:#19CE60;margin-top:10px">건</h1>
+            </div>
+          </div>
+          <div class="col-md-4" style="border-right:1px solid lightgray">
+            <h4 style="margin-top:10px; margin-bottom:0px;color:#888">정제</h4>
+            <div class="row" style="padding:0px 10px">
+              <h1 id="day_count2" style="font-size:40px;color:#19CE60;"> </h1>
+              <h1 style="font-size:20px;color:#19CE60;margin-top:10px">건</h1>
+            </div>
+          </div>
+          <div class="col-md-4">
+           <h4 style="margin-top:10px; margin-bottom:0px;color:#888">배포</h4>
+            <div class="row" style="padding:0px 10px">
+              <h1 id="day_count3" style="font-size:40px;color:#19CE60;"> </h1>
+              <h1 style="font-size:20px;color:#19CE60;margin-top:10px">건</h1>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class=" col-md-4">
+        <div class="card light_shadow">
+          <h5>국가별 통계</h5>
+          <p id="selected"></p>
+          <div id="piechart" style="min-height:200px"></div>
+        </div>
+      </div>      
+      <div class=" col-md-6">
+        <div class="card light_shadow">
+          <div id="chartdiv" style="min-height:400px"></div>
+        </div>
+      </div>      
+      <div class=" col-md-6">
+        <div class="card light_shadow">
+        <h5>일별 정제 통계</h5>
+        </div>
+      </div>      
+      <div class=" col-md-6">
+        <div class="card light_shadow">
+        <h5>일별 배포 통계</h5>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 <button onclick="load_map();">gd</button>
 
 <script>
+new numberCounter("day_count1",9125);
+new numberCounter("day_count2",455);
+new numberCounter("day_count3",23);
+
 load_map();
+load_chart();
+load_pie();
+
+function load_pie(){
+  var chart = am4core.create("piechart", am4charts.PieChart);
+
+// Add data
+var items = JSON.parse($('#data').val());
+for (let i=0; i<items.length; i++) {
+  items[i]['id'] = items[i]['id'].toUpperCase();
+  items[i]['color']=chart.colors.getIndex(items[i]['color']);
+}
+
+chart.data=items;
+// Add and configure Series
+var pieSeries = chart.series.push(new am4charts.PieSeries());
+pieSeries.dataFields.value = "value";
+pieSeries.dataFields.category = "id";
+}
 
 function load_map(){
   am4core.ready(function() {
@@ -136,7 +196,7 @@ am4core.useTheme(am4themes_dataviz);
 // Themes end
 
 /* Create map instance */
-var chart = am4core.create("chartdiv", am4maps.MapChart);
+var chart = am4core.create("worldmap", am4maps.MapChart);
 
 /* Set map definition */
 chart.geodata = am4geodata_worldHigh;
@@ -153,8 +213,17 @@ for (let i=0; i<items.length; i++) {
   items[i]['id'] = items[i]['id'].toUpperCase();
   items[i]['color']=chart.colors.getIndex(items[i]['color']);
 }
+console.dir(items);
 polygonSeries.useGeodata = true;
 polygonSeries.data = items;
+
+var series1 = chart.series.push(new am4maps.MapPolygonSeries());
+series1.name = "EN";
+series1.useGeodata = true;
+series1.include = ["US", "CA", "UK"];
+series1.mapPolygons.template.tooltipText = "{name}";
+series1.mapPolygons.template.fill = am4core.color("#96BDC6");
+series1.fill = am4core.color("#96BDC6");
 
 /* Configure series */
 var polygonTemplate = polygonSeries.mapPolygons.template;
@@ -180,7 +249,7 @@ polygonTemplate.events.on("hit", function(ev) {
     var data = ev.target.dataItem.dataContext;
     var element = document.getElementById('selected');
     
-    element.innerHTML = "<h3>" + data.name + " (" + data.id  + ")</h3>";
+    element.innerHTML = "<h3>" + data.name + " (" + data.id  + ") "+data.value +" 건</h3>";
     /*
     if (data.description) {
         info.innerHTML = data.description;
@@ -240,6 +309,49 @@ chart.legend.itemContainers.template.interactionsEnabled = false;
 
 }); // end am4core.ready()
 
+}
+
+
+function load_chart(){
+  
+am4core.useTheme(am4themes_dataviz);
+// Create chart instance
+var chart = am4core.create("chartdiv", am4charts.XYChart);
+
+chart.marginRight = 400;
+
+// Add data
+var items = JSON.parse($('#collect').val());
+
+for (let i=0; i<items.length; i++) {
+  items[i]['date'] = items[i]['date'].slice(2,10);
+  items[i]['value']=items[i]['value'];
+}
+
+chart.data = items;
+//console.log('chart', chart);
+
+// Create axes
+var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+categoryAxis.dataFields.category = "date";
+categoryAxis.title.text = "일별 수집 통계";
+categoryAxis.renderer.grid.template.location = 0;
+categoryAxis.renderer.minGridDistance = 20;
+
+
+var  valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+valueAxis.title.text = "수집량";
+
+// Create series
+var series = chart.series.push(new am4charts.ColumnSeries());
+series.dataFields.valueY = "value";
+series.dataFields.categoryX = "date";
+series.name = "수집량";
+series.tooltipText = "{name}: [bold]{valueY}[/]";
+series.stacked = true;
+
+// Add cursor
+chart.cursor = new am4charts.XYCursor();
 }
 
 </script>

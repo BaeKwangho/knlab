@@ -140,27 +140,27 @@ Class Solr{
 		return $result;
 	}
 
-	public function modify($results,$uid){
+	public function modify($results,$uid,$field){
 		$update = $this->$client->createUpdate();
 		foreach($results as $doc){
-			if(!isset($doc['usr_sub'])){
+			if(!isset($doc[$field])){
 				//생성
 				$target = $update->createDocument();
 				$target->setKey('item_id',$doc['item_id']);
-				$target->setField('usr_sub',$uid);
-				$target->setFieldModifier('usr_sub', $target::MODIFIER_ADD);
+				$target->setField($field,$uid);
+				$target->setFieldModifier($field, $target::MODIFIER_ADD);
 				
 				$update->addDocuments([$target]);
 				$update->addCommit();
-			}elseif(in_array($uid,$doc['usr_sub'])){
+			}elseif(in_array($uid,$doc[$field])){
 				//스킵
 
 			}else{
 				//추가
 				$target = $update->createDocument();
 				$target->setKey('item_id',$doc['item_id']);
-				$target->setField('usr_sub',$uid);
-				$target->setFieldModifier('usr_sub', $target::MODIFIER_ADD);
+				$target->setField($field,$uid);
+				$target->setFieldModifier($field, $target::MODIFIER_ADD);
 			
 				$update->addDocuments([$target]);
 				$update->addCommit();
