@@ -1,28 +1,18 @@
 <?
 include "/home/knlab/_Class/_Define.php";
 include "/home/knlab/_Class/_Lib.php";
-
+//error_reporting(E_ALL);	ini_set("display_errors", 1);
 
 Class Database {
 
 	public $DB,$path,$url,$CODE,$user,$shop;
 	function Database($default=false){
-
 		$this->DB=new PDO("mysql:host=127.0.0.1;port=3306;dbname=nexteli;charset=utf8","root","tony267");
 		$this->DB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	 	$this->DB->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);//추가
 		$this->path=array();
 		$this->url=array();
 		$this->user=array();
-	}
-
-
-
-	function SysDir(){
-
-
-
-
 	}
 
 	/********* Database Function ************/

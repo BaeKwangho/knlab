@@ -39,6 +39,8 @@ Class Elastic {
 	
 	*/
 
+	
+
 	private function result_process($result , $count=null){
 		$docs=array();
 		foreach($result['hits']['hits'] as $doc){
@@ -67,6 +69,15 @@ Class Elastic {
 		return $obj;
 	}
 
+	public function simple_search($params){
+		try{
+			$result = $this->$client->search($params);
+		}catch(Exception $e){
+			echo $e;
+		}
+		return $result;
+	}
+	
 	public function search($params){
 		try{
 			$result = $this->$client->search($params);

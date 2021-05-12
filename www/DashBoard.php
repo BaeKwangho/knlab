@@ -1,68 +1,91 @@
 <?
-include "_head.php";
 //error_reporting(E_ALL);	ini_set("display_errors", 1);
 
-$fq = array(
-	'custom' => array(
-		'query' => '*:*',
-	),
-);
-$get = "?keyword=".$_GET['keyword'];
+// 0:수집 1:정제 2:배포
 
-$select = array(
-  'query'         => "*:*",
-  'start'         => 0,
-  'rows'          => 5,
-  'fields'        => array('*'),
-  'sort'          => array('creationdate' => 'desc'),
-  'filterquery' => $fq,
-);
-$result = $Mem->gps->select($select);
+########################################
+############ 금일 전체 통계 #############
+########################################
+if($_GET['recall']){
+  $type = $_GET['type'];
+  include "_h.php";
+}else{
+  include "_head.php";
+  $type = 0;
 
-function getColorByNum($num){
-  for($i=0;$i<10;$i++){
-    if($num/pow(10,$i)>=1 && $num/pow(10,$i)<10){return $i+2;
-    }else{
-      continue;
-    }
-  }
-}
+  $today = date("Y-m-d");
+  $befday = conv_solr_time(strtotime($today.'-1 day'));
+  $curday = conv_solr_time(strtotime($today));
+  $fq = array(
+      'custom' => array(
+        'query' => 'created_at:['.$befday.' TO '.$curday.']',
+      ),
+    );
+    
+    $select = array(
+      'query'         => "*:*",
+      'start'         => 0,
+      'rows'          => 5,
+      'fields'        => array('*'),
+      'sort'          => array('creationdate' => 'desc'),
+      'filterquery' => $fq,
+    );
+    $result = $Mem->gps->select($select);
+    $collect_num_result = $result->getNumFound();
+  
+    $fq = array(
+      'custom' => array(
+        'query' => 'DC_DT_WRITE:['.strtotime($today.'-1 day').' TO '.strtotime($today).']',
+      ),
+    );
+    $select = array(
+      'query'         => "*:*",
+      'start'         => 0,
+      'rows'          => 5,
+      'fields'        => array('*'),
+      'filterquery' => $fq,
+    );
+  
+    $result = $Mem->docs->select($select);
+    $edit_num_result = $result->getNumFound();
 
-$data=array();
-$groups = $Mem->gps->groupSelect();
-foreach ($groups as $groupKey => $fieldGroup) {
-  foreach ($fieldGroup as $valueGroup) {
-    $small = array();
-    if(null===$valueGroup->getValue()){
-      $value = 'none';
-    }else{
-      $value = $valueGroup->getValue();
-    }
-    $small['id']=$value;
-    $small['color']=getColorByNum($valueGroup->getNumFound());
-    $small['value']=$valueGroup->getNumFound();
-    array_push($data,$small);
-  }
-}
-echo "<input type='hidden' id='data' value='".json_encode($data)."'>";
+$params=[
+  'track_total_hits'=> true,
+  'index'=>'full_text',
+	'client' => [
+        'timeout' => 10,
+        'connect_timeout' => 10
+	],
+	'body' => [
+		'query' => [
+      'bool'=>[
+        'filter'=>[
+          'range'=>[
+            'timestamp'=>[
+              'gte'=>$befday,
+              'lte'=>$curday
+            ]
+          ]
+        ]
+      ]
+		]
+	]
+];
+  $result=$Mem->es->simple_search($params);
+  $proc_num_result = $result['hits']['total']['value'];
 
-#####################################
-##### 2번째, 일별 수집 현황 가져오기###
-#####################################
+  #####################################
+  ######## 국가별 수집 가져오기 ########
+  #####################################
+  
+  // gps solr에만 한정적으로 움직임.
 
-$curtime=time()- 60 * 60 * 24 * 438;
-$curday = conv_solr_time($curtime);
-
-$collect = array();
-for($i=1;$i<=7;$i++){
-  $temp = array();
-  $beftime=$curtime-60 * 60 * 24;
-  $befday= conv_solr_time($beftime);
   $fq = array(
     'custom' => array(
-      'query' => 'created_at:['.$befday.' TO '.$curday.']',
+      'query' => '*:*',
     ),
   );
+  
   $select = array(
     'query'         => "*:*",
     'start'         => 0,
@@ -72,16 +95,177 @@ for($i=1;$i<=7;$i++){
     'filterquery' => $fq,
   );
   $result = $Mem->gps->select($select);
-  $temp['date']=$befday;
-  $temp['value']=$result->getNumFound();
-
-  array_push($collect,$temp);
   
-  $curday = $befday;
-  $curtime= $beftime;
+  function getColorByNum($num){
+    for($i=0;$i<10;$i++){
+      if($num/pow(10,$i)>=1 && $num/pow(10,$i)<10){return $i+2;
+      }else{
+        continue;
+      }
+    }
+  }
+  
+  $data=array();
+  $groups = $Mem->gps->groupSelect();
+  foreach ($groups as $groupKey => $fieldGroup) {
+    foreach ($fieldGroup as $valueGroup) {
+      $small = array();
+      if(null===$valueGroup->getValue()){
+        $value = 'none';
+      }else{
+        $value = $valueGroup->getValue();
+      }
+      $small['id']=$value;
+      $small['color']=getColorByNum($valueGroup->getNumFound());
+      $small['value']=$valueGroup->getNumFound();
+      array_push($data,$small);
+    }
+  }
 }
-echo "<input type='hidden' id='collect' value='".json_encode($collect)."'>";
 
+######### 수집 현황 날짜 정의  ########
+$curtime=time()- 60 * 60 * 24 * 430;
+#$curtime=time();
+$today = date("Y-m-d");
+$curday = conv_solr_time(strtotime($today));
+$collect = array();
+
+
+// 수집 화면
+if($type==0){ 
+  #####################################
+  ####### 일별 수집 현황 가져오기 #######
+  #####################################
+ 
+  for($i=1;$i<=7;$i++){
+    $temp = array();
+    $beftime=$curtime-60 * 60 * 24;
+    $befday= conv_solr_time($beftime);
+    $fq = array(
+      'custom' => array(
+        'query' => 'created_at:['.$befday.' TO '.$curday.']',
+      ),
+    );
+    $select = array(
+      'query'         => "*:*",
+      'start'         => 0,
+      'rows'          => 5,
+      'fields'        => array('*'),
+      'sort'          => array('creationdate' => 'desc'),
+      'filterquery' => $fq,
+    );
+    $result = $Mem->gps->select($select);
+    $temp['date']=$befday;
+    $temp['value']=$result->getNumFound();
+  
+    array_push($collect,$temp);
+    
+    $curday = $befday;
+    $curtime= $beftime;
+  }
+
+
+  if(isset($_GET['recall'])){
+    echo "<input type='hidden' id='collect' value='".json_encode($collect)."'/>";  
+    exit;
+  }else{
+    echo "<div id='target'><input type='hidden' id='collect' value='".json_encode($collect)."'/></div>";  
+  }
+
+
+
+// 정제 화면
+}elseif($type==1){
+  for($i=1;$i<=7;$i++){
+    $temp = array();
+    $beftime=$curtime-60 * 60 * 24;
+    $befday= conv_solr_time($beftime);
+  $res_num = 0;
+    $params=[
+      'track_total_hits'=> true,
+      'index'=>'full_text',
+      'client' => [
+            'timeout' => 10,       
+            'connect_timeout' => 10
+      ],
+      'body' => [
+        'query' => [
+          'bool'=>[
+            'filter'=>[
+              'range'=>[
+                'timestamp'=>[
+                  'gte'=>$befday,
+                  'lte'=>$curday
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ];
+
+    $result=$Mem->es->simple_search($params);
+
+
+    $temp['date']=$befday;
+    $temp['value']=$result['hits']['total']['value'];
+
+    array_push($collect,$temp);
+
+    $curday = $befday;
+    $curtime= $beftime;
+  }
+
+  echo "<input type='hidden' id='collect' value='".json_encode($collect)."'/>";  
+
+  if(isset($_GET['recall'])){
+    exit;
+  }
+  
+  
+  
+// 배포 화면
+}elseif($type==2){ 
+  
+  #####################################
+  ####### 일별 수집 현황 가져오기 #######
+  #####################################
+  
+  $curtime=time()- 60 * 60 * 24 * 430;
+  #$curtime=time();
+  $collect = array();
+  for($i=1;$i<=7;$i++){
+    $temp = array();
+    $beftime=$curtime-60 * 60 * 24;
+    $fq = array(
+      'custom' => array(
+        'query' => 'DC_DT_WRITE:['.$beftime.' TO '.$curtime.']',
+      ),
+    );
+    $select = array(
+      'query'         => "*:*",
+      'start'         => 0,
+      'rows'          => 5,
+      'fields'        => array('*'),
+      'sort'          => array('DC_DT_COLLECT' => 'desc'),
+      'filterquery' => $fq,
+    );
+    $result = $Mem->docs->select($select);
+    $temp['date']=conv_solr_time($beftime);
+    $temp['value']=$result->getNumFound();
+  
+    array_push($collect,$temp);
+    
+    $curtime= $beftime;
+  }
+
+  echo "<input type='hidden' id='collect' value='".json_encode($collect)."'/>";  
+
+  if(isset($_GET['recall'])){
+    exit;
+  }
+}
+echo "<input type='hidden' id='data' value='".json_encode($data)."'/>";
 
 ?>
 <script>
@@ -116,6 +300,7 @@ $("body").css("background","#F0F0F0");
             <div class="row" style="padding:0px 10px">
               <h1 id="day_count1" style="font-size:40px;color:#19CE60;"> </h1>
               <h1 style="font-size:20px;color:#19CE60;margin-top:10px">건</h1>
+              <!--font-size:max(1.5vw,20px)-->
             </div>
           </div>
           <div class="col-md-4" style="border-right:1px solid lightgray">
@@ -135,41 +320,74 @@ $("body").css("background","#F0F0F0");
         </div>
         </div>
       </div>
-      <div class=" col-md-4">
+      <div class=" col-md-6">
         <div class="card light_shadow">
           <h5>국가별 통계</h5>
           <p id="selected"></p>
           <div id="piechart" style="min-height:200px"></div>
         </div>
       </div>      
-      <div class=" col-md-6">
+      <div class=" col-md-12">
         <div class="card light_shadow">
+          <div class="btn-group btn-group-justified btn-group-toggle pl-5 ml-5" data-toggle="buttons">
+            <label class="btn-lg btn btn-outline-primary" >
+              <input type="radio" name="subscribed" id="option1" value="0"
+              <?=$_GET['subscribed']==0?'checked':''?> onclick="exec_ajax($(this).val())"> 수집
+            </label>
+            <label class="btn-lg btn btn-outline-success">
+              <input type="radio" name="subscribed" id="option2" value="1"
+              <?=$_GET['subscribed']==1?'checked':''?> onclick="exec_ajax($(this).val())"> 정제
+            </label>
+            <label class="btn-lg btn btn-outline-danger">
+              <input type="radio" name="subscribed" id="option3" value="2"
+              <?=$_GET['subscribed']==2?'checked':''?> onclick="exec_ajax($(this).val())"> 배포
+            </label>
+          </div>
           <div id="chartdiv" style="min-height:400px"></div>
         </div>
-      </div>      
-      <div class=" col-md-6">
-        <div class="card light_shadow">
-        <h5>일별 정제 통계</h5>
-        </div>
-      </div>      
-      <div class=" col-md-6">
-        <div class="card light_shadow">
-        <h5>일별 배포 통계</h5>
-        </div>
       </div>
+      <div class=" col-md-12">
+        <div class="card light_shadow">
+          <h5>테이블 보기</h5>
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+              <th>1</th>
+              <th>1</th>
+              <th>1</th>
+              <th>1</th>
+              </thead>
+              <tbody>
+              <tr>
+                <td>2</td>
+                <td>2</td>
+                <td>2</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>2</td>
+                <td>2</td>
+                <td>2</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>   
     </div>
   </div>
 </div>
-<button onclick="load_map();">gd</button>
 
 <script>
-new numberCounter("day_count1",9125);
-new numberCounter("day_count2",455);
-new numberCounter("day_count3",23);
+//new numberCounter("day_count1",$('#solr_num_result').val());
+new numberCounter("day_count1",<?=$collect_num_result?>);
+new numberCounter("day_count2",<?=$proc_num_result?>);
+new numberCounter("day_count3",<?=$edit_num_result?>);
 
-load_map();
-load_chart();
 load_pie();
+load_map();
+load_chart(0);
 
 function load_pie(){
   var chart = am4core.create("piechart", am4charts.PieChart);
@@ -213,7 +431,6 @@ for (let i=0; i<items.length; i++) {
   items[i]['id'] = items[i]['id'].toUpperCase();
   items[i]['color']=chart.colors.getIndex(items[i]['color']);
 }
-console.dir(items);
 polygonSeries.useGeodata = true;
 polygonSeries.data = items;
 
@@ -312,7 +529,7 @@ chart.legend.itemContainers.template.interactionsEnabled = false;
 }
 
 
-function load_chart(){
+function load_chart(val){
   
 am4core.useTheme(am4themes_dataviz);
 // Create chart instance
@@ -323,12 +540,14 @@ chart.marginRight = 400;
 // Add data
 var items = JSON.parse($('#collect').val());
 
+var newitems = new Array(items.length);
 for (let i=0; i<items.length; i++) {
   items[i]['date'] = items[i]['date'].slice(2,10);
   items[i]['value']=items[i]['value'];
+  newitems[items.length-1-i]=items[i];
 }
 
-chart.data = items;
+chart.data = newitems;
 //console.log('chart', chart);
 
 // Create axes
@@ -344,6 +563,20 @@ valueAxis.title.text = "수집량";
 
 // Create series
 var series = chart.series.push(new am4charts.ColumnSeries());
+
+if(val==0){
+  series.columns.template.fill = am4core.color("#007bff");
+  series.columns.template.stroke = am4core.color("#007bff");
+}else if(val==1){
+    series.columns.template.fill = am4core.color("#28a745");
+  series.columns.template.stroke = am4core.color("#28a745");
+}else{
+    series.columns.template.fill = am4core.color("#dc3545");
+  series.columns.template.stroke = am4core.color("#dc3545");
+}
+series.columns.template.events.on("hit", function(ev) {
+alert(ev.target.dataItem.dataContext['date']);
+});
 series.dataFields.valueY = "value";
 series.dataFields.categoryX = "date";
 series.name = "수집량";
@@ -353,5 +586,32 @@ series.stacked = true;
 // Add cursor
 chart.cursor = new am4charts.XYCursor();
 }
+
+//클릭 시 stat_table에서 parsing한 정보를 토대로 차트와 테이블을 재구성.
+function exec_ajax(val){
+  $.ajax({
+    url:"<?=SELF?>",
+    type:"GET",
+    data:'type='+val+'&recall=1',
+    success:function(result){
+      $('#target').html(result);
+      console.log(val);
+
+  load_chart(val);
+    },
+    error:function(test){
+      console.log(test);
+    }
+  });
+}
+
+function tar_load_table(){
+
+}
+
+function tar_load_chart(){
+
+}
+
 
 </script>
