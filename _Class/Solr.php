@@ -129,10 +129,27 @@ Class Solr{
 		if($data['DC_PAGE']){$doc->DC_PAGE = $data['DC_PAGE'];}
 		if($data['DC_TYPE']){$doc->DC_TYPE = $data['DC_TYPE'];}
 		if($data['DC_KEYWORD']){$doc->DC_KEYWORD = $data['DC_KEYWORD'];}
+		if($data['DC_SMRY_KR']){$doc->DC_SMRY_KR = $data['DC_SMRY_KR'];}
 		if($data['STAT']){$doc->STAT = $data['STAT'];}
 		if($data['DC_CAT']){$doc->DC_CAT = $data['DC_CAT'];}
 
 		$update->addDocument($doc);
+		$update->addCommit();
+
+		$result = $this->$client->update($update);
+
+		return $result;
+	}
+
+	public function multi_modify($id,$data){
+		$update = $this->$client->createUpdate();
+		$target = $update->createDocument();
+		$target->setKey('id',$id);
+		foreach($data as $field => $value){
+			$target->setField($field,$value);
+			$target->setFieldModifier($field, $target::MODIFIER_SET);
+		}
+		$update->addDocuments([$target]);
 		$update->addCommit();
 
 		$result = $this->$client->update($update);

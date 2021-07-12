@@ -15,6 +15,35 @@ label {
   font-family: "Nanum Gothic", sans-serif;
 }
 
+.btn-floating {
+  font-size: 20px;
+  vertical-align: middle;
+  cursor: pointer;
+  margin: 20px;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  line-height: 100.5px;
+  color: #fff;
+  padding: 0;
+  width: 100.5px; height: 100.5px;
+  outline: 0;
+  border: none;
+  text-decoration: none;
+  background: #2196F3;
+  text-align: center;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+.btn-floating:hover {
+  background: #42A5F5;
+}
+.btn-floating div {
+  font-size: 1.8em;
+  padding: 0;
+  margin: .22em 0 0 0;
+}
+
 label {
   cursor: pointer;
 }

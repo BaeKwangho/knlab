@@ -27,8 +27,20 @@ $data = [
     "DC_CODE" => $_POST["DC_CODE"], // DC_CODE, 코드.. 나의 코드 , 대중소 분류된 코드 기입
     "DC_CONTENT" => $_POST["DC_CONTENT"], //DC_CONTENT , 내용
     "DC_PAGE" => $_POST["DC_PAGE"], //DC_PAGE , 페이지수
-    "DC_CAT" => $_POST["DC_CAT"], //DC_CAT , 특수분류
+    "DC_CAT" => $_POST["DC_TYPE"], //DC_CAT , 특수분류
 ];
+
+if($data['DC_TITLE_KR']===''){$data['DC_TITLE_KR']='NULL';}
+if($data['DC_TITLE_OR']===''){$data['DC_TITLE_OR']='NULL';}
+if($data['DC_KEYWORD']===''){$data['DC_KEYWORD']='NULL';}
+if($data['DC_TYPE']===''){$data['DC_TYPE']='NULL';}
+if($data['DC_COUNTRY']===''){$data['DC_COUNTRY']='NULL';}
+if($data['DC_URL_LOC']===''){$data['DC_URL_LOC']='NULL';}
+if($data['DC_CONTENT']===''){$data['DC_CONTENT']='NULL';}
+if($data['DC_PAGE']===''){$data['DC_PAGE']=0;}
+if($data['DC_CAT']===''){$data['DC_CAT']='NULL';}
+
+
 if(!isset($_POST["DC_DT_WRITE"])){
     $data['DC_DT_WRITE'] = $date;
 }

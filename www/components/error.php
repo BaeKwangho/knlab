@@ -1,6 +1,7 @@
 <?
 include "../_h_img.php";
-error_reporting(E_ALL);	ini_set("display_errors", 1);
+//error_reporting(E_ALL);	ini_set("display_errors", 1);
+
 if($_GET["err_msg"]){
 	$msg = $_GET["err_msg"];
 }else{

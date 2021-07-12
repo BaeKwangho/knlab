@@ -1,4 +1,3 @@
-
 <?
 /* 사용처
 1. Content_Document_List.php - 수정 기능
@@ -8,8 +7,6 @@ $Close=true;
 include "_head.php";
 //error_reporting(E_ALL);	ini_set("display_errors", 1);
 
-
-
 if($_GET["CTYPE"]) $_SESSION["CTYPE"]=$_GET["CTYPE"]; 
 if(!$_SESSION["CTYPE"]) $_SESSION["CTYPE"]=1;
 
@@ -17,9 +14,6 @@ if(!is_array($_SESSION["TMP_CORVER"])) $_SESSION["TMP_CORVER"]=array();
 if(!is_array($_SESSION["TMP_DOCUMENT"])) $_SESSION["TMP_DOCUMENT"]=array();
 if(!is_array($_SESSION["TMP_ATTECH"])) $_SESSION["TMP_ATTECH"]=array(); 
 
-  
-
-  
 if(!is_array($_SESSION["SET_CATEGORY"])) $_SESSION["SET_CATEGORY"]=array();
 if(!is_Array($_SESSION["SET_CATEGORY"][$_SESSION["CTYPE"]])) $_SESSION["SET_CATEGORY"][$_SESSION["CTYPE"]]=array();
 
@@ -34,8 +28,6 @@ if($_FILES["FILE_CORVER"]["tmp_name"]){
 		}
 		exit;
 }
-
-
 
 if($_FILES["FILE_DOCUMENT"]["tmp_name"]){
 		for($i=0; $i <sizeof($_FILES["FILE_DOCUMENT"]["tmp_name"]); $i++){

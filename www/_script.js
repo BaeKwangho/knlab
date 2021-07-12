@@ -60,7 +60,7 @@ function getup(str_url, item, stat = 0) {
     dataType: "text",
     data: null,
     processData: false,
-    cache: false,
+    cache: true,
     contentType: false,
     success: function (data, textStatus, jqXHR) {
       if (stat == 1) {
@@ -69,7 +69,8 @@ function getup(str_url, item, stat = 0) {
       $("#" + item).html(data);
     },
     error: function (xhr, textStatus, errorThrown) {
-      alert(errorThrown);
+      alert(xhr,textStatus,errorThrown);
+      console.log(xhr,textStatus,errorThrown);
     },
   });
 }

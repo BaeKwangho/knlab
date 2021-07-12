@@ -1,7 +1,8 @@
+<? 
+include "Axis_Header.php"; ?>
 
-
-<? include "Axis_Header.php"; ?>
-
+<div class="btn-floating" onclick="go('Crawl_Content.php?crawl=1')">크롤 데이터
+</div>
 
 <?
 $time = time();
