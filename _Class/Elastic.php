@@ -45,8 +45,15 @@ Class Elastic {
 		$docs=array();
 		foreach($result['hits']['hits'] as $doc){
 			if(isset($doc['_source']['image_path'])){
+				$sample = $this->img_path_mod($doc['_source']['image_path']);
+				if($sample===""){
+					continue;
+				}else{
+					$doc['_source']['image_path']=$sample;
+				}
 				array_push($docs,$doc['_source']);
 			}
+			
 		}
 		$obj=[
 			'doc_num' => $count,
@@ -96,10 +103,9 @@ Class Elastic {
 		}catch(Exception $e){
 			echo $e;
 		}
-		$doc_num = count($result['hits']['hits']);
+		$doc_num = $result['hits']['total']['value'];
 		$obj = array();
 		$image_route_list = array();
-		$cnt_num=0;
 		$hash=array();
 		//print_r($result['hits']['hits'][0]);
 		for($i=0;$i<$doc_num;$i++){
@@ -113,7 +119,6 @@ Class Elastic {
 			if($sample===""){
 				continue;
 			}else{
-				$cnt_num++;
 				$doc['image_path']=$sample;
 				array_push($image_route_list,$doc);
 			}
@@ -131,7 +136,7 @@ Class Elastic {
 				] 
 			]
 		*/
-		$obj["doc_num"]=$cnt_num;
+		$obj["doc_num"]=$doc_num;
 		$obj["images"]=$image_route_list;
 		if(isset($result["_scroll_id"])){
 			$obj["scroll_id"]=$result["_scroll_id"];

@@ -10,12 +10,12 @@ if(!isset($_GET['keyword'])){
 
 $params=[
 	'scroll'=>'30s',
+	'size'=>50,
 	'client' => [
         'timeout' => 10,       
         'connect_timeout' => 10
 	],
 	'body' => [
-		'size' => 1000,
 		'query' => [
 			'match' => [
 				'caption' => $_GET['keyword']
@@ -27,49 +27,30 @@ $obj = $Mem->es->img_search($params);
 $_SESSION["scroll"]=$obj["scroll_id"];
 
 ?>
-<div class="c5">
-	<div class="row bold">
-		<text><?=$_GET['keyword']?> 에 대한 검색결과 (<?=$obj['doc_num']?>건)</text>
-	</div>
+<div class="c5" style="margin-top:123px;">
 	<form id="scroll_id">
 		<input type="hidden" name="scroll_id" value="<?=$obj["scroll_id"]?>">
 	</form>
-	<div id="article" style="padding: 0px 20px; display:inline-block">
-		<?foreach($obj['images'] as $doc){
-			try{
-				$solr_res = $Mem->gps->search('item_id:"'.$doc['item_id'].'"')['result'][0];
-				//print_r($solr_res[0]['title']);
-			}catch(Exception $e){
-				continue;
-			}
-			
-		?>
-			<div class="frame">
-				<div class="img_frame">
-					<!--es-->
-					<img class="img" src="<?=$doc['image_path']?>">
-					<div class="script">
-						<!--solr-->
-						<div class="shortcut f14">
-							<?=$solr_res['title']?>
-						</div>
-						<div class="caption">
-							<?foreach($doc['caption'] as $caption){?>
-								<?
-								$cap = highlight_words($caption,$_GET['keyword'],array('#000000'));
-								echo $cap;
-								?>
-								<?=','?>
-							<?}?>
-						</div>
-					</div>
-				</div>
-			</div>
-		<?}?>
+
+	<div style="display:flex;">
+		<div id="article" style="padding: 0px 20px; display:inline-block;width:100%"></div>
+		<div id="poster" style="position:sticky;width:50%;height:90vh;top:125px;display:none;background:rgba(0,0,0,.87);overflow-y: scroll;"></div>
 	</div>
 </div>
-<!--
+
+
 <script>
+$.ajax({
+		url:'components/crawl_list.php',
+		type: 'POST',
+		dataType : "html",
+		data:$('#scroll_id').serialize(),
+		success: function(result, textStatus, xhr){
+			$('#article').append(result);
+		},error: function(xhr, textStatus, errorThrown) {
+			console.log(xhr,textStatus,errorThrown); 
+		}
+	});
 //스크롤 바닥 감지
 window.onscroll = function(e) {
     //추가되는 임시 콘텐츠
@@ -78,10 +59,11 @@ window.onscroll = function(e) {
 		$.ajax({
 			url:'components/crawl_list.php',
 			type: 'POST',
+			async:false,
+			dataType : "html",
 			data:$('#scroll_id').serialize(),
-			succes: function(result){
-				console.dir(result);
-				$('#article').html(result);
+			success: function(result, textStatus, xhr){
+				$('#article').append(result);
 			},error: function(xhr, textStatus, errorThrown) {
                 console.log(xhr,textStatus,errorThrown); 
             }
@@ -90,5 +72,40 @@ window.onscroll = function(e) {
     }
 };
 
+function show_poster(num,src){
+	console.log(num);
+	console.log(src);
+	if($('#poster').css('display')==='none'){
+		$('#poster').css('display','inline-block');
+		$('#article').css('width','50%');
+		$.ajax({
+			url:'components/crawl_list.php',
+			type: 'POST',
+			async:false,
+			data:{
+				item_id:num,
+				image_path:src
+			},
+			success: function(result){
+				$('#poster').html(result);
+			},error: function(xhr, textStatus, errorThrown) {
+                console.log(xhr,textStatus,errorThrown); 
+            }
+		})
+	}else{
+		$.ajax({
+			url:'components/crawl_list.php',
+			type: 'POST',
+			data:{
+				item_id:num,
+				image_path:src
+			},
+			success: function(result){
+				$('#poster').html(result);
+			},error: function(xhr, textStatus, errorThrown) {
+                console.log(xhr,textStatus,errorThrown); 
+            }
+		})
+	}
+}
 </script>
--->
