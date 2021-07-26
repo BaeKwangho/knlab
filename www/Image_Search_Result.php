@@ -108,4 +108,9 @@ function show_poster(num,src){
 		})
 	}
 }
+
+function hide_poster(){
+	$('#poster').css('display','none');
+	$('#article').css('width','100%');
+}
 </script>

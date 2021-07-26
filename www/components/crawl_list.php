@@ -17,16 +17,17 @@ if(!isset($_POST["scroll_id"])){
 	$doc = $Mem->es->search($params)['result'][0];
 	$solr_res = $Mem->gps->search('item_id:"'.$doc['item_id'].'"')['result'][0];
 ?>
+	<div class="close" onclick="hide_poster()"></div>
 	<div style="margin-top:50px;">
 		<img class='img' style="width:80% !important; height:auto !important; "  src="<?=$_POST['image_path']?>">
 	</div>
-	<div style="color:white; width:80%;justify-content: center;">
+	<div class='img' style="color:white; height:100px; width:80%;border-bottom:1px solid white;">
 		<div style="display:inline-block">
-			<div><?=$doc['title'][0]?></div>
-			<div><?=$doc['caption'][0]?></div>
-			<div><?=$doc['host'][0]?></div>
-			<div><?=$doc['timestamp']?></div>
-			<div><?=$doc['wiki_category'][0]?></div>
+			<div>Title : <?=$doc['title'][0]?></div>
+			<div>Caption : <?=$doc['caption'][0]?></div>
+			<div>URL : <?=$doc['host'][0]?></div>
+			<div>TimeStamp : <?=$doc['timestamp']?></div>
+			<div>Category : <?=$doc['wiki_category'][0]?></div>
 		</div>
 	</div>
 <?
