@@ -12,6 +12,7 @@ if(sizeof($_POST)){
 if($_POST["DC_DT_COLLECT"]){	 $_POST["DC_DT_COLLECT"]=datec($_POST["DC_DT_COLLECT"]);		}else{		$_POST["DC_DT_COLLECT"]=0;	}
 if($_POST["DC_DT_WRITE"]){ $_POST["DC_DT_WRITE"]=datec($_POST["DC_DT_WRITE"]); 		}else{		$_POST["DC_DT_WRITE"]=0;	}
 
+
 $_POST["UID"]=$Mem->user["uid"];
 $date = mktime();
 $data = [
@@ -24,7 +25,7 @@ $data = [
     "DC_DT_COLLECT" => $_POST["DC_DT_COLLECT"],
     "DC_URL_LOC" => $_POST["DC_URL_LOC"], //DC_URL_LOC , URL 정보
     "DC_AGENCY" => $_POST["DC_AGENCY"], //DC_AGENCY , 발행기관
-    "DC_CODE" => $_POST["DC_CODE"], // DC_CODE, 코드.. 나의 코드 , 대중소 분류된 코드 기입
+    "DC_CODE" => $_POST["DC_CODE"], // DC_CODE, 대중소 분류된 코드 기입
     "DC_CONTENT" => $_POST["DC_CONTENT"], //DC_CONTENT , 내용
     "DC_PAGE" => $_POST["DC_PAGE"], //DC_PAGE , 페이지수
     "DC_CAT" => $_POST["DC_TYPE"], //DC_CAT , 특수분류

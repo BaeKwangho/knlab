@@ -5,7 +5,7 @@
 
 $Close=true;
 include "_head.php";
-error_reporting(E_ALL);	ini_set("display_errors", 1);
+//error_reporting(E_ALL);	ini_set("display_errors", 1);
 
 if($_GET["CTYPE"]) $_SESSION["CTYPE"]=$_GET["CTYPE"]; 
 if(!$_SESSION["CTYPE"]) $_SESSION["CTYPE"]=1;

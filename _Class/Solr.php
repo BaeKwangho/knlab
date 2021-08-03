@@ -116,10 +116,7 @@ Class Solr{
 
 		if($data['DC_TITLE_OR']){$doc->DC_TITLE_OR = $data['DC_TITLE_OR'];}
 		if($data['DC_TITLE_KR']){$doc->DC_TITLE_KR = $data['DC_TITLE_KR'];}
-		if($data['DC_CODE']){
-			foreach($data['DC_CODE'] as $code){$code = strval($code);}
-			$doc->DC_CODE = $data['DC_CODE'];
-		}
+		if($data['DC_CODE']){$doc->DC_CODE = $data['DC_CODE'];}
 		if($data['DC_COUNTRY']){$doc->DC_COUNTRY = $data['DC_COUNTRY'];}
 		if($data['DC_CONTENT']){$doc->DC_CONTENT = $data['DC_CONTENT'];}
 		if($data['DC_DT_COLLECT']){$doc->DC_DT_COLLECT = $data['DC_DT_COLLECT'];}
