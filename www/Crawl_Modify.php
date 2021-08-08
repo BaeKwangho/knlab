@@ -233,7 +233,7 @@ function FormSubmit(f) {
 <div>
 
 
-	<div class="title1">문서 수정 : <?=$r["DC_TITLE_OR"]?></div>
+	<div class="title1">문서 수정 : <?=$r["DC_TITLE_OR"][0]?></div>
 	<div>
 		<?
 		$codes = $r['DC_CODE'];

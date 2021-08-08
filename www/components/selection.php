@@ -43,7 +43,7 @@
         ?><div style="float:left;width:500px;line-height:30px;"><?
         foreach($_POST["DC_COUNTRY"] as $country){
             ?><label style="cursor:default;">
-                <input type="hidden" name="DC_COUNTRY[]" id="DC_COUNTRY[]" value="<?=$country?>"><?=$country?>
+                <input type="hidden" name="DC_COUNTRY[]" id="DC_COUNTRY[]" value="<?=$country?>"><?=$country.', '?>
             </label><?
         }
         ?></div><?
@@ -51,7 +51,7 @@
         ?><div style="float:left;width:500px;line-height:30px;"><?
         foreach($_POST["PCOUNTRY"] as $country){
             ?><label style="cursor:default;">
-                <input type="hidden" name="DC_COUNTRY[]" id="DC_COUNTRY[]" value="<?=$country?>"><?=$country?>
+                <input type="hidden" name="DC_COUNTRY[]" id="DC_COUNTRY[]" value="<?=$country?>"><?=$country.', '?>
             </label><?
         }
         ?></div><?

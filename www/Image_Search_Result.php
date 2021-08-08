@@ -25,7 +25,7 @@ $params=[
 ];
 $obj = $Mem->es->img_search($params);
 $_SESSION["scroll"]=$obj["scroll_id"];
-
+$_SESSION["hash"] = array();
 ?>
 <div class="c5" style="margin-top:123px;">
 	<form id="scroll_id">
@@ -37,7 +37,8 @@ $_SESSION["scroll"]=$obj["scroll_id"];
 		<div id="poster" style="position:sticky;width:50%;height:90vh;top:125px;display:none;background:rgba(0,0,0,.87);overflow-y: scroll;"></div>
 	</div>
 </div>
-
+<div class="btn-floating" style='background:#ff3300'onclick="load_more()">더보기
+</div>
 
 <script>
 $.ajax({
@@ -51,6 +52,21 @@ $.ajax({
 			console.log(xhr,textStatus,errorThrown); 
 		}
 	});
+function load_more(){
+	$.ajax({
+			url:'components/crawl_list.php',
+			type: 'POST',
+			async:false,
+			dataType : "html",
+			data:$('#scroll_id').serialize(),
+			success: function(result, textStatus, xhr){
+				$('#article').append(result);
+			},error: function(xhr, textStatus, errorThrown) {
+                console.log(xhr,textStatus,errorThrown); 
+            }
+		});
+}
+
 //스크롤 바닥 감지
 window.onscroll = function(e) {
     //추가되는 임시 콘텐츠
@@ -73,8 +89,6 @@ window.onscroll = function(e) {
 };
 
 function show_poster(num,src){
-	console.log(num);
-	console.log(src);
 	if($('#poster').css('display')==='none'){
 		$('#poster').css('display','inline-block');
 		$('#article').css('width','50%');

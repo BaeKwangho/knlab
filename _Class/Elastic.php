@@ -41,9 +41,19 @@ Class Elastic {
 
 	
 
-	private function result_process($result , $count=null){
+	private function result_process($result , $count=null,$using_hash=False){
 		$docs=array();
+		if($using_hash){
+			$hash = $_SESSION["hash"];
+		}
 		foreach($result['hits']['hits'] as $doc){
+			if($using_hash){
+				if(in_array($doc['_source']['title'][0],array_keys($hash))){
+					continue;
+				}else{
+					$hash[$doc['_source']['title'][0]]=1;
+				}
+			}
 			if(isset($doc['_source']['image_path'])){
 				$sample = $this->img_path_mod($doc['_source']['image_path']);
 				if($sample===""){
@@ -73,6 +83,9 @@ Class Elastic {
 				]
 			]
 		*/
+		if($using_hash){
+			$_SESSION["hash"] = $hash;
+		}
 		return $obj;
 	}
 
@@ -109,12 +122,18 @@ Class Elastic {
 		$hash=array();
 		//print_r($result['hits']['hits'][0]);
 		for($i=0;$i<$doc_num;$i++){
+			
 			// if(isset($hash[$result['hits']['hits'][$i]['_source']['item_id']])){
 			// 	continue;
 			// }else{
 			// 	$hash[$result['hits']['hits'][$i]['_source']['item_id']]=1;
 			// }
 			$doc = $result['hits']['hits'][$i]['_source'];
+			if(in_array($doc['title'][0],array_keys($hash))){
+				continue;
+			}else{
+				$hash[$doc['title'][0]]=1;
+			}
 			$sample = $this->img_path_mod($doc['image_path']);
 			if($sample===""){
 				continue;
@@ -154,7 +173,7 @@ Class Elastic {
 					'scroll'    => '30s'        // and the same timeout window
 				]
 			]);
-			return $this->result_process($result,0);
+			return $this->result_process($result,0,true);
 		}
 	}
 

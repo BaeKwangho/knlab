@@ -405,11 +405,10 @@ function paging($query,$options=array(),$b,$c,$opt="IDX desc",$param=""){
 
 
 function solr_paging($DB,$query,$b,$c,$opt="IDX desc",$param=""){
-	$result = $DB->select($query);
+	$test = $DB->select($query);
 	$print_n=$b;
 	$print_horizontal =$c;
-	$total = $result->getNumFound();
-
+	$total = $test->getNumFound();
 	$paging=array();
 
 	if(array_key_exists("page",$_GET)){

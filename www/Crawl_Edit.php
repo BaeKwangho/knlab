@@ -9,6 +9,10 @@ if(sizeof($_POST)){
 		mvs("components/error.php?err_msg=CODE가 지정되지 않았습니다.");
 		exit;
 	}
+    if(!isset($_POST["DC_COUNTRY"])){
+		mvs("components/error.php?err_msg=COUNTRY가 지정되지 않았습니다.");
+		exit;
+	}
 if($_POST["DC_DT_COLLECT"]){	 $_POST["DC_DT_COLLECT"]=datec($_POST["DC_DT_COLLECT"]);		}else{		$_POST["DC_DT_COLLECT"]=0;	}
 if($_POST["DC_DT_WRITE"]){ $_POST["DC_DT_WRITE"]=datec($_POST["DC_DT_WRITE"]); 		}else{		$_POST["DC_DT_WRITE"]=0;	}
 

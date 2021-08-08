@@ -165,16 +165,14 @@ $select = array(
     ),
 );
 
-$re = solr_paging($Mem->docs,$select,5,10);
-for($i=0; $i < $re[1]; $i++){ $n++;
-    foreach($re[0] as $r){
+$re = solr_paging($Mem->docs,$select,20,20);
+foreach($re[0] as $r){
 ?>
 <tr id="<?=$r["id"]?>">
     <td title="<?=$r["id"]?>"> <label ><input class="check_idx" type="checkbox" id="list[]" value="<?=$r["id"]?>"><?=$re[1]--?></label></td>
     <tds>
         <?
             // $QC=$Mem->q("select a.* from nt_country_list a, nt_document_country_list b where b.PID=? and b.TID=a.IDX  ",$r["IDX"]);
-
             // while($rs=$QC->fetch()){
             // echo $rs["COUNTRY_NM"];
             // echo "<BR>";
@@ -182,12 +180,22 @@ for($i=0; $i < $re[1]; $i++){ $n++;
             ?>
 
     </td>
-    <td><?=$r["DC_COUNTRY"][0]?></td>
+    <td>
+	<?
+		$countrys = '';
+		foreach($r["DC_COUNTRY"] as $con){
+			$countrys.= $con.', ';
+		}
+		$countrys = substr($countrys,0,-2);
+		echo $countrys;
+	?>
+				
+	</td>
     <td><?=$r["DC_TYPE"][0]?></td>
     <!--<td><?=$r["DC_AGENCY"][0]?></td>-->
     <td><?=$r["DC_AGENCY"][0]?></td>
-    <td class="uid" style="text-align:left;padding:10px;" > <div><span onclick="window.open('Content_Data_View.php?PID=<?=$r["id"][0]?>','data_view','width=900,height=900,scrollbars=1');"><?=$r["DC_TITLE_OR"][0]?></span></div></td>
-    <td class="uid" style="text-align:left;padding:10px"  >  <div> <span onclick="window.open('Content_Data_View.php?PID=<?=$r["id"][0]?>','data_view','width=900,height=900,scrollbars=1');"><?=$r["DC_TITLE_KR"][0]?></span></div></td>
+    <td class="uid" style="text-align:left;padding:10px;" > <div><span><?=$r["DC_TITLE_OR"][0]?></span></div></td>
+    <td class="uid" style="text-align:left;padding:10px"  >  <div> <span><?=$r["DC_TITLE_KR"][0]?></span></div></td>
     <td><?=$r["DC_PAGE"][0]?></td>
     <td>
 
@@ -208,8 +216,7 @@ for($i=0; $i < $re[1]; $i++){ $n++;
     </td>
 <? } ?>
 </tr>
-<? }
-} ?>
+<? }?>
 </table>
 <? if($Mem->class>7){ ?>
 <input type="button" class="button1" value="전체선택" >
