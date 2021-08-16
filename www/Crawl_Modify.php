@@ -146,7 +146,7 @@ $_SESSION["TMP_DOCUMENT"]=array();
 $_SESSION["TMP_ATTECH"]=array();
 
 unset($_SESSION["UPDATE_LIST"]);
-echo "<script> self.close(); </script>";
+echo "<script> opener.parent.location.reload(); self.close(); </script>";
 
 }else{
 	unset($_POST);
@@ -437,7 +437,12 @@ function FormSubmit(f) {
 	</div>
 </div>
 <script>
-
+	
+$(window).bind("beforeunload", function (e){
+	ModifyWho(false);
+	return "창을 닫으실래요?";
+});
+	ModifyWho(true);
 	LoadPage();
 
 	//주제 불러오기
@@ -461,6 +466,7 @@ function FormSubmit(f) {
 	function register_country_select(){
 		Dialog('Content_Data_Country.php',600,700);
 	}
+
 
 
 /******************************
@@ -488,6 +494,17 @@ getup('Content_Data_Category_Select_List.php?CTYPE=3','category3');
 
 register_category_select_refresh();
 */
+function ModifyWho(edit){
+	$.ajax({
+		url: 'components/modify_who.php?EDIT='+edit+'&PID='+$('[name="id"]').attr('value'),
+		processData: false,
+		contentType: false,
+		type:'GET',
+		success:function(result){
+			console.log(result);
+		}
+	})
+}
 
 //링크 검색하기
 function LinkFinder(){
