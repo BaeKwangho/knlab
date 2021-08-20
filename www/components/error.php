@@ -20,10 +20,19 @@ if($_GET["err_msg"]){
     </div>
 </div>
 
-
+<?
+if($_GET['back']){
+	echo "<script>";
+	echo "$('#msg').html('3초 후 이전 페이지로 돌아갑니다.');";
+	echo 	"setTimeout(() => {";
+	echo "window.history.go(".$_GET['back'].");";
+	echo "}, 3000);";
+	echo "</script>";
+}
+?>
 <script>
 
-if(document.referrer){	
+if(document.referrer){
 	$('#msg').html("3초 후 이전 페이지로 돌아갑니다.");
 	setTimeout(() => {
 		window.history.back();

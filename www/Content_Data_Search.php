@@ -32,7 +32,7 @@ if($_POST["SEARCH"]){
 	//카테고리 변수를 받는 것은 수정 혹은 단일 데이터 등록에서의 작업, form 태그를 추가하여
 	//아래 script의 함수에서 값을 전달할 수 있도록 함. 그리고 이 값은 기존에 있던 페이지의 #category_select_list에 저장된다.
 	if($_GET["category"]){?>
-		<form id="category" action="" method="post">
+		<form id="category" method="post">
 			<tr>
 				<th>주제분류<br><input type="button" class='button1' value="선택초기화" onclick="getup('Content_Data_Category_List.php?TYPES=1&RESET=1&FORM=1','category_list1');"></th>
 
@@ -151,11 +151,12 @@ if($_POST["SEARCH"]){
 	//기존에 있던 페이지로 넘겨주는 역할(이미 완료된 html 태그를 jquery로 바꿈으로써 실행)
 
 	//주제 선택 후 추가
+	//Content_Data_Category에서 #ITEM을 직접 data로써 사용함.
 	function sel_cat(){
 		$.ajax({
 			url:'components/selection.php',
 			type:'post',
-			data:$('form').serialize(),
+			data:$('#ITEM').serialize(),
 			success:function(result){
 				$('#category_select_list').append(result);
 			},

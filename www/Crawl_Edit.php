@@ -20,6 +20,7 @@ if($_POST["DC_DT_WRITE"]){ $_POST["DC_DT_WRITE"]=datec($_POST["DC_DT_WRITE"]); 	
 $_POST["UID"]=$Mem->user["uid"];
 $date = mktime();
 $data = [
+    "ITEM_ID"=>$_POST["ITEM_ID"],
     "DC_TITLE_OR" => $_POST["DC_TITLE_OR"], //DC_TITLE_OR , 원제목
     "DC_TITLE_KR" => $_POST["DC_TITLE_KR"], //DC_TITLE_KR , 한글제목
     "DC_KEYWORD" => $_POST["DC_KEYWORD"], //DC_KEYWORD , 키워드
@@ -51,7 +52,7 @@ if(!isset($_POST["DC_DT_WRITE"])){
 }
 
 $Mem->docs->update($data);
-mvs("components/error.php?err_msg=성공적으로 등록되었습니다.");
+mvs("components/error.php?err_msg=성공적으로 등록되었습니다.&back=-2");
 exit;
 
 if(!isset($_GET["item_id"])){
@@ -109,6 +110,14 @@ mvs("Content_Data_View.php?PID=".$_POST["PID"]);
 exit;
 }else{
 	unset($_POST);
+}
+
+
+//기등록된 자료가 있는지 확인 후, 있으면 페이지 종료
+$already = $Mem->docs->search('ITEM_ID:"'.$_GET['item_id'].'"')['result'][0];
+if($already){
+    mvs("components/error.php?err_msg=이미 등록된 자료입니다.");
+    exit;
 }
 
 $params=[
@@ -175,6 +184,7 @@ function FormSubmit(f) {
     <div class="title1x">데이터 등록진행</div>
     <div>
         <form action="<?=SELF?>" method="post" >
+            <input type="hidden" name="ITEM_ID" value="<?=$solr_res['item_id']?>">
             <table
                 cellpadding="0"
                 cellspacing="0"

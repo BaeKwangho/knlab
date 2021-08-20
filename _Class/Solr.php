@@ -129,6 +129,7 @@ Class Solr{
 		if($data['DC_SMRY_KR']){$doc->DC_SMRY_KR = $data['DC_SMRY_KR'];}
 		if($data['STAT']){$doc->STAT = $data['STAT'];}
 		if($data['DC_CAT']){$doc->DC_CAT = $data['DC_CAT'];}
+		if($data['ITEM_ID']){$doc->ITEM_ID = $data['ITEM_ID'];}
 
 		$update->addDocument($doc);
 		$update->addCommit();

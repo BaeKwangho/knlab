@@ -1,4 +1,7 @@
+
 <?
+
+
 /* 사용처
 1. Content_Document_List.php - 수정 기능
 */
@@ -328,7 +331,7 @@ function FormSubmit(f) {
 			<tr style="height:100px;">
 				<th>링크
 				<br><input type="button" class="button1" value="검색" onclick="LinkFinder();<?unset($_SESSION["UPDATE_LIST"]);?>">
-				<br><input type="button" class="button1" value="선택삭제" onclick="$('#LINK_DEL').val(1);postup('components/linking.php','link_area',$('form').serialize())">
+				<br><input type="button" class="button1" value="선택삭제" onclick="$('#LINK_DEL').val(1);postup('components/linking.php','link_area',$('input[name=DC_LINK]').serialize())">
 				<input type="text" style="display:none;" id="LINK_DEL" name="LINK_DEL" value="0">			
 				</th>
 				<td id="link_area" colspan="3">
@@ -437,11 +440,20 @@ function FormSubmit(f) {
 	</div>
 </div>
 <script>
-	
-$(window).bind("beforeunload", function (e){
-	ModifyWho(false);
-	return "창을 닫으실래요?";
-});
+window.onbeforeunload = function () {
+	$.ajax({
+		url: 'components/modify_who.php?EDIT=false&PID='+$('[name="id"]').attr('value'),
+		processData: false,
+		contentType: false,
+		type:'GET',
+		success:function(result){
+		}
+	});
+	return "really?";
+};
+
+
+
 	ModifyWho(true);
 	LoadPage();
 
@@ -501,7 +513,11 @@ function ModifyWho(edit){
 		contentType: false,
 		type:'GET',
 		success:function(result){
-			console.log(result);
+			var result_value = JSON.parse(result);
+			if(result_value.act===0){
+				location.replace('components/error.php?err_msg=누군가 작업중입니다.');
+				ModifyWho(false);
+			}
 		}
 	})
 }
@@ -637,36 +653,6 @@ getup('Content_Data_Register_Select.php','country_select_list');
 getup('Content_Data_Register_Sel_Category.php','category_select_list');
 */
 
-  $( "#DC_DT_COLLECT" ).datepicker({
-    dateFormat: 'yy-mm-dd',
-    prevText: '이전 달',
-    nextText: '다음 달',
-    monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-    monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-    dayNames: ['일','월','화','수','목','금','토'],
-    dayNamesShort: ['일','월','화','수','목','금','토'],
-    dayNamesMin: ['일','월','화','수','목','금','토'],
-    showMonthAfterYear: true,
-    changeMonth: true,
-    changeYear: true,
-    yearSuffix: '년'
-  });
-
-
-  $( "#DC_DT_WRITE" ).datepicker({
-    dateFormat: 'yy-mm-dd',
-    prevText: '이전 달',
-    nextText: '다음 달',
-    monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-    monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-    dayNames: ['일','월','화','수','목','금','토'],
-    dayNamesShort: ['일','월','화','수','목','금','토'],
-    dayNamesMin: ['일','월','화','수','목','금','토'],
-    showMonthAfterYear: true,
-    changeMonth: true,
-    changeYear: true,
-    yearSuffix: '년'
-  });
 
 </script>
 
