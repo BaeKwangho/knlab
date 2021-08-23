@@ -164,7 +164,6 @@ $select = array(
         ),
     ),
 );
-
 $re = solr_paging($Mem->docs,$select,20,20);
 foreach($re[0] as $r){
 ?>

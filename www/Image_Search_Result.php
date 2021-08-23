@@ -37,21 +37,16 @@ $_SESSION["hash"] = array();
 		<div id="poster" style="position:sticky;width:50%;height:90vh;top:125px;display:none;background:rgba(0,0,0,.87);overflow-y: scroll;"></div>
 	</div>
 </div>
-<div class="btn-floating" style='background:#ff3300'onclick="load_more()">더보기
-</div>
 
 <script>
-$.ajax({
-		url:'components/crawl_list.php',
-		type: 'POST',
-		dataType : "html",
-		data:$('#scroll_id').serialize(),
-		success: function(result, textStatus, xhr){
-			$('#article').append(result);
-		},error: function(xhr, textStatus, errorThrown) {
-			console.log(xhr,textStatus,errorThrown); 
-		}
-	});
+initArticle = setInterval(function() {
+	if((window.innerHeight > $('#article').height())){
+		load_more();
+	}else{
+		clearInterval(initArticle);
+	}
+}, 1000);
+
 function load_more(){
 	$.ajax({
 			url:'components/crawl_list.php',

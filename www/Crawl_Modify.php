@@ -103,6 +103,7 @@ if(sizeof($_POST)){
     if($_POST['DC_AGENCY']){$data['DC_AGENCY']=array($_POST['DC_AGENCY']);}
     if($_POST['DC_PAGE']){$data['DC_PAGE']=array($_POST['DC_PAGE']);}
     if($_POST['DC_TYPE']){$data['DC_TYPE']=$_POST['DC_TYPE'];}
+	if($_POST['DC_TYPE']){$data['DC_CAT']=$_POST['DC_TYPE'];}
     if($_POST['DC_KEYWORD']){$data['DC_KEYWORD']=array($_POST['DC_KEYWORD']);}
     if($_POST['DC_SMRY_KR']){$data['DC_SMRY_KR']=array($_POST['DC_SMRY_KR']);}
 

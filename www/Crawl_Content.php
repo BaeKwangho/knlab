@@ -37,15 +37,15 @@ if($_SESSION["SEARCH"]["CONTID"]){
     $country = substr($country,0,-3).')';
   }
 $select = array(
-    'query'         => 'DC_CODE:'.$_SESSION["AUTH"]["MID"].
-                        "* AND DC_CAT:".$type." AND ".$country,
+    'query'         => '*:*',
     'start'         => 0,
     'rows'          => 1,
     'fields'        => array('*'),
     'sort'          => array('DC_DT_COLLECT' => 'asc'),
     'filterquery' => array(
         'custom' => array(
-            'query' => '',
+            'query' => 'DC_CODE:'.$_SESSION["AUTH"]["MID"].
+            "* AND DC_CAT:".$type." AND ".$country,
         ),
     ),
 );

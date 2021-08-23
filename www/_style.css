@@ -198,16 +198,16 @@ label {
     rgba(246, 246, 246, 1) 100%
   );
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 );
-  padding-top: 10px;
   border-right: solid 1px #ccc;
   border-bottom: solid 1px #ccc;
   border-top: solid 1px #eee;
+  text-align: center !important;
 }
 .table_info td {
   border-right: dotted 1px #aaa;
   border-bottom: dotted 1px #aaa;
   height: 30px;
-  text-align: center;
+  text-align: center !important;
   background-color: #fff;
 }
 /*
