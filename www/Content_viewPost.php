@@ -85,6 +85,8 @@ if($_GET["view"]){
 
   $result = $Mem->docs->select($select);
   foreach($result as $r){
+    $img=$Mem->qs("select FILE_PATH from nt_crawl_file_list where PID like ? and FILE_TYPE like 1 and STAT<9",array($r["ITEM_ID"]));
+
     ?>
   <div class="div_single">
     </div>

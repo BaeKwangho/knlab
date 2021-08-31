@@ -53,12 +53,13 @@ $select = array(
 $re = solr_paging($Mem->docs,$select,5,10);
 
     ?>
-    <div class="div_single" style="border-bottom:1px solid #000;"><?=$Cname?> (<?=$re[3]?>)</div>
+    <div class="div_single" style="border-bottom:1px solid #000;width:1200px"></div>
     <?
+    $i = 0;
     foreach($re[0] as $r){
-        $img=$Mem->qs("select FILE_PATH from nt_document_file_list where PID like ? and FILE_TYPE like 1 and STAT<9",array($r["IDX"]));
+        $img=$Mem->qs("select FILE_PATH from nt_crawl_file_list where PID like ? and FILE_TYPE like 1 and STAT<9",array($r["ITEM_ID"]));
     ?>
-    <table class="table_list" >
+    <table class="table_view_list" style="background-color:<?=$i++%2==1?"white":"rgba(242,242,242)"?>">
       <tr>
         <th rowspan="4" id="table_image" style="min-width:200px;width: 200px;"><img src='<?=$Mem->data["cover"].$img?>' width="100px"></img></th>
         <td colspan="4" onclick="go('Content_viewPost.php?crawl=1&id=<?=$r["id"]?>')" style="font-weight:bold; font-size:18px; padding-top:10px; height:30px;"><?=$r["DC_TITLE_KR"][0]?></td>

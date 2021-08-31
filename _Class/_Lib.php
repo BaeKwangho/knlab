@@ -388,7 +388,7 @@ function paging($query,$options=array(),$b,$c,$opt="IDX desc",$param=""){
 	$stmts=$DB->prepare($query." order by $opt limit $start , $print_n");
 	$stmts->execute($options);
 	$paging[0]=$stmts;
-	$paging[1]=($total-$start);
+	$paging[1]=$start;
 	$paging[2]=navi_bars($total,$print_n,$_GET['page'],$print_horizontal,$param);
 	$paging[3]=$total;
 
@@ -435,7 +435,7 @@ function solr_paging($DB,$query,$b,$c,$opt="IDX desc",$param=""){
 	$result = $DB->select($query);
 
 	$paging[0]=$result;
-	$paging[1]=($total-$start);
+	$paging[1]=$start;
 	$paging[2]=navi_bars($total,$print_n,$_GET['page'],$print_horizontal,$param);
 
 	return $paging;

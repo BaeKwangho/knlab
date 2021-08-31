@@ -101,7 +101,7 @@ for($i=0; $i < $re[0]->rowCount(); $i++){ $n++;
 ?>
 
 <tr style="height:10px;"id="<?=$r["IDX"]?>">
-<td style="text-align:center;width:10px;" title="<?=$r["IDX"]?>"> <label ><input type="checkbox" name="list[]" value="<?=$r["IDX"]?>"><?=$re[1]--?></label></td>
+<td style="text-align:center;width:10px;" title="<?=$r["IDX"]?>"> <label ><input type="checkbox" name="list[]" value="<?=$r["IDX"]?>"><?=++$re[1]?></label></td>
 	
 </td>
 <td style="text-align:left;padding:2px 10px 2px 10px;"  >  <div> <span onclick="window.open('Content_Data_View.php?PID=<?=$r["IDX"]?>','data_view','width=900,height=900,scrollbars=1');"><?=$r["DC_TITLE_KR"]?></span></div></td>

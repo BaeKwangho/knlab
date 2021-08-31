@@ -108,9 +108,7 @@ if(sizeof($_POST)){
     if($_POST['DC_SMRY_KR']){$data['DC_SMRY_KR']=array($_POST['DC_SMRY_KR']);}
 
 
-//크롤 파트의 커버쪽은 우선 안하기로 함
-
-/*
+$_POST["PID"] = $_POST["ITEM_ID"];
 if($_SESSION["TMP_CORVER"]){
 	$lastnum=sizeof($_SESSION["TMP_CORVER"])-1;
 	@copy($Mem->data["temp"].$_SESSION["TMP_CORVER"][$lastnum]["file"],$Mem->data["cover"].$_SESSION["TMP_CORVER"][$lastnum]["file"]);
@@ -118,30 +116,30 @@ if($_SESSION["TMP_CORVER"]){
 	for($i=0; $i < sizeof($_SESSION["TMP_CORVER"]); $i++){
 		@unlink($Mem->data["temp"].$_SESSION["TMP_CORVER"][$i]["file"]);
 	}
-	$Mem->q("update nt_document_file_list set STAT = 9 where PID = ? and STAT = 0",$_POST["PID"]);
-	$Mem->q("insert into nt_document_file_list(PID,FILE_NAME,FILE_PATH,FILE_TYPE,FILE_EXT,FILE_SIZE,FILE_DT,STAT) values(?,?,?,?,?,?,?,?) ",array($_POST["PID"],$_SESSION["TMP_CORVER"][$lastnum]["name"],$_SESSION["TMP_CORVER"][$lastnum]["file"],1,$_SESSION["TMP_CORVER"][$lastnum]["ext"],$_SESSION["TMP_CORVER"][$lastnum]["size"],mktime(),0));
+	$Mem->q("update nt_crawl_file_list set STAT = 9 where PID = ? and STAT = 0",$_POST["PID"]);
+	$Mem->q("insert into nt_crawl_file_list(PID,FILE_NAME,FILE_PATH,FILE_TYPE,FILE_EXT,FILE_SIZE,FILE_DT,STAT) values(?,?,?,?,?,?,?,?) ",array($_POST["PID"],$_SESSION["TMP_CORVER"][$lastnum]["name"],$_SESSION["TMP_CORVER"][$lastnum]["file"],1,$_SESSION["TMP_CORVER"][$lastnum]["ext"],$_SESSION["TMP_CORVER"][$lastnum]["size"],mktime(),0));
 }
 if($_SESSION["TMP_DOCUMENT"]){
 	$docArray = $curDoc["DC_MEMO1"];
 	for($i=0; $i < sizeof($_SESSION["TMP_DOCUMENT"]); $i++){
 		@copy($Mem->data["temp"].$_SESSION["TMP_DOCUMENT"][$i]["file"],$Mem->data["document"].$_SESSION["TMP_DOCUMENT"][$i]["file"]);
 		@unlink($Mem->data["temp"].$_SESSION["TMP_DOCUMENT"][$i]["file"]);
-		$Mem->q("insert into nt_document_file_list(PID,FILE_NAME,FILE_PATH,FILE_TYPE,FILE_EXT,FILE_SIZE,FILE_DT) values(?,?,?,?,?,?,?) ",array($_POST["PID"],$_SESSION["TMP_DOCUMENT"][$i]["name"],$_SESSION["TMP_DOCUMENT"][$i]["file"],2,$_SESSION["TMP_DOCUMENT"][$i]["ext"],$_SESSION["TMP_DOCUMENT"][$i]["size"],mktime()));
+		$Mem->q("insert into nt_crawl_file_list(PID,FILE_NAME,FILE_PATH,FILE_TYPE,FILE_EXT,FILE_SIZE,FILE_DT) values(?,?,?,?,?,?,?) ",array($_POST["PID"],$_SESSION["TMP_DOCUMENT"][$i]["name"],$_SESSION["TMP_DOCUMENT"][$i]["file"],2,$_SESSION["TMP_DOCUMENT"][$i]["ext"],$_SESSION["TMP_DOCUMENT"][$i]["size"],mktime()));
 		$docArray= $docArray."/".$_SESSION["TMP_DOCUMENT"][$i]["name"];
 	}
 }
 for($i=0; $i < sizeof($_SESSION["TMP_ATTECH"]); $i++){
- 	$Mem->q("insert into nt_document_file_list(PID,FILE_NAME,FILE_PATH,FILE_TYPE,FILE_EXT,FILE_SIZE,FILE_DT) values(?,?,?,?,?,?,?) ",array($_POST["PID"],$_SESSION["TMP_ATTECH"][$i]["name"],$_SESSION["TMP_ATTECH"][$i]["file"],3,$_SESSION["TMP_ATTECH"][$i]["ext"],$_SESSION["TMP_ATTECH"][$i]["size"],mktime()));
+ 	$Mem->q("insert into nt_crawl_file_list(PID,FILE_NAME,FILE_PATH,FILE_TYPE,FILE_EXT,FILE_SIZE,FILE_DT) values(?,?,?,?,?,?,?) ",array($_POST["PID"],$_SESSION["TMP_ATTECH"][$i]["name"],$_SESSION["TMP_ATTECH"][$i]["file"],3,$_SESSION["TMP_ATTECH"][$i]["ext"],$_SESSION["TMP_ATTECH"][$i]["size"],mktime()));
 }
 
 for($i=0 ; $i < sizeof($_POST["FILES"]); $i++){
-		$rs=$Mem->qr("select * from nt_document_file_list where IDX=? ",$_POST["FILES"][$i]);
+		$rs=$Mem->qr("select * from nt_crawl_file_list where IDX=? ",$_POST["FILES"][$i]);
 		//
-		$Mem->q("update nt_document_file_list set Stat=9 where IDX=? ",$_POST["FILES"][$i]);
+		$Mem->q("update nt_crawl_file_list set Stat=9 where IDX=? ",$_POST["FILES"][$i]);
 	@copy($Mem->data["document"].$rs["FILE_PATH"],$Mem->data["remove"].$rs["FILE_PATH"]);
 	@unlink($Mem->data["document"].$rs["FILE_PATH"]);
 }
-*/
+
 
 $Mem->docs->multi_modify($_POST['id'],$data);
 
@@ -255,6 +253,7 @@ function FormSubmit(f) {
 		?>
 		<form action="<?=SELF?>" method="post" onsubmit=" CKEDITOR.instances.contents.updateElement(); return true;"" >
 		<input type="hidden" name="id" value="<?=$r["id"]?>">
+		<input type="hidden" name="ITEM_ID" value="<?=$r["ITEM_ID"]?>">
 		<table cellpadding="0" cellspacing="0" border="0" style="width:100%;" class="table_view" >
 		
 			<tr>
@@ -362,15 +361,15 @@ function FormSubmit(f) {
 			<tr style="height:100px;">
 				<th>표지파일<br><input id="changeCover" type="button" class="button1" value="변경" onclick="$('#file_corver_upload').click();" ><br><input type="button" class="button1" value="초기화" onclick="getup('Content_Data_Register_File_List.php?type=1&reset=1','file_corver_list');$('#changeCover').css('visibility','visible');" ></th>
 				<td colspan="3" >
-								<?
-				/*
-                $QS=$Mem->q("select * from nt_document_file_list where PID=? and FILE_TYPE=1 and STAT < 9 ",$r["IDX"]);
+				<?
+				
+                $QS=$Mem->q("select * from nt_crawl_file_list where PID=? and FILE_TYPE=1 and STAT < 9 ",$r["ITEM_ID"]);
 				while($rs=$QS->fetch()){
 					echo "<div style='float:left;text-align:center;margin:10px;'  ><a href=\"".$Mem->data["cover"].$rs["FILE_PATH"]."\" target=\"_blank\" >";
 					echo	"<img src='".$Mem->data["cover"].$rs["FILE_PATH"]."' class='temp_file' ><br>".$rs["FILE_NAME"];
 					echo "</a></div>";
 				}
-				 */?>
+				?>
 				<!--<div id="file_corver_list"></div> <input type="file" id="file_corver_upload" name="cover_upload" style="display:none;"  onchange="file_corver_add();" ></td> -->
 				<div id="file_corver_list"></div> <input type="file" id="file_corver_upload" name="cover_upload" style="display:none;"  onchange="easySetting();" ></td> 
 
@@ -379,8 +378,8 @@ function FormSubmit(f) {
 			<tr style="height:100px;">
 				<th>첨부문서<br><input type="button" class="button1" value="파일추가" onclick="$('#file_document_upload').click();;"><br><input type="button" class="button1" value="초기화" onclick="getup('Content_Data_Register_File_List.php?type=2&reset=1','file_document_list');" ></th>
 				<td colspan="3" >
-								<? /*
-				$QS=$Mem->q("select * from nt_document_file_list where PID=? and FILE_TYPE=2 and STAT < 9 ",$r["IDX"]);
+								<? 
+				$QS=$Mem->q("select * from nt_crawl_file_list where PID=? and FILE_TYPE=2 and STAT < 9 ",$r["ITEM_ID"]);
 				while($rs=$QS->fetch()){
 
 		
@@ -393,7 +392,7 @@ function FormSubmit(f) {
 								echo '<label  style="color:red;"><input type="checkbox" name="FILES[]" value="'.$rs["IDX"].'">삭제</label>';
 					echo "</a></div>";
 				 } 
-				 */?>
+				 ?>
 
 				<div id="file_document_list"></div> <input type="file" id="file_document_upload" name="" multiple  style="display:none;" onchange="file_document_add();" ></td> 
 			</tr>
@@ -402,7 +401,7 @@ function FormSubmit(f) {
 				<th>참조파일<br><input type="button" class="button1" value="파일추가" onclick="$('#file_attech_upload').click();"><br><input type="button" class="button1" value="초기화" onclick="getup('Content_Data_Register_File_List.php?type=3&reset=1','file_attech_list');" ></th>
 				<td colspan="3" >
 								<?/* 
-				$QS=$Mem->q("select * from nt_document_file_list where PID=? and FILE_TYPE=3 and STAT < 9 ",$r["IDX"]);
+				$QS=$Mem->q("select * from nt_crawl_file_list where PID=? and FILE_TYPE=3 and STAT < 9 ",$r["ITEM_ID"]);
 				while($rs=$QS->fetch()){
 
 		

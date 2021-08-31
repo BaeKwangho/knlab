@@ -168,7 +168,7 @@ $re = solr_paging($Mem->docs,$select,20,20);
 foreach($re[0] as $r){
 ?>
 <tr id="<?=$r["id"]?>">
-    <td title="<?=$r["id"]?>"> <label ><input class="check_idx" type="checkbox" id="list[]" value="<?=$r["id"]?>"><?=$re[1]--?></label></td>
+    <td title="<?=$r["id"]?>"> <label ><input class="check_idx" type="checkbox" id="list[]" value="<?=$r["id"]?>"><?=++$re[1]?></label></td>
     <tds>
         <?
             // $QC=$Mem->q("select a.* from nt_country_list a, nt_document_country_list b where b.PID=? and b.TID=a.IDX  ",$r["IDX"]);

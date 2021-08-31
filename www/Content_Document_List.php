@@ -199,7 +199,7 @@ for($i=0; $i < $re[0]->rowCount(); $i++){ $n++;
 
 ?>
 	<tr id="<?=$r["IDX"]?>">
-		<td title="<?=$r["IDX"]?>"> <label ><input class="check_idx" type="checkbox" id="list[]" value="<?=$r["IDX"]?>"><?=$re[1]--?></label></td>
+		<td title="<?=$r["IDX"]?>"> <label ><input class="check_idx" type="checkbox" id="list[]" value="<?=$r["IDX"]?>"><?=++$re[1]?></label></td>
 		<tds>
 			<?
 				// $QC=$Mem->q("select a.* from nt_country_list a, nt_document_country_list b where b.PID=? and b.TID=a.IDX  ",$r["IDX"]);
