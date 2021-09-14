@@ -129,6 +129,7 @@ if(!$_SESSION["AUTH"]["MID"]){
 		<div class="main_side_menu1" >
 				<ul class="menu_list" >
 					<?if($Mem->class===9){?>
+						<li onclick="go('/dashboard/DashBoard.php');"  style="cursor:pointer;" >+ 대쉬보드</li>
 						<li onclick="go('/Content_User_List.php');"  style="cursor:pointer;" >+ 사용자관리</li>
 					<?}?>
 					<li onclick="go('/Content_Document_List.php?search_reset=1');"  style="cursor:pointer;" >+ 데이터조회</li>

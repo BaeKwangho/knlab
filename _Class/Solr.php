@@ -23,13 +23,13 @@ Class Solr{
 		];
 		$adapter = new Solarium\Core\Client\Adapter\Curl(); // or any other adapter implementing AdapterInterface
 		$eventDispatcher = new Symfony\Component\EventDispatcher\EventDispatcher();
-		$this->$client = new Solarium\Client($adapter,$eventDispatcher,$config);
+		$this->client = new Solarium\Client($adapter,$eventDispatcher,$config);
 	}
 
 	public function thumbnail($string){
-		$query = $this->$client->createSelect();
+		$query = $this->client->createSelect();
 		$query->setQuery($string);
-		$result = $this->$client->select($query);
+		$result = $this->client->select($query);
 		foreach($result as $doc){}
 		if($doc['thumbnailstorageSrc']){
 			$loc = $doc['thumbnailstorageSrc'][0];
@@ -40,10 +40,10 @@ Class Solr{
 	}
 
 	public function search($string){
-		$query = $this->$client->createSelect();
+		$query = $this->client->createSelect();
 		$query->setQuery($string);
 		try{
-			$result = $this->$client->select($query);
+			$result = $this->client->select($query);
 			$doc_res = array();
 			foreach($result as $list){
 				$doc = array();
@@ -88,20 +88,20 @@ Class Solr{
 	}
 
 	public function select($query){
-		$query = $this->$client->createSelect($query);
-		$resultset = $this->$client->select($query);
+		$query = $this->client->createSelect($query);
+		$resultset = $this->client->select($query);
 
 		return $resultset;
 	}
 
 	public function groupSelect(){
-		$query =  $this->$client->createSelect();
+		$query =  $this->client->createSelect();
 		// get the facetset component
 		$groupComponent = $query->getGrouping();
 		$groupComponent->addField('language');
 		$groupComponent->setNumberOfGroups(true);
 
-		$resultset = $this->$client->select($query);
+		$resultset = $this->client->select($query);
 		$groups = $resultset->getGrouping();
 		// create a facet query instance and set options
 
@@ -109,18 +109,18 @@ Class Solr{
 	}
 
 	public function delete($query){
-		$update = $this->$client->createUpdate();
+		$update = $this->client->createUpdate();
 		$update->addDeleteQuery($query);
 		$update->addCommit();
 
-		$result= $this->$client->update($update);
+		$result= $this->client->update($update);
 
 		return $result->getStatus();
 	}
 
 
 	public function update($data){
-		$update = $this->$client->createUpdate();
+		$update = $this->client->createUpdate();
 		$doc = $update->createDocument();
 
 		if($data['DC_TITLE_OR']){$doc->DC_TITLE_OR = $data['DC_TITLE_OR'];}
@@ -143,13 +143,13 @@ Class Solr{
 		$update->addDocument($doc);
 		$update->addCommit();
 
-		$result = $this->$client->update($update);
+		$result = $this->client->update($update);
 
 		return $result;
 	}
 
 	public function multi_modify($id,$data){
-		$update = $this->$client->createUpdate();
+		$update = $this->client->createUpdate();
 		$target = $update->createDocument();
 		$target->setKey('id',$id);
 		foreach($data as $field => $value){
@@ -159,20 +159,20 @@ Class Solr{
 		$update->addDocuments([$target]);
 		$update->addCommit();
 
-		$result = $this->$client->update($update);
+		$result = $this->client->update($update);
 
 		return $result;
 	}
 
 	public function modify($results,$uid,$field){
-		$update = $this->$client->createUpdate();
+		$update = $this->client->createUpdate();
 		foreach($results as $doc){
 			if(!isset($doc[$field])){
 				//생성
 				$target = $update->createDocument();
-				$target->setKey('item_id',$doc['item_id']);
+				$target->setKey('id',$doc['id']);
 				$target->setField($field,$uid);
-				$target->setFieldModifier($field, $target::MODIFIER_ADD);
+				$target->setFieldModifier($field, $target::MODIFIER_SET);
 				
 				$update->addDocuments([$target]);
 				$update->addCommit();
@@ -182,7 +182,7 @@ Class Solr{
 			}else{
 				//추가
 				$target = $update->createDocument();
-				$target->setKey('item_id',$doc['item_id']);
+				$target->setKey('id',$doc['id']);
 				$target->setField($field,$uid);
 				$target->setFieldModifier($field, $target::MODIFIER_ADD);
 			
@@ -191,7 +191,7 @@ Class Solr{
 			}
 		}
 
-		$result = $this->$client->update($update);
+		$result = $this->client->update($update);
 
 		return $result;
 	}

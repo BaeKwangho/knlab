@@ -21,8 +21,8 @@ $_POST["UID"]=$Mem->user["uid"];
 $date = mktime();
 $params = array();
 if($_POST['DC_CODE']){$params['dc_code']=$_POST['DC_CODE'];}
-if($_POST['DC_DT_COLLECT']){$params['dc_dt_collect']=date('c',$_POST['DC_DT_COLLECT']);}
-if($_POST['DC_DT_WRITE']){$params['dc_dt_write']=date('c',$_POST['DC_DT_WRITE']);}
+if($_POST['DC_DT_COLLECT']){$params['dc_dt_collect']=date('c',$_POST['DC_DT_COLLECT']);}else{$params['dc_dt_collect'] = date('c',0);}
+if($_POST['DC_DT_WRITE']){$params['dc_dt_write']=date('c',$_POST['DC_DT_WRITE']);}else{$params['dc_dt_write'] = date('c',$date);}
 if($_POST['DC_LINK']){$params['dc_link']=$_POST['DC_LINK'];}else{$params['dc_link']="0";}
 if($_POST['DC_COUNTRY']){$params['dc_country']=$_POST['DC_COUNTRY'];}else{$params['dc_country']="NULL";}
 if($_POST['DC_TITLE_OR']){$params['dc_title_or']=$_POST['DC_TITLE_OR'];}else{$params['dc_title_or']="NULL";}
@@ -48,19 +48,22 @@ if($_POST['ITEM_ID']){$params['item_id']=$_POST['ITEM_ID'];}
 $params['is_crawled']=true;
 $params['stat']=0;
 
-
-if(!isset($_POST["DC_DT_WRITE"])){
-    $params['dc_dt_write'] = date('c',$date);
-}
-
 $index=[
 	'index' => 'politica_service',
 	'body'=>$params
 ];
 $index['refresh']=true;
-$Mem->es->index($index);
-$date = date('c',$date);
-$Mem->poli->q('update collected_item set submit_status=1, submit_time='.$date.' where item_id='.$_POST['ITEM_ID']);
+
+try{
+    $Mem->es->index($index);
+}catch(Exception $e){
+    mvs("components/error.php?err_msg=잘못된 값이 입력되었습니다.&back=-2");
+    exit;
+}
+
+$date = date('Y-m-d',$date);
+$Mem->poli->q('update collected_item set submit_status=1, submint_time="'.$date.'" where item_id='.$_POST['ITEM_ID']);
+$Mem->q('insert into nt_worker_processed ( uid, item_id, complete_at) values ('.$Mem->uid.','.$_POST['ITEM_ID'].',"'.$date.'")');
 
 mvs("components/error.php?err_msg=성공적으로 등록되었습니다.&back=-2");
 exit;
@@ -141,8 +144,14 @@ if(count($already)){
 }
 
 $solr_imgs = $Mem->gps->thumbnail('item_id:"'.$_GET['item_id'].'"');
-$solr_res = $Mem->gps->search('item_id:"'.$_GET['item_id'].'"')['result'][0];
+$solr_res = $Mem->gps->search('item_id:"'.$_GET['item_id'].'"')['result'];
+/*
+?><pre><?
+print_r($solr_res);
+?></pre><?
+*/
 $Mem->gps->modify($solr_res,$Mem->uid,'viewer');
+$solr_res=$solr_res[0];
 
 $fq = array(
 	'custom' => array(
@@ -160,7 +169,6 @@ $select = array(
 );
 $result = $Mem->gps->select($select);
 
-$Mem->gps->modify($result,$Mem->uid,'usr_edit');
 ?>
 <script type="text/javascript" src="Editor2/ckeditor.js"></script>
 
@@ -191,7 +199,7 @@ function FormSubmit(f) {
     <div class="title1x">데이터 등록진행</div>
     <div>
         <form action="<?=SELF?>" method="post" >
-            <input type="hidden" name="ITEM_ID" value="<?=$solr_res['item_id']?>">
+            <input type="hidden" name="ITEM_ID" value="<?=$solr_res['item_id'][0]?>">
             <table
                 cellpadding="0"
                 cellspacing="0"
@@ -269,7 +277,7 @@ function FormSubmit(f) {
                     <th>구분</th>
                     <td><input type="text" class="input_cell" name="DC_TYPE" id="DC_TYPE"></td>
                     <th>페이지수</th>
-                    <td><input type="text" class="input_cell" name="DC_PAGE" id="DC_PAGE" value="<?=$solr_res['pages'][0]?>"></td>
+                    <td><input type="number" class="input_cell" name="DC_PAGE" id="DC_PAGE" value="<?=$solr_res['pages'][0]?>"></td>
                 </tr>
                 <tr>
                     <th>기관명</th>
@@ -286,10 +294,7 @@ function FormSubmit(f) {
                             style="display:none;"
                             name="DC_CONTENT"
                             id="DC_CONTENT"
-                            class="input_cell">
-                            <? foreach($solr_res['contents'] as $content){
-                                echo $content;
-                            }?></textarea>
+                            class="input_cell"><?=$solr_res['contents'][0]?></textarea>
 
                     </td>
                 </tr>
@@ -299,7 +304,7 @@ function FormSubmit(f) {
                 <div class="row" style="padding:10px 10px;height:400px;overflow-y: scroll;" id="crawl_cover_list">
                 <div class="col-xs-6 col-md-3">
 				<?
-                $img_loc= $Mem->gps->thumbnail("item_id:".$solr_res['item_id']);
+                $img_loc= $Mem->gps->thumbnail("item_id:".$solr_res['item_id'][0]);
                 $thumbnails = $Mem->nas->get_image_from_folder($img_loc);
                 if($thumbnails){
                     ?><div class="btn-group" data-toggle="buttons"><?

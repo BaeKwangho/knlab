@@ -12,6 +12,11 @@ $stream = ssh2_exec($connection, 'mysql -u root -p company!23 politica');
 $result = ssh2_exec($connection, 'update collected_item set submit_status=1 where collect_id=1');
 */
 
+$DB = new Solr("DOCS");
+$result = $DB->search('ITEM_ID:875900')['result'];
+print_r($result);
+$DB->modify($result,$Mem->uid,'usr_sub');
+
 $sshuser="knlab";
 $sshpass="Knlab1!8*3#";
 $host="1.214.203.131";

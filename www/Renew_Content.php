@@ -16,8 +16,6 @@ if($_SESSION["AUTH"]["MID"]=="2411"){
     if($_GET["CONTID"]){$_SESSION["SEARCH"]["CONTID"]=$_GET["CONTID"];$_SESSION["SEARCH"]["COUNTRY"]="";}
     
     
-    $where_state="a.STAT<9";
-    $where_values=array();
     ?>
     <table class="table_list">
       <tr>
@@ -112,25 +110,43 @@ if($_SESSION["AUTH"]["MID"]=="2411"){
                     'must' => $must_array,
                     'should' =>$should_array
                 ],
+                'range'=>[
+                  'dc_dt_collect'=> [
+                    'gte'=> 0,
+                  ]
+                ]
             ]
         ]
     ];
         if($_SESSION["SEARCH"]["DATE"]){
           $time = time();
-          if($_SESSION["SEARCH"]["DATE"]==="1주일"){$time=$time-(7*24*60*60); $where_state.=" and a.DC_DT_WRITE>=?";array_push($where_values,$time);}
-          if($_SESSION["SEARCH"]["DATE"]==="1개월"){$time=$time-(30*24*60*60); $where_state.=" and a.DC_DT_WRITE>=?";array_push($where_values,$time);}
-          if($_SESSION["SEARCH"]["DATE"]==="6개월"){$time=$time-(182*24*60*60); $where_state.=" and a.DC_DT_WRITE>=?";array_push($where_values,$time);}
-          if($_SESSION["SEARCH"]["DATE"]==="1년"){$time=$time-(365*24*60*60); $where_state.=" and a.DC_DT_WRITE>=?";array_push($where_values,$time);}
+          if($_SESSION["SEARCH"]["DATE"]==="1주일"){$time=date('Y-m-d',$time-(7*24*60*60));}
+          if($_SESSION["SEARCH"]["DATE"]==="1개월"){$time=date('Y-m-d',$time-(30*24*60*60));}
+          if($_SESSION["SEARCH"]["DATE"]==="6개월"){$time=date('Y-m-d',$time-(182*24*60*60));}
+          if($_SESSION["SEARCH"]["DATE"]==="1년"){$time=date('Y-m-d',$time-(365*24*60*60));}
+          $params['body']['query']['range']['dc_dt_collect']['gte']=$time;
         }
+
         if($_SESSION["SEARCH"]["LIST"]){
           $list=$_SESSION["SEARCH"]["LIST"];
         }else{
           $list=20;
         }
+        $params['size']=$list;
+
+        $must_array = array();
+        $should_array = array();
+        if($_SESSION["SEARCH"]["ITEM"]){array_push($must_array,['regexp' => ['dc_code' => $_SESSION["SEARCH"]["ITEM"].'.*']]);}
+        if($KEY_TYPE!='*'){array_push($must_array,['match' => ['dc_cat' => $KEY_TYPE]]);}
+        if($KEY_TITLE_OR!='*'){array_push($should_array,['match' => ['dc_title_or' => $KEY_TITLE_OR]]);}
+        if($KEY_TITLE_KR!='*'){array_push($should_array,['match' => ['dc_title_kr' => $KEY_TITLE_KR]]);}
+        if($KEY_CONTENT!='*'){array_push($should_array,['match' => ['dc_content' => $KEY_CONTENT]]);}
+        if($KEY_AGENCY!='*'){array_push($should_array,['match' => ['dc_publisher' => $KEY_AGENCY]]);}
+        if($KEY_CRAWL){array_push($should_array,['match' => ['is_crawled' => $KEY_CRAWL]]);}
+
         if($_SESSION["SEARCH"]["COUNTRY"]==="전체"||!$_SESSION["SEARCH"]["COUNTRY"]){
         }else{
-          $where_state.=" and a.DC_COUNTRY like ?";
-          array_push($where_values,"%".$_SESSION["SEARCH"]["COUNTRY"]."%");
+          array_push($must_array,['match' => ['dc_country' => $_SESSION["SEARCH"]["COUNTRY"]]]);
         }
         if($_SESSION["SEARCH"]["DOCTYPE"]==="전체"||!$_SESSION["SEARCH"]["DOCTYPE"]){
         }else{

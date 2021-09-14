@@ -1,30 +1,78 @@
 <?
-//error_reporting(E_ALL);ini_set("display_errors", 1);
+//error_reporting(E_ALL);	ini_set("display_errors", 1);
+
+// 0:수집 1:정제 2:배포
+
+########################################
+############ 금일 전체 통계 #############
+########################################
 if($_GET['recall']){
   $type = $_GET['type'];
   include "../_h.php";
 }else{
+  include "_head.php";
+  $type = 0;
+
+  $today = date("Y-m-d");
+  $befday = conv_solr_time(strtotime($today.'-1 day'));
+  $curday = conv_solr_time(strtotime($today));
+  $fq = array(
+      'custom' => array(
+        'query' => 'created_at:['.$befday.' TO '.$curday.']',
+      ),
+    );
+    
+    $select = array(
+      'query'         => "*:*",
+      'start'         => 0,
+      'rows'          => 5,
+      'fields'        => array('*'),
+      'sort'          => array('creationdate' => 'desc'),
+      'filterquery' => $fq,
+    );
+    $result = $Mem->gps->select($select);
+    $collect_num_result = $result->getNumFound();
   
-include "components/header.php";
-    $type = 0;
+    $fq = array(
+      'custom' => array(
+        'query' => 'DC_DT_WRITE:['.strtotime($today.'-1 day').' TO '.strtotime($today).']',
+      ),
+    );
+    $select = array(
+      'query'         => "*:*",
+      'start'         => 0,
+      'rows'          => 5,
+      'fields'        => array('*'),
+      'filterquery' => $fq,
+    );
+  
+    $result = $Mem->gps->select($select);
+    $edit_num_result = $result->getNumFound();
 
-    $today = date("Y-m-d");
-    
-    $befday = strtotime($today.'-1 day');
-    $curday = strtotime($today.'+1 day');
-
-    $befstr = date("Y-m-d",$befday);
-    $curstr = date("Y-m-d",$curday);
-    $collect_num_result=$Mem->poli->qs('select count(distinct(item_id)) from collected_item where download_time >='.$befday);
-    $added_num_result=$Mem->poli->qs('select count(distinct(item_id)) from collected_item where submint_time between "'.$befstr.'" and "'.$curstr.'" and submit_status=1');
-    $proc_num_result=0;
-    
-    echo "<input type='hidden' value='".$collect_num_result."' id='collect_num_result'/>";
-    echo "<input type='hidden' value='".$added_num_result."' id='added_num_result'/>";
-    echo "<input type='hidden' value='".$proc_num_result."' id='proc_num_result'/>";
-
-    $befday = conv_solr_time($befday);
-    $curday = conv_solr_time($curday);
+  $params=[
+    'track_total_hits'=> true,
+    'index'=>'full_text',
+    'client' => [
+          'timeout' => 10,
+          'connect_timeout' => 10
+    ],
+    'body' => [
+      'query' => [
+        'bool'=>[
+          'filter'=>[
+            'range'=>[
+              'timestamp'=>[
+                'gte'=>$befday,
+                'lte'=>$curday
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  ];
+  $result=$Mem->es->simple_search($params);
+  $proc_num_result = $result['hits']['total']['value'];
 
   #####################################
   ######## 국가별 수집 가져오기 ########
@@ -74,11 +122,9 @@ include "components/header.php";
     }
   }
 }
-//end of $_GET['recall']
-
 
 ######### 수집 현황 날짜 정의  ########
-$curtime=time()- 60 * 60 * 12;
+$curtime=time()- 60 * 60 * 24 * 430;
 #$curtime=time();
 $today = date("Y-m-d");
 $curday = conv_solr_time(strtotime($today));
@@ -94,19 +140,26 @@ if($type==0){
   for($i=1;$i<=7;$i++){
     $temp = array();
     $beftime=$curtime-60 * 60 * 24;
-    
     $befday= conv_solr_time($beftime);
-
-    $befstr = date("Y-m-d",$beftime);
-    $curstr = date("Y-m-d",$curtime);
-
-    $result=$Mem->poli->qs('select count(distinct(item_id)) from collected_item where download_time between "'.$befstr.'" and "'.$curstr.'"');
-
+    $fq = array(
+      'custom' => array(
+        'query' => 'created_at:['.$befday.' TO '.$curday.']',
+      ),
+    );
+    $select = array(
+      'query'         => "*:*",
+      'start'         => 0,
+      'rows'          => 5,
+      'fields'        => array('*'),
+      'sort'          => array('creationdate' => 'desc'),
+      'filterquery' => $fq,
+    );
+    $result = $Mem->gps->select($select);
     $temp['date']=$befday;
-    $temp['value']=$result;
-
+    $temp['value']=$result->getNumFound();
+  
     array_push($collect,$temp);
-
+    
     $curday = $befday;
     $curtime= $beftime;
   }
@@ -123,24 +176,39 @@ if($type==0){
 
 // 정제 화면
 }elseif($type==1){
-  #####################################
-  ####### 일별 등록 현황 가져오기 #######
-  #####################################
-  $today = date("Y-m-d");
-
   for($i=1;$i<=7;$i++){
     $temp = array();
     $beftime=$curtime-60 * 60 * 24;
-    
     $befday= conv_solr_time($beftime);
+  $res_num = 0;
+    $params=[
+      'track_total_hits'=> true,
+      'index'=>'full_text',
+      'client' => [
+            'timeout' => 10,       
+            'connect_timeout' => 10
+      ],
+      'body' => [
+        'query' => [
+          'bool'=>[
+            'filter'=>[
+              'range'=>[
+                'timestamp'=>[
+                  'gte'=>$befday,
+                  'lte'=>$curday
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ];
 
-    $befstr = date("Y-m-d",$beftime);
-    $curstr = date("Y-m-d",$curtime);
+    $result=$Mem->es->simple_search($params);
 
-    $result=$Mem->poli->qs('select count(distinct(item_id)) from collected_item where submint_time between "'.$befstr.'" and "'.$curstr.'" and submit_status=1');
 
     $temp['date']=$befday;
-    $temp['value']=$result;
+    $temp['value']=$result['hits']['total']['value'];
 
     array_push($collect,$temp);
 
@@ -156,11 +224,11 @@ if($type==0){
   
   
   
-// 추출 화면
+// 배포 화면
 }elseif($type==2){ 
   
   #####################################
-  ####### 일별 추출 현황 가져오기 #######
+  ####### 일별 수집 현황 가져오기 #######
   #####################################
   
   $curtime=time()- 60 * 60 * 24 * 430;
@@ -200,23 +268,27 @@ if($type==0){
 echo "<input type='hidden' id='data' value='".json_encode($data)."'/>";
 
 ?>
-<!-- Content Wrapper -->
-<div id="content-wrapper" class="d-flex flex-column">
+<script>
+//_head의 body부분에 걸려있는 이상한 왼쪽 메뉴바 background 제거
+$("body").css("background","#F0F0F0");
 
-    <!-- Main Content -->
-    <div id="content">
+</script>
 
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
+<!-- Resources -->
+<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/maps.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/geodata/worldHigh.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/dataviz.js"></script>
+<script src="//cdn.amcharts.com/lib/4/charts.js"></script>
 
-        <h1 class="h3 mb-2 text-gray-800" style="margin-top:20px">Dash Board</h1>
+
 <!-- Chart code -->
 <!-- HTML -->
 <div class="c5"  style="background-color:white;">
     <div style="height:520px;" id="worldmap">
     </div>
 </div>
-<div style="padding:10px">
+<div style="background-color:#F0F0F0;padding:10px">
   <div id="center_page" style="padding:2% 10% 10%">
     <div class="row">
       <div class=" col-md-6" >
@@ -232,14 +304,14 @@ echo "<input type='hidden' id='data' value='".json_encode($data)."'/>";
             </div>
           </div>
           <div class="col-md-4" style="border-right:1px solid lightgray">
-            <h4 style="margin-top:10px; margin-bottom:0px;color:#888">등록</h4>
+            <h4 style="margin-top:10px; margin-bottom:0px;color:#888">정제</h4>
             <div class="row" style="padding:0px 10px">
               <h1 id="day_count2" style="font-size:40px;color:#19CE60;"> </h1>
               <h1 style="font-size:20px;color:#19CE60;margin-top:10px">건</h1>
             </div>
           </div>
           <div class="col-md-4">
-           <h4 style="margin-top:10px; margin-bottom:0px;color:#888">추출</h4>
+           <h4 style="margin-top:10px; margin-bottom:0px;color:#888">배포</h4>
             <div class="row" style="padding:0px 10px">
               <h1 id="day_count3" style="font-size:40px;color:#19CE60;"> </h1>
               <h1 style="font-size:20px;color:#19CE60;margin-top:10px">건</h1>
@@ -264,11 +336,11 @@ echo "<input type='hidden' id='data' value='".json_encode($data)."'/>";
             </label>
             <label class="btn-lg btn btn-outline-success">
               <input type="radio" name="subscribed" id="option2" value="1"
-              <?=$_GET['subscribed']==1?'checked':''?> onclick="exec_ajax($(this).val())"> 등록
+              <?=$_GET['subscribed']==1?'checked':''?> onclick="exec_ajax($(this).val())"> 정제
             </label>
             <label class="btn-lg btn btn-outline-danger">
               <input type="radio" name="subscribed" id="option3" value="2"
-              <?=$_GET['subscribed']==2?'checked':''?> onclick="exec_ajax($(this).val())"> 추출
+              <?=$_GET['subscribed']==2?'checked':''?> onclick="exec_ajax($(this).val())"> 배포
             </label>
           </div>
           <div id="chartdiv" style="min-height:400px"></div>
@@ -307,14 +379,11 @@ echo "<input type='hidden' id='data' value='".json_encode($data)."'/>";
   </div>
 </div>
 
-
 <script>
-new numberCounter("day_count1",$('#collect_num_result').val());
-new numberCounter("day_count2",$('#added_num_result').val());
-new numberCounter("day_count3",$('#proc_num_result').val());
-//new numberCounter("day_count1",<?=$collect_num_result?>);
-//new numberCounter("day_count2",<?=$added_num_result?>);
-//new numberCounter("day_count3",<?=$proc_num_result?>);
+//new numberCounter("day_count1",$('#solr_num_result').val());
+new numberCounter("day_count1",<?=$collect_num_result?>);
+new numberCounter("day_count2",<?=$proc_num_result?>);
+new numberCounter("day_count3",<?=$edit_num_result?>);
 
 load_pie();
 load_map();

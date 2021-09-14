@@ -212,7 +212,7 @@ $paging = solr_paging($Mem->gps,$select,10,10,'',$get);
 		</div>
 		<div id="table">
 			<?foreach($paging[0] as $doc){?>
-			<div class="comp_out round_shadow" id="line"  onclick="go('Crawl_Edit.php?item_id=<?=$doc['item_id']?>')">
+			<div class="comp_out round_shadow" id="line"  onclick="go('Crawl_Edit.php?item_id=<?=$doc['item_id'][0]?>')">
 				<div class="f30 hidden center">Edit</div>
 				<div class="row">
 					<div class="bold f20 col text-left" id="title"><?=$doc['title'][0]?></div>

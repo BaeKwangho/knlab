@@ -27,6 +27,12 @@ include "../_h.php";
     <!-- Custom styles for this template-->
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="/css/sb-admin-2.css" rel="stylesheet">
+<!-- Resources -->
+<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/maps.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/geodata/worldHigh.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/dataviz.js"></script>
+<script src="//cdn.amcharts.com/lib/4/charts.js"></script>
 
 </head>
 
@@ -39,7 +45,7 @@ include "../_h.php";
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="temp.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DashBoard.php">
                 <div class="sidebar-brand-text mx-1 f14">NEXTREND <sup>관리자</sup></div>
             </a>
 
@@ -48,7 +54,7 @@ include "../_h.php";
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="temp.php">
+                <a class="nav-link" href="DashBoard.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
