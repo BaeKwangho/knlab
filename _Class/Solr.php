@@ -6,13 +6,9 @@ require '/home/knlab/www/vendor/autoload.php';
 //error_reporting(E_ALL);	ini_set("display_errors", 1);
 
 Class Solr{
-	private $config,$adapter,$eventDispatcher,$client;
-	function __construct($default=false){
-		if($default!==false){
-			$core = 'DOCS';
-		}else{
-			$core = 'GPS';
-		}
+	private $config,$adapter,$eventDispatcher,$client,$EL_server;
+	function __construct($core='DOCS'){
+		$this->EL_server="http://1.214.203.131:8088";
 		$config=[
 			'endpoint' => [
 				'localhost' => [
@@ -28,6 +24,19 @@ Class Solr{
 		$adapter = new Solarium\Core\Client\Adapter\Curl(); // or any other adapter implementing AdapterInterface
 		$eventDispatcher = new Symfony\Component\EventDispatcher\EventDispatcher();
 		$this->$client = new Solarium\Client($adapter,$eventDispatcher,$config);
+	}
+
+	public function thumbnail($string){
+		$query = $this->$client->createSelect();
+		$query->setQuery($string);
+		$result = $this->$client->select($query);
+		foreach($result as $doc){}
+		if($doc['thumbnailstorageSrc']){
+			$loc = $doc['thumbnailstorageSrc'][0];
+			return $loc;
+		}else{
+			return 0;
+		}
 	}
 
 	public function search($string){

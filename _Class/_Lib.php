@@ -403,7 +403,59 @@ function paging($query,$options=array(),$b,$c,$opt="IDX desc",$param=""){
 	return $paging;
 }
 
+function array_print($array){
+	$new_array = array();
+	foreach($array as $key => $value){
+		if(is_array($key)){
+			$string = '';
+			foreach($key as $value){
+				$string.=$value.', ';
+			}
+			$string = substr($string,0,-2);
+			$new_array[$key]=$string;
+		}else{
+			$new_array[$key]=$value;
+		}
+	}
+	return $new_array;
+}
 
+function els_paging($DB,$query,$b,$c,$opt="IDX desc",$param=""){
+	$test = $DB->document_search($query);
+	$print_n=$b;
+	$print_horizontal =$c;
+	$total = $test['doc_num'];
+	$paging=array();
+
+	if(array_key_exists("page",$_GET)){
+		if($_GET['page']){
+			$start=($_GET['page']-1)*$print_n;
+			$end=(($_GET['page']-1)*$print_n)+$print_n;
+		}else{
+			$_GET['page']=1;
+			$start=0;
+			$end=$print_n;
+		}
+	}else{
+
+			$_GET['page']=1;
+			$start=0;
+			$end=$print_n;
+	}
+
+	if(!$opt) $opt="idx desc";
+
+	$query['from'] = $start;
+	$query['size'] = $print_n;
+
+	$result = $DB->document_search($query);
+
+	$paging[0]=$result['result'];
+	$paging[1]=$start;
+	$paging[2]=navi_bars($total,$print_n,$_GET['page'],$print_horizontal,$param);
+
+	return $paging;
+}
 function solr_paging($DB,$query,$b,$c,$opt="IDX desc",$param=""){
 	$test = $DB->select($query);
 	$print_n=$b;

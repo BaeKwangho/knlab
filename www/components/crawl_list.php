@@ -58,7 +58,7 @@ if(!isset($_POST["scroll_id"])){
 		<div class='frame' >
 				<div class='img_frame'>
 				<!--es-->
-					<img class='img' style="cursor:pointer;" src="<?=$doc['image_path']?>" onclick="show_poster(<?=$doc['item_id']?>,'<?=$doc['image_path']?>');">
+					<img class='img' style="cursor:pointer;max-width:500px" src="<?=$doc['image_path']?>" onclick="show_poster(<?=$doc['item_id']?>,'<?=$doc['image_path']?>');">
 					<div class='script' onclick="window.open('<?=$solr_res['url']?>', '_blank').focus()">
 						<!--solr-->
 						<div class='f14' style="cursor:pointer;color:white;">
@@ -82,7 +82,7 @@ if(!isset($_POST["scroll_id"])){
 		<div class='frame' >
 			<div class='img_frame'>
 			<!--es-->
-				<img class='img' style="cursor:pointer;" src="<?=$doc['image_path']?>" onclick="show_poster(<?=$doc['item_id']?>,'<?=$doc['image_path']?>');">
+				<img class='img' style="cursor:pointer;max-width:500px" src="<?=$doc['image_path']?>" onclick="show_poster(<?=$doc['item_id']?>,'<?=$doc['image_path']?>');">
 				<div class='script' onclick="window.open('<?=$solr_res['url']?>', '_blank').focus()">
 					<!--solr-->
 					<div class='shortcut f14' style="cursor:pointer;">

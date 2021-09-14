@@ -364,7 +364,7 @@ $time = time();
           $r=$re[0]->fetch();
     ?>
           <tr>
-            <td class="table_content" style="text-align:center"><?=$re[1]-$i?></td>
+            <td class="table_content" style="text-align:center"><?=$re[1]+$i+1?></td>
             <td class="table_content"><a onclick="window.open('<?=$r["DC_URL_LOC"]?>','_blank');"><?=$r["DC_TITLE_OR"]?></a>
             <?if($r["DC_CONTENT"]){?>
                  <div class="button_tag" onclick="window.open('Content_viewPost.php?view=1&IDX=<?=$r["IDX"]?>',600,300);">요약</div></td>

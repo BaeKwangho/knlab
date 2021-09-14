@@ -20,6 +20,7 @@ if(!is_array($_SESSION["TMP_ATTECH"])) $_SESSION["TMP_ATTECH"]=array();
 if(!is_array($_SESSION["SET_CATEGORY"])) $_SESSION["SET_CATEGORY"]=array();
 if(!is_Array($_SESSION["SET_CATEGORY"][$_SESSION["CTYPE"]])) $_SESSION["SET_CATEGORY"][$_SESSION["CTYPE"]]=array();
 
+/*
 if($_FILES["FILE_CORVER"]["tmp_name"]){
 		for($i=0; $i <sizeof($_FILES["FILE_CORVER"]["tmp_name"]); $i++){
 			if($_FILES["FILE_CORVER"]["tmp_name"][$i]){
@@ -55,7 +56,7 @@ if($_FILES["FILE_ATTECH"]["tmp_name"]){
 		}
 		exit;
 }
-
+*/
 if(sizeof($_POST)){
 	$date = mktime();
 
@@ -90,25 +91,27 @@ if(sizeof($_POST)){
     */
     $_POST["UID"]=$Mem->user["uid"];
 
-    $data = array();
-    if($_POST['DC_CODE']){$data['DC_CODE']=$_POST['DC_CODE'];}
-    if($_POST['DC_DT_COLLECT']){$data['DC_DT_COLLECT']=datec($_POST['DC_DT_COLLECT']);}
-    if($_POST['DC_DT_WRITE']){$data['DC_DT_WRITE']=datec($_POST['DC_DT_WRITE']);}
-    if($_POST['DC_LINK']){$data['DC_LINK']=$_POST['DC_LINK'];}
-    if($_POST['DC_COUNTRY']){$data['DC_COUNTRY']=$_POST['DC_COUNTRY'];}
-    if($_POST['DC_TITLE_OR']){$data['DC_TITLE_OR']=array($_POST['DC_TITLE_OR']);}
-    if($_POST['DC_TITLE_KR']){$data['DC_TITLE_KR']=array($_POST['DC_TITLE_KR']);}
-    if($_POST['DC_CONTENT']){$data['DC_CONTENT']=array($_POST['DC_CONTENT']);}
-    if($_POST['DC_URL_LOC']){$data['DC_URL_LOC']=array($_POST['DC_URL_LOC']);}
-    if($_POST['DC_AGENCY']){$data['DC_AGENCY']=array($_POST['DC_AGENCY']);}
-    if($_POST['DC_PAGE']){$data['DC_PAGE']=array($_POST['DC_PAGE']);}
-    if($_POST['DC_TYPE']){$data['DC_TYPE']=$_POST['DC_TYPE'];}
-	if($_POST['DC_TYPE']){$data['DC_CAT']=$_POST['DC_TYPE'];}
-    if($_POST['DC_KEYWORD']){$data['DC_KEYWORD']=array($_POST['DC_KEYWORD']);}
-    if($_POST['DC_SMRY_KR']){$data['DC_SMRY_KR']=array($_POST['DC_SMRY_KR']);}
+    $params = array();
+    if($_POST['DC_CODE']){$params['dc_code']=$_POST['DC_CODE'];}
+    //if($_POST['DC_DT_COLLECT']){$params['dc_dt_collect']=$_POST['DC_DT_COLLECT'];}
+    //if($_POST['DC_DT_WRITE']){$params['dc_dt_write']=$_POST['DC_DT_WRITE'];}
+    if($_POST['DC_LINK']){$params['dc_link']=$_POST['DC_LINK'];}
+    if($_POST['DC_COUNTRY']){$params['dc_country']=$_POST['DC_COUNTRY'];}
+    if($_POST['DC_TITLE_OR']){$params['dc_title_or']=$_POST['DC_TITLE_OR'];}
+    if($_POST['DC_TITLE_KR']){$params['dc_title_kr']=$_POST['DC_TITLE_KR'];}
+    if($_POST['DC_CONTENT']){$params['dc_content']=$_POST['DC_CONTENT'];}
+    if($_POST['DC_URL_LOC']){$params['dc_url_loc']=$_POST['DC_URL_LOC'];}
+    if($_POST['DC_AGENCY']){$params['dc_publisher']=$_POST['DC_AGENCY'];}
+    if($_POST['DC_PAGE']){$params['dc_page']=$_POST['DC_PAGE'];}
+    if($_POST['DC_TYPE']){$params['dc_type']=$_POST['DC_TYPE'];}
+	if($_POST['DC_TYPE']){$params['dc_cat']=$_POST['DC_TYPE'];}
+    if($_POST['DC_KEYWORD']){$params['dc_keyword']=$_POST['DC_KEYWORD'];}
+    if($_POST['DC_SMRY_KR']){$params['dc_smry_kr']=$_POST['DC_SMRY_KR'];}
 
 
 $_POST["PID"] = $_POST["ITEM_ID"];
+
+/*
 if($_SESSION["TMP_CORVER"]){
 	$lastnum=sizeof($_SESSION["TMP_CORVER"])-1;
 	@copy($Mem->data["temp"].$_SESSION["TMP_CORVER"][$lastnum]["file"],$Mem->data["cover"].$_SESSION["TMP_CORVER"][$lastnum]["file"]);
@@ -139,9 +142,18 @@ for($i=0 ; $i < sizeof($_POST["FILES"]); $i++){
 	@copy($Mem->data["document"].$rs["FILE_PATH"],$Mem->data["remove"].$rs["FILE_PATH"]);
 	@unlink($Mem->data["document"].$rs["FILE_PATH"]);
 }
+*/
 
+$update=[
+	'index' => 'politica_service',
+	'id' => $_POST['_id'],
+	'body'=>[
+		'doc'=>$params
+	]
+];
 
-$Mem->docs->multi_modify($_POST['id'],$data);
+$update['refresh']=true;
+$Mem->es->update($update);
 
 $_SESSION["TMP_CORVER"]=array();
 $_SESSION["TMP_DOCUMENT"]=array();
@@ -155,25 +167,13 @@ echo "<script> opener.parent.location.reload(); self.close(); </script>";
 }
 
  
-if($_GET["id"]){
+if($_GET["_id"]){
+	$params=[
+		'index' => 'politica_service',
+		'id'  => $_GET["_id"]
+	];
 
-$select = array(
-    'query'         => 'id:'.$_GET['id'],
-    'start'         => 0,
-    'rows'          => 1,
-    'fields'        => array('*'),
-    'sort'          => array('DC_DT_COLLECT' => 'asc'),
-    'filterquery' => array(
-        'custom' => array(
-            'query' => '',
-        ),
-    ),
-);
-    
-$doc = $Mem->docs->select($select);
-foreach($doc as $r){
-
-}
+$r = $Mem->es->get($params);
 
  $_SESSION["SEL_COUNTRY"]=array();
 }
@@ -235,16 +235,16 @@ function FormSubmit(f) {
 <div>
 
 
-	<div class="title1">문서 수정 : <?=$r["DC_TITLE_OR"][0]?></div>
+	<div class="title1">문서 수정 : <?=$r["dc_title_or"]?></div>
 	<div>
 		<?
-		$codes = $r['DC_CODE'];
+		$codes = $r['dc_code'];
 		foreach($codes as $code){
 		?>
 			<input type="hidden" id="PCODE[]" name="PCODE[]" value="<?=$code?>">
 		<?	
 		}
-		$org_countrys = $r['DC_COUNTRY'];
+		$org_countrys = $r['dc_country'];
 		foreach($org_countrys as $org_country){
 		?>
 			<input type="hidden" id="PCOUNTRY[]" name="PCOUNTRY[]" value="<?=$org_country?>">
@@ -252,22 +252,22 @@ function FormSubmit(f) {
 		}
 		?>
 		<form action="<?=SELF?>" method="post" onsubmit=" CKEDITOR.instances.contents.updateElement(); return true;"" >
-		<input type="hidden" name="id" value="<?=$r["id"]?>">
-		<input type="hidden" name="ITEM_ID" value="<?=$r["ITEM_ID"]?>">
+		<input type="hidden" name="_id" value="<?=$r["_id"]?>">
+		<input type="hidden" name="item_id" value="<?=$r["item_id"]?>">
 		<table cellpadding="0" cellspacing="0" border="0" style="width:100%;" class="table_view" >
 		
 			<tr>
 				<th>원제목</th>
-				<td colspan="3" ><input type="text" class="input_cell" name="DC_TITLE_OR" id="" value="<?=$r["DC_TITLE_OR"][0]?>"  ></td> 
+				<td colspan="3" ><input type="text" class="input_cell" name="DC_TITLE_OR" id="" value="<?=$r["dc_title_or"]?>"  ></td> 
 			</tr>
 			
 			<tr>
 				<th>한글제목</th>
-				<td colspan="3" ><input type="text" class="input_cell" name="DC_TITLE_KR" id="" value="<?=$r["DC_TITLE_KR"][0]?>"  ></td> 
+				<td colspan="3" ><input type="text" class="input_cell" name="DC_TITLE_KR" id="" value="<?=$r["dc_title_kr"]?>"  ></td> 
 			</tr> 
 			<tr>
 				<th>한글요약</th>
-				<td colspan="3" ><input type="text" class="input_cell" name="DC_SMRY_KR" id="" value="<?=$r["DC_SMRY_KR"][0]?>"  ></td> 
+				<td colspan="3" ><input type="text" class="input_cell" name="DC_SMRY_KR" id="" value="<?=$r["dc_smry_kr"]?>"  ></td> 
 			</tr>
 
 			
@@ -294,35 +294,42 @@ function FormSubmit(f) {
 			-->
 			<tr>
 				<th>수집일시</th>
-				<td><input type="text" class="input_cell" placeholder="0000-00-00" name="DC_DT_COLLECT" id="DC_DT_COLLECT" value="<?=$r["DC_DT_COLLECT"][0]?date("Y-m-d",$r["DC_DT_COLLECT"][0]):""?>" ></td>
+				<td><input type="text" class="input_cell" placeholder="0000-00-00" name="DC_DT_COLLECT" id="DC_DT_COLLECT" value="<?=$r["dc_dt_collect"]?date("Y-m-d",$r["dc_dt_collect"]):""?>" ></td>
 				<th>작성일</th>
-				<td><input type="text" class="input_cell"  name="DC_DT_WRITE" id="DC_DT_WRITE"   value="<?=$r["DC_DT_WRITE"][0]?date("Y-m-d",$r["DC_DT_WRITE"][0]):""?>"    ></td>
+				<td><input type="text" class="input_cell"  name="DC_DT_WRITE" id="DC_DT_WRITE"   value="<?=$r["dc_dt_write"]?date("Y-m-d",$r["dc_dt_write"]):""?>"    ></td>
 			</tr>
 			<tr>
 				<th>문서위치URL</th>
-				<td><input type="text" class="input_cell"  name="DC_URL_LOC" id="DC_URL_LOC"  value="<?=$r["DC_URL_LOC"][0]?>"  ></td>
-				<th>문서안내URL</th>
-				<td><input type="text" class="input_cell"  name="DC_URL_EXP" id="DC_URL_EXP"  value="<?=$r["DC_URL_EXP"][0]?>"  ></td>
+				<td><input type="text" class="input_cell"  name="DC_URL_LOC" id="DC_URL_LOC"  value="<?=$r["dc_url_loc"]?>"  ></td>
+				<th></th>
+				<td></td>
 			</tr>
 
 			<tr>
 				<th>구분</th>
-				<td><input type="text" class="input_cell"  name="DC_TYPE" id="DC_TYPE"  value="<?=$r["DC_TYPE"][0]?>"  ></td> 
+				<td><input type="text" class="input_cell"  name="DC_TYPE" id="DC_TYPE"  value="<?=$r["dc_type"]?>"  ></td> 
 				<th>페이지수</th>
-				<td><input type="text" class="input_cell"  name="DC_PAGE" id="DC_PAGE" value="<?=$r["DC_PAGE"][0]?>"   ></td> 
+				<td><input type="text" class="input_cell"  name="DC_PAGE" id="DC_PAGE" value="<?=$r["dc_page"]?>"   ></td> 
 			</tr>
 			<tr>
 				<th>기관명</th>
-				<td><input type="text" class="input_cell"  name="DC_AGENCY" id="DC_AGENCY" value="<?=$r["DC_AGENCY"][0]?>"   ></td> 
+				<td><input type="text" class="input_cell"  name="DC_AGENCY" id="DC_AGENCY" value="<?=$r["dc_publisher"]?>"   ></td> 
 				<th>검색키워드</th>
-				<td><input type="text" class="input_cell"  name="DC_KEYWORD" id="DC_KEYWORD"  value="<?=$r["DC_KEYWORD"][0]?>"  ></td> 
+				<?
+					$keyword = '';
+					foreach($r["dc_keyword"] as $value){
+						$keyword.=$value.', ';
+					}
+					$keyword = substr($keyword,0,-2);
+				?>
+				<td><input type="text" class="input_cell"  name="DC_KEYWORD" id="DC_KEYWORD"  value="<?=$keyword?>"  ></td> 
 			</tr>
  
 			<tr>
 				<th>내용</th>
 				<td colspan="3" >
  
-					<textarea name="DC_CONTENT" id="DC_CONTENT_EDITOR"  class="input_cell" ><?=$r["DC_CONTENT"][0]?></textarea>
+					<textarea name="DC_CONTENT" id="DC_CONTENT_EDITOR"  class="input_cell" ><?=$r["dc_content"]?></textarea>
 
 				</td> 
 				
@@ -337,7 +344,7 @@ function FormSubmit(f) {
 				<td id="link_area" colspan="3">
 					
 						<?
-							$link=explode(' ',$r["DC_LINK"]);
+							$link=explode(' ',$r["dc_link"]);
 							if($link[0]){
 								for($i=0;$i<count($link);$i++){
 									$l=$Mem->qr("select DC_TITLE_KR,DC_DT_WRITE from nt_document_list where idx like ?",$link[$i]);
@@ -361,17 +368,11 @@ function FormSubmit(f) {
 			<tr style="height:100px;">
 				<th>표지파일<br><input id="changeCover" type="button" class="button1" value="변경" onclick="$('#file_corver_upload').click();" ><br><input type="button" class="button1" value="초기화" onclick="getup('Content_Data_Register_File_List.php?type=1&reset=1','file_corver_list');$('#changeCover').css('visibility','visible');" ></th>
 				<td colspan="3" >
-				<?
-				
-                $QS=$Mem->q("select * from nt_crawl_file_list where PID=? and FILE_TYPE=1 and STAT < 9 ",$r["ITEM_ID"]);
-				while($rs=$QS->fetch()){
-					echo "<div style='float:left;text-align:center;margin:10px;'  ><a href=\"".$Mem->data["cover"].$rs["FILE_PATH"]."\" target=\"_blank\" >";
-					echo	"<img src='".$Mem->data["cover"].$rs["FILE_PATH"]."' class='temp_file' ><br>".$rs["FILE_NAME"];
-					echo "</a></div>";
-				}
-				?>
+				<?=$Mem->nas->show_image($r['dc_cover'])?>
 				<!--<div id="file_corver_list"></div> <input type="file" id="file_corver_upload" name="cover_upload" style="display:none;"  onchange="file_corver_add();" ></td> -->
-				<div id="file_corver_list"></div> <input type="file" id="file_corver_upload" name="cover_upload" style="display:none;"  onchange="easySetting();" ></td> 
+				<div id="file_corver_list">
+					
+				</div> <input type="file" id="file_corver_upload" name="cover_upload" style="display:none;"  onchange="easySetting();" ></td> 
 
 			</tr>
 			
@@ -379,17 +380,15 @@ function FormSubmit(f) {
 				<th>첨부문서<br><input type="button" class="button1" value="파일추가" onclick="$('#file_document_upload').click();;"><br><input type="button" class="button1" value="초기화" onclick="getup('Content_Data_Register_File_List.php?type=2&reset=1','file_document_list');" ></th>
 				<td colspan="3" >
 								<? 
-				$QS=$Mem->q("select * from nt_crawl_file_list where PID=? and FILE_TYPE=2 and STAT < 9 ",$r["ITEM_ID"]);
-				while($rs=$QS->fetch()){
-
-		
-					echo "<div style='float:left;text-align:center;margin:10px;'  ><a href=\"".$Mem->data["document"].$rs["FILE_PATH"]."\" target=\"_blank\" >";
-					if(@is_array(getimagesize($Mem->data["document"].$rs["FILE_PATH"]))){
-						echo	"<img src='".$Mem->data_url["document"].$rs["FILE_PATH"]."' class='temp_file' ><br>".$rs["FILE_NAME"];
+				foreach($r['dc_file'] as $file){
+					
+					echo "<div style='float:left;text-align:center;margin:10px;'  ><a href=\"".$Mem->data["document"].$file."\" target=\"_blank\" >";
+					if(@is_array(getimagesize($Mem->data["document"].$file))){
+						echo	"<img src='".$Mem->data_url["document"].$file."' class='temp_file' ><br>".$file;
 					}else{
-						echo "<img src='/images/files.png' class='temp_file'><br>".$rs["FILE_NAME"];
+						echo "<img src='/images/files.png' class='temp_file'><br>".$file;
 					}
-								echo '<label  style="color:red;"><input type="checkbox" name="FILES[]" value="'.$rs["IDX"].'">삭제</label>';
+								//echo '<label  style="color:red;"><input type="checkbox" name="FILES[]" value="'.$rs["IDX"].'">삭제</label>';
 					echo "</a></div>";
 				 } 
 				 ?>
@@ -442,7 +441,7 @@ function FormSubmit(f) {
 <script>
 window.onbeforeunload = function () {
 	$.ajax({
-		url: 'components/modify_who.php?EDIT=false&PID='+$('[name="id"]').attr('value'),
+		url: 'components/modify_who.php?EDIT=false&PID='+$('[name="_id"]').attr('value'),
 		processData: false,
 		contentType: false,
 		type:'GET',
@@ -508,7 +507,7 @@ register_category_select_refresh();
 */
 function ModifyWho(edit){
 	$.ajax({
-		url: 'components/modify_who.php?EDIT='+edit+'&PID='+$('[name="id"]').attr('value'),
+		url: 'components/modify_who.php?EDIT='+edit+'&PID='+$('[name="_id"]').attr('value'),
 		processData: false,
 		contentType: false,
 		type:'GET',

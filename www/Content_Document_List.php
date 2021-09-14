@@ -216,8 +216,8 @@ for($i=0; $i < $re[0]->rowCount(); $i++){ $n++;
 		<td><?=$r["DC_TYPE"]?></td>
 		<!--<td><?=$r["DC_AGENCY"]?></td>-->
 		<td><?=$r["DC_AGENCY"]?></td>
-		<td class="uid" style="text-align:left;padding:10px;" > <div><span onclick="window.open('Content_Data_View.php?PID=<?=$r["IDX"]?>','data_view','width=900,height=900,scrollbars=1');"><?=$r["DC_TITLE_OR"]?></span></div></td>
-		<td class="uid" style="text-align:left;padding:10px"  >  <div> <span onclick="window.open('Content_Data_View.php?PID=<?=$r["IDX"]?>','data_view','width=900,height=900,scrollbars=1');"><?=$r["DC_TITLE_KR"]?></span></div></td>
+		<td style="text-align:left;padding:10px;" > <div><span onclick="window.open('Content_Data_View.php?PID=<?=$r["IDX"]?>','data_view','width=900,height=900,scrollbars=1');"><?=$r["DC_TITLE_OR"]?></span></div></td>
+		<td style="text-align:left;padding:10px"  >  <div> <span onclick="window.open('Content_Data_View.php?PID=<?=$r["IDX"]?>','data_view','width=900,height=900,scrollbars=1');"><?=$r["DC_TITLE_KR"]?></span></div></td>
 		<td><?=$r["DC_PAGE"]?></td>
 		<td>
 

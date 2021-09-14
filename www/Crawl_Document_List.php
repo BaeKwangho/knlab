@@ -91,6 +91,13 @@ if($_SESSION["SEARCH"]["CID"]){
 		<th>작성일</th>
 		<td><input type="text" class="input_text1" style="width:100px;" name="DT_WRITE_ST" id="DT_WRITE_ST"  value="<?=$_SESSION["SEARCH"]["DT_WRITE_ST"]?>"  data-type="DT" >~<input type="text" class="input_text1" style="width:100px;" name="DT_WRITE_ED"  id="DT_WRITE_ED"   value="<?=$_SESSION["SEARCH"]["DT_WRITE_ED"]?>" data-type="DT"></td>
 	</tr>
+	<tr>
+		<th>기타</th>
+		<td colspan="3">
+	<label class="btn btn-primary active">
+    <input type="checkbox" id="IS_CRAWLED" name="IS_CRAWLED" autocomplete="off"> 크롤 데이터만 검색
+  </label></td>
+	  </tr>
 </table>
 <div style="padding:10px; text-align:center;background-color:#FFF;" ><input type="button" class="button1" value="상세검색초기화" style="height:36px; width:100px;"  onclick="go('<?=SELF?>?search_reset=1');" ><input type="submit" class="buttonb" value="상세검색" onclick="" style="height:36px; width:100px;" ></div>
 </form>
@@ -145,30 +152,39 @@ if($_SESSION["SEARCH"]["KEY_PAGE"]){$KEY_PAGE=$_SESSION["SEARCH"]["KEY_PAGE"];}e
 if($_SESSION["SEARCH"]["KEY_COUNTRY"]){$KEY_COUNTRY=$_SESSION["SEARCH"]["KEY_COUNTRY"];}else{$KEY_COUNTRY='*';}
 
 if($_SESSION["SEARCH"]["KEY_TYPE"]){$KEY_TYPE=$_SESSION["SEARCH"]["KEY_TYPE"];}else{$KEY_TYPE='*';}
+if($_SESSION["SEARCH"]["IS_CRAWLED"]){$KEY_CRAWL=true;}
 
+$must_array = array();
+$should_array = array();
+if($_SESSION["SEARCH"]["ITEM"]){array_push($must_array,['regexp' => ['dc_code' => $_SESSION["SEARCH"]["ITEM"].'.*']]);}
+if($KEY_TYPE!='*'){array_push($must_array,['match' => ['dc_cat' => $KEY_TYPE]]);}
+if($KEY_COUNTRY!='*'){array_push($must_array,['match' => ['dc_country' => $KEY_COUNTRY]]);}
+if($KEY_TITLE_OR!='*'){array_push($should_array,['match' => ['dc_title_or' => $KEY_TITLE_OR]]);}
+if($KEY_TITLE_KR!='*'){array_push($should_array,['match' => ['dc_title_kr' => $KEY_TITLE_KR]]);}
+if($KEY_CONTENT!='*'){array_push($should_array,['match' => ['dc_content' => $KEY_CONTENT]]);}
+if($KEY_AGENCY!='*'){array_push($should_array,['match' => ['dc_publisher' => $KEY_AGENCY]]);}
+if($KEY_CRAWL){array_push($should_array,['match' => ['is_crawled' => $KEY_CRAWL]]);}
 
-$select = array(
-    'query'         => 'DC_CODE:'.$_SESSION["SEARCH"]["ITEM"].
-                        "* AND DC_CAT:".$KEY_TYPE." AND DC_COUNTRY:".$KEY_COUNTRY.
-                        " AND DC_TITLE_OR:".$KEY_TITLE_OR." AND DC_TITLE_KR:".$KEY_TITLE_KR.
-                        " AND DC_CONTENT:".$KEY_CONTENT." AND DC_COUNTRY:".$KEY_COUNTRY.
-                        " AND DC_CAT:".$KEY_TYPE." AND DC_AGENCY:".$KEY_AGENCY,
+$params=[
+	'index' => 'politica_service',
+	"from"=> 5,
+  	"size"=> 20,
+	'body'  => [
+		'query' => [
+			'bool' => [
+				'must' => $must_array,
+				'should' =>$should_array
+			],
+		]
+	]
+];
 
-    'start'         => 0,
-    'rows'          => 1,
-    'fields'        => array('*'),
-    'sort'          => array('DC_DT_COLLECT' => 'asc'),
-    'filterquery' => array(
-        'custom' => array(
-            'query' => '',
-        ),
-    ),
-);
-$re = solr_paging($Mem->docs,$select,20,20);
+$re = els_paging($Mem->es,$params,20,20);
 foreach($re[0] as $r){
 ?>
-<tr id="<?=$r["id"]?>">
-    <td title="<?=$r["id"]?>"> <label ><input class="check_idx" type="checkbox" id="list[]" value="<?=$r["id"]?>"><?=++$re[1]?></label></td>
+<tr id="<?=$r["item_id"]?>"  style="background-color:<?=$r['is_crawled']?"rgba(242,242,242)":"white"?>!important;">
+    <td title="<?=$r["item_id"]?>">
+	<label ><input class="check_idx" type="checkbox" id="list[]" value="<?=$r["item_id"]?>"><?=++$re[1]?></label></td>
     <tds>
         <?
             // $QC=$Mem->q("select a.* from nt_country_list a, nt_document_country_list b where b.PID=? and b.TID=a.IDX  ",$r["IDX"]);
@@ -182,7 +198,7 @@ foreach($re[0] as $r){
     <td>
 	<?
 		$countrys = '';
-		foreach($r["DC_COUNTRY"] as $con){
+		foreach($r["dc_country"] as $con){
 			$countrys.= $con.', ';
 		}
 		$countrys = substr($countrys,0,-2);
@@ -190,28 +206,28 @@ foreach($re[0] as $r){
 	?>
 				
 	</td>
-    <td><?=$r["DC_TYPE"][0]?></td>
-    <!--<td><?=$r["DC_AGENCY"][0]?></td>-->
-    <td><?=$r["DC_AGENCY"][0]?></td>
-    <td class="uid" style="text-align:left;padding:10px;" > <div><span><?=$r["DC_TITLE_OR"][0]?></span></div></td>
-    <td class="uid" style="text-align:left;padding:10px"  >  <div> <span><?=$r["DC_TITLE_KR"][0]?></span></div></td>
-    <td><?=$r["DC_PAGE"][0]?></td>
+    <td><?=$r["dc_type"]?></td>
+    <!--<td><?=$r["dc_publisher"]?></td>-->
+    <td><?=$r["dc_publisher"]?></td>
+    <td style="text-align:left;padding:10px;" > <div><span><?=$r["dc_title_or"]?></span></div></td>
+    <td style="text-align:left;padding:10px"  >  <div> <span><?=$r["dc_title_kr"]?></span></div></td>
+    <td><?=$r["dc_page"][0]?></td>
     <td>
 
     </td>
     <td>
-    <? if( $r["DC_URL_LOC"][0]){			echo "<img src='/images/icon_arrow2.png' style='width:20px;cursor:pointer;'  onclick=\"window.open('".$r["DC_URL_LOC"][0]."','_blank');\" >";} ?>
+    <? if( $r["dc_url_loc"]){echo "<img src='/images/icon_arrow2.png' style='width:20px;cursor:pointer;'  onclick=\"window.open('".$r["dc_url_loc"]."','_blank');\" >";} ?>
     </td>
     <td>
-            <?=$r["DC_DT_COLLECT"][0]?date("Y-m-d",$r["DC_DT_COLLECT"][0]):"-"?>
+            <?=substr($r["dc_dt_collect"],0,10)?>
     </td>
     <td>
-            <?=$r["DC_HIT"][0]?>
+            <?=$r["dc_hit"]?>
     </td>
         <? if($Mem->class>7){ ?>
     <td>
-        <input type="button" value="삭제" class="button1" onclick="test('<?=$r['id']?>');">
-        <input type="button" value="수정" class="button1" onclick="window.open('Crawl_Modify.php?id=<?=$r["id"]?>','data_modify','scrollbars=1');">
+        <input type="button" value="삭제" class="button1" onclick="test('<?=$r['_id']?>');">
+        <input type="button" value="수정" class="button1" onclick="window.open('Crawl_Modify.php?_id=<?=$r["_id"]?>','data_modify','scrollbars=1');">
     </td>
 <? } ?>
 </tr>
@@ -234,6 +250,7 @@ function test(idx){
 	if(confirm("정말 삭제하시겠습니까?")==true){
 		getup('Content_Remove.php?REMOVE_CRAWL='+idx,idx);
 		alert("삭제되었습니다.");
+		window.location.reload();
 	}else{
 		
 	}

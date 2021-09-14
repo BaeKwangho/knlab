@@ -17,6 +17,10 @@ Class Elastic {
 	}
 	
 	/*
+	하... 따로 정의하지 않고 시작해서 search 로직만 4개나 됨..(다 다른페이지에서 쓰이는거)
+	근데 귀찮으니 일단 두겟음. 
+
+
 	=====================================
 	TODO : function parse_params(){  }
 	=====================================
@@ -38,6 +42,8 @@ Class Elastic {
 	============================================================
 	
 	*/
+
+
 
 	
 
@@ -98,6 +104,26 @@ Class Elastic {
 		return $result;
 	}
 	
+	public function index($params){
+		try{
+			$result = $this->$client->index($params);
+		}catch(Exception $e){
+			echo $e;
+		}
+		return $result;
+	}
+
+	public function document_search($params){
+		try{
+			$result = $this->$client->search($params);
+		}catch(Exception $e){
+			echo $e;
+		}
+		
+		$obj = $this->nomal_proc($result);
+		return $obj;
+	}
+
 	public function search($params){
 		try{
 			$result = $this->$client->search($params);
@@ -199,6 +225,49 @@ Class Elastic {
 		return $sample;
 	}
 
+	public function nomal_proc($result){
+		$docs = array();
+		$doc_num = $result['hits']['total']['value'];
+		foreach($result['hits']['hits'] as $doc){
+			if(isset($doc['_source'])){
+				$doc['_source']['_id']=$doc['_id'];
+				array_push($docs,$doc['_source']);
+			}
+		}
+		$obj=[
+			'doc_num' => $count,
+			'result' => $docs,
+		];
+		return $obj;
+	}
+
+	public function delete($params){
+		try{
+			$result = $this->$client->delete($params);
+		}catch(Exception $e){
+			echo $e;
+		}
+		return $result;
+	}
+	public function get($params){
+		try{
+			$result = $this->$client->get($params);
+		}catch(Exception $e){
+			echo $e;
+		}
+		$obj = $result['_source'];
+		$obj['_id']=$result['_id'];
+		return $obj;
+	}
+
+	public function update($params){
+		try{
+			$result = $this->$client->update($params);
+		}catch(Exception $e){
+			echo $e;
+		}
+		return $result;
+	}
 
 }
 ?>

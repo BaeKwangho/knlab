@@ -8,6 +8,10 @@ if($Mem->class < 8 ){ //위쪽 레이어 작성.
 	}else{
 		$destination = "Content_view.php";
 	}
+	if($_GET['temp']){
+
+		$destination = "Renew_Content.php";
+	}
 	#exit;
 if($_SESSION["AUTH"]["MID"]=="2410"){?>
 
@@ -29,11 +33,12 @@ if($_SESSION["AUTH"]["MID"]=="2410"){?>
 	<div style="height: 50px;background-color:#2f5597;">
   <table class="menu_top">
     <td style="min-width:200px; background-color:green;font-size:20px;border-bottom:2px solid green" onclick="go('<?=$destination?>?<?=!$_GET["CID"]?"CID=".$_GET["CID"]:""?>&search_reset=1')"><?if($_SESSION["AUTH"]["MID"]){$Q=$Mem->q("select CT_NM from nt_categorys where CODE like ?",$_SESSION["AUTH"]["MID"]);$r=$Q->fetch();}?><?=$r["CT_NM"]? $r["CT_NM"]:"미지정"?></td>
-    <td class="<?=$_GET["reset_type"]=="1"?"active":""?>" style="width:20%;min-width:100px;" onclick="go('<?=$destination?>?<?=!$_GET["CID"]?"CID=".$_GET["CID"]:""?>&reset_type=1&crawl=<?=$_GET["crawl"]?>')">신규등록자료</td>
-	<td class="<?=$_GET["TYPE"]=="글로벌동향"?"active":""?>" style="width:20%;min-width:100px;" onclick="go('<?=$destination?>?<?=!$_GET["CID"]?"CID=".$_GET["CID"]:""?>&TYPE=글로벌동향&crawl=<?=$_GET["crawl"]?>')">글로벌동향</td>
-    <td class="<?=$_GET["TYPE"]=="발간물"?"active":""?>" style="width:20%;min-width:100px;" onclick="go('<?=$destination?>?<?=!$_GET["CID"]?"CID=".$_GET["CID"]:""?>&TYPE=발간물&crawl=<?=$_GET["crawl"]?>')">발간물</td>
-    <td class="<?=$_GET["TYPE"]=="레퍼런스"?"active":""?>" style="width:20%;min-width:100px;" onclick="go('<?=$destination?>?<?=!$_GET["CID"]?"CID=".$_GET["CID"]:""?>&TYPE=레퍼런스&crawl=<?=$_GET["crawl"]?>')">레퍼런스</td>
-    <td class="<?=$_GET["TYPE"]=="아카이브"?"active":""?>" style="width:20%;min-width:100px;" onclick="go('<?=$destination?>?<?=!$_GET["CID"]?"CID=".$_GET["CID"]:""?>&TYPE=아카이브&crawl=<?=$_GET["crawl"]?>')">아카이브</td>
+    <td class="<?=$_GET["reset_type"]=="1"?"active":""?>" style="width:16.7%;min-width:100px;" onclick="go('<?=$destination?>?<?=!$_GET["CID"]?"CID=".$_GET["CID"]:""?>&reset_type=1&crawl=<?=$_GET["crawl"]?>')">신규등록자료</td>
+	<td class="<?=$_GET["TYPE"]=="글로벌동향"?"active":""?>" style="width:16.7%;min-width:100px;" onclick="go('<?=$destination?>?<?=!$_GET["CID"]?"CID=".$_GET["CID"]:""?>&TYPE=글로벌동향&crawl=<?=$_GET["crawl"]?>')">글로벌동향</td>
+    <td class="<?=$_GET["TYPE"]=="발간물"?"active":""?>" style="width:16.7%;min-width:100px;" onclick="go('<?=$destination?>?<?=!$_GET["CID"]?"CID=".$_GET["CID"]:""?>&TYPE=발간물&crawl=<?=$_GET["crawl"]?>')">발간물</td>
+    <td class="<?=$_GET["TYPE"]=="레퍼런스"?"active":""?>" style="width:16.7%;min-width:100px;" onclick="go('<?=$destination?>?<?=!$_GET["CID"]?"CID=".$_GET["CID"]:""?>&TYPE=레퍼런스&crawl=<?=$_GET["crawl"]?>')">레퍼런스</td>
+    <td class="<?=$_GET["TYPE"]=="아카이브"?"active":""?>" style="width:16.7%;min-width:100px;" onclick="go('<?=$destination?>?<?=!$_GET["CID"]?"CID=".$_GET["CID"]:""?>&TYPE=아카이브&crawl=<?=$_GET["crawl"]?>')">아카이브</td>
+	<td class="<?=$_GET["TYPE"]=="image"?"active":""?>" style="width:16.7%;min-width:100px;" onclick="go('<?=$destination?>?<?=!$_GET["CID"]?"CID=".$_GET["CID"]:""?>&TYPE=image&crawl=<?=$_GET["crawl"]?>')">이미지 검색</td>
   </table>
 </div>
 

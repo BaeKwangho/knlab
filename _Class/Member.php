@@ -5,6 +5,8 @@
 include "/home/knlab/_Class/Database.php";
 include "/home/knlab/_Class/Elastic.php";
 include "/home/knlab/_Class/Solr.php";
+include "/home/knlab/_Class/Nas.php";
+include "/home/knlab/_Class/Politica.php";
 
 Class Member extends Database {
 
@@ -18,10 +20,11 @@ Class Member extends Database {
 
 	function  __construct  ($default=false){
 			@session_start();
-			$this->Database($default);
+			$this->Database();
 			$this->es=new Elastic($default);
-			$this->gps =new Solr($default);
-			$this->docs =new Solr('docs');
+			$this->gps =new Solr('preproc');
+			$this->nas = new Nas();
+			$this->poli = new Politica();
 
  			$this->data=array();
 			$this->data["temp"]="Data/temp/";

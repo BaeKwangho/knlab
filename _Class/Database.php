@@ -6,8 +6,8 @@ include "/home/knlab/_Class/_Lib.php";
 Class Database {
 
 	public $DB,$path,$url,$CODE,$user,$shop;
-	function Database($default=false){
-		$this->DB=new PDO("mysql:host=127.0.0.1;port=3306;dbname=nexteli;charset=utf8","root","tony267");
+	function Database($user="root",$pw="tony267",$host="127.0.0.1",$port="3306",$dbname="nexteli"){
+		$this->DB=new PDO("mysql:host=".$host.";port=".$port.";dbname=".$dbname.";charset=utf8",$user,$pw);
 		$this->DB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	 	$this->DB->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);//추가
 		$this->path=array();

@@ -4,11 +4,6 @@
 $_SESSION["edit"]=false;
 include "Axis_Header.php";
 
-if(!isset($_GET['keyword'])){
-	mvs("Crawl_Search.php");
-}
-
-
 ?>
 
 <script>
@@ -108,6 +103,17 @@ if(!isset($_GET['keyword'])){
 					</select>
 				</div>
 			</div>
+			<div class="col">
+				<div class="input-group input-group-lg">
+					<div class="input-group-prepend">
+						<span class="input-group-text">Item_id</span>
+					</div>
+					<input
+						type="text"
+						class="form-control"
+						aria-label="Sizing example input"
+						aria-describedby="inputGroup-sizing-lg" value="<?=$_GET['item_id']?>" name="item_id"></div>
+			</div>
 		</div>
 		<div class="form-row mt-3 ">
 			<div class="col-9">
@@ -179,10 +185,12 @@ if($_GET['lang']){
 
 }
 
+if(!$_GET['keyword']){$keyword='*';}else{$keyword='*'.$_GET['keyword'].'*';}
+
 $select = array(
-    'query'         => "keywords:*".$_GET['keyword'].
-						"* OR title:*".$_GET['keyword'].
-						"* OR contents:*".$_GET['keyword']."*"
+    'query'         => "keywords:".$keyword.
+						" OR title:".$keyword.
+						" OR contents:".$keyword
 						//." AND item_id:664941 "
 						,
     'start'         => 0,
@@ -191,11 +199,11 @@ $select = array(
     'sort'          => array('creationdate' => 'desc'),
     'filterquery' => $fq,
 );
+if($_GET['item_id']){$select['query'].=" AND item_id:".$_GET['item_id'];}
 
+
+print_r($select);
 $paging = solr_paging($Mem->gps,$select,10,10,'',$get);
-
-$Mem->gps->modify($paging[0],$Mem->uid,'usr_sub');
-
 
 ?>
 	<div class="mt-5">

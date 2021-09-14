@@ -1,5 +1,5 @@
 <?
-//error_reporting(E_ALL);	ini_set("display_errors", 1);
+error_reporting(E_ALL);	ini_set("display_errors", 1);
 
 // 0:수집 1:정제 2:배포
 
@@ -46,7 +46,7 @@ if($_GET['recall']){
       'filterquery' => $fq,
     );
   
-    $result = $Mem->docs->select($select);
+    $result = $Mem->gps->select($select);
     $edit_num_result = $result->getNumFound();
 
 $params=[
@@ -239,7 +239,7 @@ if($type==0){
     $beftime=$curtime-60 * 60 * 24;
     $fq = array(
       'custom' => array(
-        'query' => 'DC_DT_WRITE:['.$beftime.' TO '.$curtime.']',
+        'query' => 'dc_dt_write:['.$beftime.' TO '.$curtime.']',
       ),
     );
     $select = array(
@@ -250,7 +250,7 @@ if($type==0){
       'sort'          => array('DC_DT_COLLECT' => 'desc'),
       'filterquery' => $fq,
     );
-    $result = $Mem->docs->select($select);
+    $result = $Mem->gps->select($select);
     $temp['date']=conv_solr_time($beftime);
     $temp['value']=$result->getNumFound();
   

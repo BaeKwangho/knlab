@@ -19,39 +19,49 @@ if($_POST["DC_DT_WRITE"]){ $_POST["DC_DT_WRITE"]=datec($_POST["DC_DT_WRITE"]); 	
 
 $_POST["UID"]=$Mem->user["uid"];
 $date = mktime();
-$data = [
-    "ITEM_ID"=>$_POST["ITEM_ID"],
-    "DC_TITLE_OR" => $_POST["DC_TITLE_OR"], //DC_TITLE_OR , 원제목
-    "DC_TITLE_KR" => $_POST["DC_TITLE_KR"], //DC_TITLE_KR , 한글제목
-    "DC_KEYWORD" => $_POST["DC_KEYWORD"], //DC_KEYWORD , 키워드
-    "DC_TYPE" => $_POST["DC_TYPE"], //DC_TYPE , 유형분류
-    "DC_COUNTRY" => $_POST["DC_COUNTRY"], //DC_COUNTRY , 국가
-    "DC_DT_WRITE" => $_POST["DC_DT_WRITE"], //DC_DT_WRITE , 발간일, "YYYY-MM-DD")),
-    "DC_DT_COLLECT" => $_POST["DC_DT_COLLECT"],
-    "DC_URL_LOC" => $_POST["DC_URL_LOC"], //DC_URL_LOC , URL 정보
-    "DC_AGENCY" => $_POST["DC_AGENCY"], //DC_AGENCY , 발행기관
-    "DC_CODE" => $_POST["DC_CODE"], // DC_CODE, 대중소 분류된 코드 기입
-    "DC_CONTENT" => $_POST["DC_CONTENT"], //DC_CONTENT , 내용
-    "DC_PAGE" => $_POST["DC_PAGE"], //DC_PAGE , 페이지수
-    "DC_CAT" => $_POST["DC_TYPE"], //DC_CAT , 특수분류
-];
+$params = array();
+if($_POST['DC_CODE']){$params['dc_code']=$_POST['DC_CODE'];}
+if($_POST['DC_DT_COLLECT']){$params['dc_dt_collect']=date('c',$_POST['DC_DT_COLLECT']);}
+if($_POST['DC_DT_WRITE']){$params['dc_dt_write']=date('c',$_POST['DC_DT_WRITE']);}
+if($_POST['DC_LINK']){$params['dc_link']=$_POST['DC_LINK'];}else{$params['dc_link']="0";}
+if($_POST['DC_COUNTRY']){$params['dc_country']=$_POST['DC_COUNTRY'];}else{$params['dc_country']="NULL";}
+if($_POST['DC_TITLE_OR']){$params['dc_title_or']=$_POST['DC_TITLE_OR'];}else{$params['dc_title_or']="NULL";}
+if($_POST['DC_TITLE_KR']){$params['dc_title_kr']=$_POST['DC_TITLE_KR'];}else{$params['dc_title_kr']="NULL";}
+if($_POST['DC_CONTENT']){$params['dc_content']=$_POST['DC_CONTENT'];}else{$params['dc_content']="NULL";}
+if($_POST['DC_URL_LOC']){$params['dc_url_loc']=$_POST['DC_URL_LOC'];}else{$params['dc_url_loc']="NULL";}
+if($_POST['DC_AGENCY']){$params['dc_publisher']=$_POST['DC_AGENCY'];}else{$params['dc_publisher']="NULL";}
+if($_POST['DC_PAGE']){$params['dc_page']=$_POST['DC_PAGE'];}else{$params['dc_page']="NULL";}
+if($_POST['DC_TYPE']){$params['dc_type']=$_POST['DC_TYPE'];}else{$params['dc_type']="NULL";}
+if($_POST['DC_TYPE']){$params['dc_cat']=$_POST['DC_TYPE'];}else{$params['dc_cat']="NULL";}
+if($_POST['DC_KEYWORD']){$params['dc_keyword']=$_POST['DC_KEYWORD'];}else{$params['dc_keyword']="NULL";}
+if($_POST['DC_SMRY_KR']){$params['dc_smry_kr']=$_POST['DC_SMRY_KR'];}else{$params['dc_smry_kr']="NULL";}
+if($_POST['DC_HIT']){$params['dc_hit']=$_POST['DC_HIT'];}else{$params['dc_hit']="0";}
+if($_POST['DC_COVER']){$params['dc_cover']=$_POST['DC_COVER'];}else{$params['dc_cover']="NULL";}
+if($_POST['DC_URL_LOC']){
 
-if($data['DC_TITLE_KR']===''){$data['DC_TITLE_KR']='NULL';}
-if($data['DC_TITLE_OR']===''){$data['DC_TITLE_OR']='NULL';}
-if($data['DC_KEYWORD']===''){$data['DC_KEYWORD']='NULL';}
-if($data['DC_TYPE']===''){$data['DC_TYPE']='NULL';}
-if($data['DC_COUNTRY']===''){$data['DC_COUNTRY']='NULL';}
-if($data['DC_URL_LOC']===''){$data['DC_URL_LOC']='NULL';}
-if($data['DC_CONTENT']===''){$data['DC_CONTENT']='NULL';}
-if($data['DC_PAGE']===''){$data['DC_PAGE']=0;}
-if($data['DC_CAT']===''){$data['DC_CAT']='NULL';}
+    $params['dc_cover']=$_POST['DC_COVER'];
+}else{
+    $params['dc_cover']="NULL";
+}
+
+if($_POST['ITEM_ID']){$params['item_id']=$_POST['ITEM_ID'];}
+$params['is_crawled']=true;
+$params['stat']=0;
 
 
 if(!isset($_POST["DC_DT_WRITE"])){
-    $data['DC_DT_WRITE'] = $date;
+    $params['dc_dt_write'] = date('c',$date);
 }
 
-$Mem->docs->update($data);
+$index=[
+	'index' => 'politica_service',
+	'body'=>$params
+];
+$index['refresh']=true;
+$Mem->es->index($index);
+$date = date('c',$date);
+//$Mem->poli->q('update collected_item set submit_status=1, submit_time='.$date.' where item_id='.$_POST['ITEM_ID']);
+
 mvs("components/error.php?err_msg=성공적으로 등록되었습니다.&back=-2");
 exit;
 
@@ -114,28 +124,25 @@ exit;
 
 
 //기등록된 자료가 있는지 확인 후, 있으면 페이지 종료
-$already = $Mem->docs->search('ITEM_ID:"'.$_GET['item_id'].'"')['result'][0];
-if($already){
+$params=[
+    'index' => 'politica_service',
+    'body' => [
+        'query' => [
+            'match' => [
+                'item_id' => $_GET['item_id']
+            ]
+        ]
+    ]
+];
+$already = $Mem->es->document_search($params)['result'];
+if(count($already)){
     mvs("components/error.php?err_msg=이미 등록된 자료입니다.");
     exit;
 }
 
-$params=[
-	'client' => [
-        'timeout' => 10,       
-        'connect_timeout' => 10
-	],
-	'body' => [
-		'size' => 1000,
-		'query' => [
-			'match' => [
-				'item_id' => $_GET['item_id']
-			]
-		]
-	]
-];
-$es_imgs = $Mem->es->img_search($params)['images'];
+$solr_imgs = $Mem->gps->thumbnail('item_id:"'.$_GET['item_id'].'"');
 $solr_res = $Mem->gps->search('item_id:"'.$_GET['item_id'].'"')['result'][0];
+$Mem->gps->modify($solr_res,$Mem->uid,'usr_sub');
 
 $fq = array(
 	'custom' => array(
@@ -287,18 +294,31 @@ function FormSubmit(f) {
                     </td>
                 </tr>
                 <tr style="">
-                    <!--
 				<th >표지파일</th>
 				<td colspan="3"  >
-                <div style="height:200px;overflow-y: scroll;" id="crawl_cover_list">
+                <div class="row" style="padding:10px 10px;height:400px;overflow-y: scroll;" id="crawl_cover_list">
+                <div class="col-xs-6 col-md-3">
 				<?
-				foreach($es_imgs as $doc){
-					echo "<div style='float:left;text-align:center;margin:10px;' >";
-					echo	"<img width='100px' src='".$doc['image_path']."' class='temp_file' >";
-					echo "</a></div>";
-				}
+                $img_loc= $Mem->gps->thumbnail("item_id:".$solr_res['item_id']);
+                $thumbnails = $Mem->nas->get_image_from_folder($img_loc);
+                if($thumbnails){
+                    ?><div class="btn-group" data-toggle="buttons"><?
+                    foreach($thumbnails as $img){
+                    ?>
+                    <label class="btn">
+                        <div >
+                        <?=$img[0]?>
+                        </div>
+                        <input type="radio" name="DC_COVER" id="DC_COVER" autocomplete="off" value="<?=$img[1]?>">
+                    </label>
+                    <?
+                    }
+                    ?></div><?
+                }else{
+                    echo "썸네일 이미지가 추출되지 않았습니다.";
+                }
 				 ?>
-                 -->
+                 </div>
                  </div>
 				<!--<div id="file_corver_list"></div> <input type="file" id="file_corver_upload" name="cover_upload" style="display:none;"  onchange="file_corver_add();" ></td> -->
 				<div id="file_corver_list"></div> <input type="file" id="file_corver_upload" name="cover_upload" style="display:none;"  onchange="easySetting();" ></td> 
