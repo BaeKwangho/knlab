@@ -60,7 +60,7 @@ $index=[
 $index['refresh']=true;
 $Mem->es->index($index);
 $date = date('c',$date);
-//$Mem->poli->q('update collected_item set submit_status=1, submit_time='.$date.' where item_id='.$_POST['ITEM_ID']);
+$Mem->poli->q('update collected_item set submit_status=1, submit_time='.$date.' where item_id='.$_POST['ITEM_ID']);
 
 mvs("components/error.php?err_msg=성공적으로 등록되었습니다.&back=-2");
 exit;
@@ -142,7 +142,7 @@ if(count($already)){
 
 $solr_imgs = $Mem->gps->thumbnail('item_id:"'.$_GET['item_id'].'"');
 $solr_res = $Mem->gps->search('item_id:"'.$_GET['item_id'].'"')['result'][0];
-$Mem->gps->modify($solr_res,$Mem->uid,'usr_sub');
+$Mem->gps->modify($solr_res,$Mem->uid,'viewer');
 
 $fq = array(
 	'custom' => array(

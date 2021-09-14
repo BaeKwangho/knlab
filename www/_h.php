@@ -3,4 +3,3 @@ if(!$Mem->user["uid"]){			mvs("Member_Login.php");	exit;		}
 
  
   ?>
-  

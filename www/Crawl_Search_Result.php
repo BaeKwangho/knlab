@@ -165,10 +165,10 @@ if($_GET['subscribed']){
 		//전체
 	}elseif($_GET['subscribed']==1){
 		//기조회
-		$fq['custom']['query'].=' AND usr_sub:'.$Mem->uid;
+		$fq['custom']['query'].=' AND viewer:'.$Mem->uid;
 	}else{
 		//미조회
-		$fq['custom']['query'].=' AND !usr_sub:'.$Mem->uid;
+		$fq['custom']['query'].=' AND !viewer:'.$Mem->uid;
 	}
 	$get.="&subscribed=".$_GET['subscribed'];
 }else{
@@ -202,7 +202,6 @@ $select = array(
 if($_GET['item_id']){$select['query'].=" AND item_id:".$_GET['item_id'];}
 
 
-print_r($select);
 $paging = solr_paging($Mem->gps,$select,10,10,'',$get);
 
 ?>
@@ -218,7 +217,7 @@ $paging = solr_paging($Mem->gps,$select,10,10,'',$get);
 				<div class="row">
 					<div class="bold f20 col text-left" id="title"><?=$doc['title'][0]?></div>
 					<div class="col text-right pl-5">
-						<?if(in_array($Mem->uid,$doc['usr_sub'])){?>
+						<?if(in_array($Mem->uid,$doc['viewer'])){?>
 							<div style="margin-left:90%;margin-top:20px;width:20px;height:20px;border-radius:50%;background:#28a745;"></div>
 						<?}else{?>
 							<div style="margin-left:90%;margin-top:20px;width:20px;height:20px;border-radius:50%;background:#dc3545;"></div>
